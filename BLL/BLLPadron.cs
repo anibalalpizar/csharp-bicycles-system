@@ -47,9 +47,9 @@ namespace ProyectoProgramadolll.BLL
                 }
             }
 
-            PadronDTO oPadronDTO = JsonSerializer.Deserialize<PadronDTO>(json);
+            //PadronDTO oPadronDTO = JsonSerializer.Deserialize<PadronDTO>(json);
 
-            return oPadronDTO;
+            return null;
         }
     }
 }

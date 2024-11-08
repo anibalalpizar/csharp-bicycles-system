@@ -71,13 +71,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\BLLPadron.cs" />
+    <Compile Include="BLL\BLLTienda.cs" />
     <Compile Include="BLL\ProvinciaBLL.cs" />
+    <Compile Include="DAL\DALTienda.cs" />
     <Compile Include="DAL\ProvinciaDAL.cs" />
     <Compile Include="Entities\DTO\PadronDTO.cs" />
     <Compile Include="Entities\Canton.cs" />
     <Compile Include="Entities\Distrito.cs" />
     <Compile Include="Entities\Provincia.cs" />
     <Compile Include="Entities\QuickResponse.cs" />
+    <Compile Include="Entities\Tienda.cs" />
+    <Compile Include="Enumeraciones\EstadoMantenimiento.cs" />
     <Compile Include="Extensions\ExceptionsExtention.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -86,7 +90,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IBLLPadron.cs" />
+    <Compile Include="Interfaces\IBLLTienda.cs" />
+    <Compile Include="Interfaces\IDALTienda.cs" />
+    <Compile Include="Interfaces\IDataBase.cs" />
     <Compile Include="Interfaces\IProvinciaService.cs" />
+    <Compile Include="Persistencia\DataBase.cs" />
+    <Compile Include="Persistencia\FactoryConexion.cs" />
+    <Compile Include="Persistencia\FactoryDatabase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\AgregarClientes.cs">
@@ -155,12 +165,6 @@
     <Compile Include="UI\ProcesoOrdenTrabajo.Designer.cs">
       <DependentUpon>ProcesoOrdenTrabajo.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Tienda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Tienda.Designer.cs">
-      <DependentUpon>Tienda.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Vendedor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,9 +221,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProcesoOrdenTrabajo.resx">
       <DependentUpon>ProcesoOrdenTrabajo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Tienda.resx">
-      <DependentUpon>Tienda.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Vendedor.resx">
       <DependentUpon>Vendedor.cs</DependentUpon>
