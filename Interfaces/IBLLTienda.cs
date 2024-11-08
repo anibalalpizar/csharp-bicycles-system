@@ -12,6 +12,5 @@ namespace ProyectoProgramadolll.Interfaces
         Task<Tienda> GuardarTienda(Tienda tienda);
         Task<IEnumerable<Tienda>> ObtenerTodasLasTiendas();
         Task<bool> EliminarTienda(string idTienda);
-
     }
 }

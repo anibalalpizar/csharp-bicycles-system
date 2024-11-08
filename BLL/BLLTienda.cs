@@ -23,12 +23,12 @@ namespace ProyectoProgramadolll.BLL
         {
             IDALTienda tiendaDAL = new DALTienda();
             Task<Tienda> tiendaTask = null;
-            if(tiendaDAL.ObtenerTiendaPorId(tienda.CedulaJuridica.ToString()) == null)
+            if (tiendaDAL.ObtenerTiendaPorId(tienda.CedulaJuridica.ToString()) == null)
                 tiendaTask = tiendaDAL.GuardarTienda(tienda);
 
             else
                 tiendaTask = tiendaDAL.ActualizarTienda(tienda);
-            
+
 
             return tiendaTask;
 

@@ -14,11 +14,6 @@ namespace ProyectoProgramadolll.Entities
         public int Telefono { get; set; }
         public string Direccion { get; set; }
         public decimal ImpuestoVenta { get; set; }
-        public override string ToString() =>
-
-      $"{IdTienda} {CedulaJuridica} {Nombre} {Telefono} {Direccion} {ImpuestoVenta}";
-
+        public override string ToString() => $"Tienda: {Nombre}, Cedula Juridica: {CedulaJuridica}";
     }
-
-
 }

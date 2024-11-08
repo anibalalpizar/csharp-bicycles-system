@@ -22,18 +22,14 @@ namespace ProyectoProgramadolll.DAL
 
             try
             {
-
-                // Agregar parámetros correctamente
                 cmd.Parameters.AddWithValue("@cedulaJuridica", tienda.CedulaJuridica);
                 cmd.Parameters.AddWithValue("@nombre", tienda.Nombre);
                 cmd.Parameters.AddWithValue("@telefono", tienda.Telefono);
                 cmd.Parameters.AddWithValue("@direccion", tienda.Direccion);
                 cmd.Parameters.AddWithValue("@impuestoVenta", tienda.ImpuestoVenta);
 
-                // Usar la base de datos a través de un Factory (esto depende de tu implementación)
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
-                    // Ejecutar el comando
                     filas = await db.ExecuteNonQueryAsync(cmd, IsolationLevel.ReadCommitted);
                 }
 
@@ -87,17 +83,14 @@ namespace ProyectoProgramadolll.DAL
 
             try
             {
-                // Agregar parámetros correctamente
                 cmd.Parameters.AddWithValue("@cedulaJuridica", tienda.CedulaJuridica);
                 cmd.Parameters.AddWithValue("@nombre", tienda.Nombre);
                 cmd.Parameters.AddWithValue("@telefono", tienda.Telefono);
                 cmd.Parameters.AddWithValue("@direccion", tienda.Direccion);
                 cmd.Parameters.AddWithValue("@impuestoVenta", tienda.ImpuestoVenta);
 
-                // Usar la base de datos a través de un Factory (esto depende de tu implementación)
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
-                    // Ejecutar el comando
                     var filas = await db.ExecuteNonQueryAsync(cmd, IsolationLevel.ReadCommitted);
 
                 }
@@ -105,7 +98,6 @@ namespace ProyectoProgramadolll.DAL
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones
                 throw new Exception("Error al guardar la tienda", ex);
             }
         }
@@ -165,6 +157,7 @@ namespace ProyectoProgramadolll.DAL
                     foreach (DataRow dr in dt.Rows)
                     {
                         Tienda oTienda = new Tienda();
+                        oTienda.IdTienda = int.Parse(dr["IdTienda"].ToString());
                         oTienda.CedulaJuridica = int.Parse(dr["CedulaJuridica"].ToString());
                         oTienda.Nombre = dr["Nombre"].ToString();
                         oTienda.Telefono = int.Parse(dr["Telefono"].ToString());
