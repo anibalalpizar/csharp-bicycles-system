@@ -17,9 +17,9 @@ namespace ProyectoProgramadolll.UI
             InitializeComponent();
         }
 
-        private  void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void btnAceptar_Click_1(object sender, EventArgs e)
@@ -58,7 +58,16 @@ namespace ProyectoProgramadolll.UI
                 }
                 else
                 {
-                    /// abrir el formulario principal
+
+                    if (!oVendedor.Estado)
+                    {
+                        MessageBox.Show("El usuario se encuentra inactivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    MainForm oMainForm = new MainForm(oVendedor.IdRol);
+                    oMainForm.Show();
+
                 }
 
 

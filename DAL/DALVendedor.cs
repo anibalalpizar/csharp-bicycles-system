@@ -23,7 +23,7 @@ namespace ProyectoProgramadolll.DAL
 
             try
             {
-                
+
                 cmd.Parameters.AddWithValue("@CodigoVendedor", vendedor.CodigoVendedor);
                 cmd.Parameters.AddWithValue("@IdRol", vendedor.IdRol);
                 cmd.Parameters.AddWithValue("@Contrasegna", vendedor.Contrasegna);
@@ -147,6 +147,8 @@ namespace ProyectoProgramadolll.DAL
                         vendedor.IdVendedor = reader.GetInt32(reader.GetOrdinal("IdVendedor"));
                         vendedor.CodigoVendedor = reader.GetString(reader.GetOrdinal("CodigoVendedor"));
                         vendedor.Contrasegna = reader.GetString(reader.GetOrdinal("Contrasegna"));
+                        vendedor.IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")).ToString();
+                        vendedor.Estado = reader.GetInt32(reader.GetOrdinal("Estado")) == 1;
                     }
                 }
                 return vendedor;
