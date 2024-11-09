@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProyectoProgramadolll.BLL;
+using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,10 +20,57 @@ namespace ProyectoProgramadolll.UI
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            Bicicletas Bicicletas = new Bicicletas();
-            Bicicletas.ShowDialog();
+            IBLLBicicleta bllBicicleta = new BLLBicicleta();
+
+            try
+            {
+                Bicicleta bicicleta = new Bicicleta();
+
+                if (string.IsNullOrEmpty(txtNumeroSerie.Text))
+                {
+                    MessageBox.Show("El número de serie es requerido");
+                    return;
+                }
+
+                bicicleta.NumeroSerie = txtNumeroSerie.Text;
+                bicicleta.Marca = txtMarca.Text;
+                //bicicleta
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void MantenimientoBicicleta_Load(object sender, EventArgs e)
+        {
+            CargarDatos();
+        }
+
+        private async void CargarDatos()
+        {
+            IBLLClientes bLLClientes = new BLLClientes();
+            List<Cliente> lista = null;
+
+            try
+            {
+                this.cmbClientes.Items.Clear();
+                lista = bLLClientes.ObtenerClientes();
+                foreach (Cliente cliente in lista)
+                {
+                    this.cmbClientes.Items.Add(cliente);
+                }
+
+                this.cmbClientes.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

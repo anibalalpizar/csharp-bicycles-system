@@ -1,24 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Bicycle\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle\\util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle\\entities\\productoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:entities\\productoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle\\ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle\\ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    }
-  ],
+  "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -87,57 +70,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Utils.cs",
-              "DocumentMoniker": "D:\\Bicycle\\Util\\Utils.cs",
-              "RelativeDocumentMoniker": "Util\\Utils.cs",
-              "ToolTip": "D:\\Bicycle\\Util\\Utils.cs",
-              "RelativeToolTip": "Util\\Utils.cs",
-              "ViewState": "AgIAAHYAAAAAAAAAAAAjwJIAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:29:45.239Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MantenimientoProductoServicios.cs [Design]",
-              "DocumentMoniker": "D:\\Bicycle\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoProductoServicios.cs",
-              "ToolTip": "D:\\Bicycle\\UI\\MantenimientoProductoServicios.cs [Design]",
-              "RelativeToolTip": "UI\\MantenimientoProductoServicios.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:24:40.18Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MantenimientoProductoServicios.cs",
-              "DocumentMoniker": "D:\\Bicycle\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoProductoServicios.cs",
-              "ToolTip": "D:\\Bicycle\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeToolTip": "UI\\MantenimientoProductoServicios.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAA9wCgAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:23:53.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductoServicio.cs",
-              "DocumentMoniker": "D:\\Bicycle\\Entities\\ProductoServicio.cs",
-              "RelativeDocumentMoniker": "Entities\\ProductoServicio.cs",
-              "ToolTip": "D:\\Bicycle\\Entities\\ProductoServicio.cs",
-              "RelativeToolTip": "Entities\\ProductoServicio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-09T04:17:21.22Z",
-              "EditorCaption": ""
             }
           ]
         },

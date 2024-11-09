@@ -70,15 +70,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\BLLBicicleta.cs" />
+    <Compile Include="BLL\BLLClientes.cs" />
     <Compile Include="BLL\BLLPadron.cs" />
     <Compile Include="BLL\BLLRol.cs" />
     <Compile Include="BLL\BLLTienda.cs" />
     <Compile Include="BLL\BLLVendedor.cs" />
     <Compile Include="BLL\ProvinciaBLL.cs" />
+    <Compile Include="DAL\DALBicicleta.cs" />
+    <Compile Include="DAL\DALClientes.cs" />
     <Compile Include="DAL\DALRol.cs" />
     <Compile Include="DAL\DALTienda.cs" />
     <Compile Include="DAL\DALVendedor.cs" />
     <Compile Include="DAL\ProvinciaDAL.cs" />
+    <Compile Include="Entities\Bicicleta.cs" />
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\DTO\PadronDTO.cs" />
     <Compile Include="Entities\Canton.cs" />
@@ -98,10 +103,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBLLBicicleta.cs" />
+    <Compile Include="Interfaces\IBLLClientes.cs" />
     <Compile Include="Interfaces\IBLLPadron.cs" />
     <Compile Include="Interfaces\IBLLRol.cs" />
     <Compile Include="Interfaces\IBLLTienda.cs" />
     <Compile Include="Interfaces\IBLLVendedor.cs" />
+    <Compile Include="Interfaces\IDALBicicleta.cs" />
+    <Compile Include="Interfaces\IDALClientes.cs" />
     <Compile Include="Interfaces\IDALRol.cs" />
     <Compile Include="Interfaces\IDALTienda.cs" />
     <Compile Include="Interfaces\IDALVendedor.cs" />
@@ -123,12 +132,6 @@
     </Compile>
     <Compile Include="UI\AgregarProductoServicio.Designer.cs">
       <DependentUpon>AgregarProductoServicio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Bicicletas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Bicicletas.Designer.cs">
-      <DependentUpon>Bicicletas.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\frmLogin.cs">
       <SubType>Form</SubType>
@@ -208,9 +211,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AgregarProductoServicio.resx">
       <DependentUpon>AgregarProductoServicio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Bicicletas.resx">
-      <DependentUpon>Bicicletas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

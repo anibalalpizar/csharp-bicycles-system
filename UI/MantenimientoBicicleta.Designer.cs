@@ -36,17 +36,16 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnCrear = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.Apellido = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.txtMarca = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNumeroSerie = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -123,35 +122,25 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // btnCrear
-            // 
-            this.btnCrear.Location = new System.Drawing.Point(41, 13);
-            this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(56, 28);
-            this.btnCrear.TabIndex = 29;
-            this.btnCrear.Text = "Crear";
-            this.btnCrear.UseVisualStyleBackColor = true;
-            this.btnCrear.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(148, 136);
+            this.btnGuardar.Location = new System.Drawing.Point(41, 13);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(56, 34);
             this.btnGuardar.TabIndex = 84;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // comboBox2
+            // cmbClientes
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(17, 109);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(133, 21);
-            this.comboBox2.TabIndex = 83;
+            this.cmbClientes.FormattingEnabled = true;
+            this.cmbClientes.Location = new System.Drawing.Point(17, 109);
+            this.cmbClientes.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbClientes.Name = "cmbClientes";
+            this.cmbClientes.Size = new System.Drawing.Size(133, 21);
+            this.cmbClientes.TabIndex = 83;
             // 
             // label6
             // 
@@ -181,22 +170,13 @@
             this.textBox2.Size = new System.Drawing.Size(83, 20);
             this.textBox2.TabIndex = 80;
             // 
-            // textBox1
+            // txtMarca
             // 
-            this.textBox1.Location = new System.Drawing.Point(121, 38);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(83, 20);
-            this.textBox1.TabIndex = 79;
-            // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(121, 13);
-            this.maskedTextBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.maskedTextBox1.Mask = "BI-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(83, 20);
-            this.maskedTextBox1.TabIndex = 78;
+            this.txtMarca.Location = new System.Drawing.Point(121, 38);
+            this.txtMarca.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Size = new System.Drawing.Size(83, 20);
+            this.txtMarca.TabIndex = 79;
             // 
             // label2
             // 
@@ -220,13 +200,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnGuardar);
-            this.panel1.Controls.Add(this.comboBox2);
+            this.panel1.Controls.Add(this.txtNumeroSerie);
+            this.panel1.Controls.Add(this.cmbClientes);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.Apellido);
             this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.maskedTextBox1);
+            this.panel1.Controls.Add(this.txtMarca);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Nombre);
             this.panel1.Location = new System.Drawing.Point(583, 61);
@@ -234,20 +213,29 @@
             this.panel1.Size = new System.Drawing.Size(242, 291);
             this.panel1.TabIndex = 85;
             // 
+            // txtNumeroSerie
+            // 
+            this.txtNumeroSerie.Location = new System.Drawing.Point(121, 11);
+            this.txtNumeroSerie.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNumeroSerie.Name = "txtNumeroSerie";
+            this.txtNumeroSerie.Size = new System.Drawing.Size(83, 20);
+            this.txtNumeroSerie.TabIndex = 84;
+            // 
             // MantenimientoBicicleta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 366);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnCrear);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MantenimientoBicicleta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoBicicleta";
+            this.Load += new System.EventHandler(this.MantenimientoBicicleta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -260,21 +248,20 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbClientes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label Apellido;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.TextBox txtMarca;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtNumeroSerie;
     }
 }

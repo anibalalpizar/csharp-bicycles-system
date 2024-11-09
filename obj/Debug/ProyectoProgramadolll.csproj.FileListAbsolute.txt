@@ -104,7 +104,6 @@ C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.Form1
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.Properties.Resources.resources
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.AgregarClientes.resources
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.AgregarProductoServicio.resources
-C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.Bicicletas.resources
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.MantenimientoBicicleta.resources
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.MantenimientoClientes.resources
 C:\Users\anibal\dev\csharp-bicycles-system\obj\Debug\ProyectoProgramadolll.UI.MainForm.resources
