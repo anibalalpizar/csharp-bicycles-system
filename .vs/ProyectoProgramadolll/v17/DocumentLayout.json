@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,7 +86,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-09T08:29:09.545Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "DALVendedor.cs",
               "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALVendedor.cs",
               "RelativeDocumentMoniker": "DAL\\DALVendedor.cs",
@@ -95,13 +112,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frmLogin.cs",
               "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\frmLogin.cs",
               "RelativeDocumentMoniker": "UI\\frmLogin.cs",
               "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\frmLogin.cs",
               "RelativeToolTip": "UI\\frmLogin.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAiwEEAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAiwDsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-09T07:35:29.567Z",
               "EditorCaption": ""

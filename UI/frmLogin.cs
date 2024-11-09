@@ -58,7 +58,6 @@ namespace ProyectoProgramadolll.UI
                 }
                 else
                 {
-
                     if (!oVendedor.Estado)
                     {
                         MessageBox.Show("El usuario se encuentra inactivo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
