@@ -1,4 +1,5 @@
 ﻿using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace ProyectoProgramadolll.Interfaces
     {
         Vendedor Login(string codigoVendedor, string contrasegna);
         Vendedor GuardarVendedor(Vendedor vendedor);
-        IEnumerable<Vendedor> ObtenerVendedores();
+        IEnumerable<VendedorDTO> ObtenerVendedores();
+        Vendedor ObtenerVendedorPorId(string codigoVendedor);
+        Vendedor ActualizarVendedor(Vendedor vendedor);
+        Task<bool> EliminarVendedor(string codigoVendedor);
+
     }
 }

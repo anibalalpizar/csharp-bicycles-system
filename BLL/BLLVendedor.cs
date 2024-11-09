@@ -1,6 +1,8 @@
 ﻿using ProyectoProgramadolll.DAL;
 using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
+using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -11,27 +13,32 @@ namespace ProyectoProgramadolll.BLL
     {
         public Vendedor GuardarVendedor(Vendedor vendedor)
         {
-            IDALVendedor dALVendedor = new DALVendedor();
+            IDALVendedor vendedorDAL = new DALVendedor();
             string mensaje = "";
             Vendedor oVendedor = null;
 
+
             if (!EsUnaContrasegnaValida(vendedor.Contrasegna, ref mensaje))
             {
-                throw new Exception(mensaje);
+                Log.LogException(new Exception(mensaje));
+                return null;
             }
-
+            
             vendedor.Contrasegna = Cryptography.EncrypthAES(vendedor.Contrasegna);
 
-            vendedor = dALVendedor.GuardarVendedor(vendedor);
-
+            if ( vendedorDAL.ObtenerVendedorPorId(vendedor.CodigoVendedor.ToString()) == null)
+                oVendedor =  vendedorDAL.GuardarVendedor(vendedor);
+            else
+                oVendedor =  vendedorDAL.ActualizarVendedor(vendedor);
             return oVendedor;
+           
         }
 
 
         private bool EsUnaContrasegnaValida(string contrasegna, ref string mensaje)
         {
 
-            if (contrasegna.Length <= 8)
+            if (contrasegna.Length < 8)
             {
                 mensaje = "La contraseña debe tener al menos 8 caracteres";
                 return false;
@@ -48,15 +55,22 @@ namespace ProyectoProgramadolll.BLL
 
         public Vendedor Login(string codigoVendedor, string contrasegna)
         {
-            IDALVendedor dALVendedor = new DALVendedor();
+            IDALVendedor vendedorDAL = new DALVendedor();
             string contrasegnaEncriptada = Cryptography.EncrypthAES(contrasegna);
-            return dALVendedor.Login(codigoVendedor, contrasegnaEncriptada);
+            return vendedorDAL.Login(codigoVendedor, contrasegnaEncriptada);
         }
 
-        public IEnumerable<Vendedor> ObtenerVendedores()
+        public IEnumerable<VendedorDTO> ObtenerVendedores()
         {
-            IDALVendedor dALVendedor = new DALVendedor();
-            return dALVendedor.ObtenerVendedores();
+            IDALVendedor vendedorDAL = new DALVendedor();
+            return vendedorDAL.ObtenerVendedores();
+        }
+
+
+        public Task<bool> EliminarVendedor(string codigoVendedor)
+        {
+            IDALVendedor vendedorDAL = new DALVendedor();
+            return vendedorDAL.EliminarVendedor(codigoVendedor);
         }
     }
 }

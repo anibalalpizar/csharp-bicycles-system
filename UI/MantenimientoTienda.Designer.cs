@@ -263,6 +263,7 @@
             this.Controls.Add(this.btnCrear);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MantenimientoTienda";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoTienda";
             this.Load += new System.EventHandler(this.MantenimientoTienda_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();

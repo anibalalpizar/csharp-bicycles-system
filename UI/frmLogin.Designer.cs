@@ -149,7 +149,9 @@
             this.Controls.Add(this.sttBarraInferior);
             this.Controls.Add(this.tlpPanel);
             this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.sttBarraInferior.ResumeLayout(false);
             this.sttBarraInferior.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epError)).EndInit();

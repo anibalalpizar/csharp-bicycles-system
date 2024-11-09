@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -63,31 +63,34 @@
             this.NombreTienda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoVendedor)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnModificar
+            // btnEditar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(74, 10);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(56, 28);
-            this.btnModificar.TabIndex = 36;
-            this.btnModificar.Text = "Modficar";
-            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnEditar.Location = new System.Drawing.Point(69, 11);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(56, 34);
+            this.btnEditar.TabIndex = 36;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(146, 10);
+            this.btnEliminar.Location = new System.Drawing.Point(129, 11);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(56, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(56, 34);
             this.btnEliminar.TabIndex = 35;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
@@ -103,11 +106,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ptbFotoVendedor);
-            this.groupBox1.Location = new System.Drawing.Point(21, 260);
+            this.groupBox1.Location = new System.Drawing.Point(686, 48);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(196, 183);
+            this.groupBox1.Size = new System.Drawing.Size(196, 187);
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Foto del Vendedor";
@@ -125,7 +128,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 153);
+            this.label1.Location = new System.Drawing.Point(42, 188);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 13);
@@ -134,16 +137,16 @@
             // 
             // dtpFechaNacimiento
             // 
-            this.dtpFechaNacimiento.Location = new System.Drawing.Point(127, 146);
+            this.dtpFechaNacimiento.Location = new System.Drawing.Point(163, 181);
             this.dtpFechaNacimiento.Margin = new System.Windows.Forms.Padding(2);
             this.dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            this.dtpFechaNacimiento.Size = new System.Drawing.Size(169, 20);
+            this.dtpFechaNacimiento.Size = new System.Drawing.Size(160, 20);
             this.dtpFechaNacimiento.TabIndex = 83;
             // 
             // Contraseña
             // 
             this.Contraseña.AutoSize = true;
-            this.Contraseña.Location = new System.Drawing.Point(15, 110);
+            this.Contraseña.Location = new System.Drawing.Point(42, 145);
             this.Contraseña.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Contraseña.Name = "Contraseña";
             this.Contraseña.Size = new System.Drawing.Size(61, 13);
@@ -153,7 +156,7 @@
             // 
             // txtContrasegna
             // 
-            this.txtContrasegna.Location = new System.Drawing.Point(127, 107);
+            this.txtContrasegna.Location = new System.Drawing.Point(163, 142);
             this.txtContrasegna.Margin = new System.Windows.Forms.Padding(2);
             this.txtContrasegna.Name = "txtContrasegna";
             this.txtContrasegna.Size = new System.Drawing.Size(160, 20);
@@ -161,16 +164,17 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(391, 6);
+            this.txtNombre.Location = new System.Drawing.Point(455, 36);
             this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(150, 20);
+            this.txtNombre.Size = new System.Drawing.Size(160, 20);
             this.txtNombre.TabIndex = 77;
             // 
             // label2
             // 
+            this.label2.AllowDrop = true;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(2, 9);
+            this.label2.Location = new System.Drawing.Point(29, 38);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 13);
@@ -180,7 +184,7 @@
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(323, 9);
+            this.Nombre.Location = new System.Drawing.Point(387, 36);
             this.Nombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(44, 13);
@@ -195,6 +199,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cmbTiendas);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.txtNombre);
             this.panel1.Controls.Add(this.txtApellidos);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cmbRoles);
@@ -205,19 +210,19 @@
             this.panel1.Controls.Add(this.dtpFechaNacimiento);
             this.panel1.Controls.Add(this.Contraseña);
             this.panel1.Controls.Add(this.txtContrasegna);
-            this.panel1.Controls.Add(this.txtNombre);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Nombre);
-            this.panel1.Location = new System.Drawing.Point(532, 54);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(583, 468);
+            this.panel1.Size = new System.Drawing.Size(940, 249);
             this.panel1.TabIndex = 88;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // rdbNoActivo
             // 
             this.rdbNoActivo.AutoSize = true;
             this.rdbNoActivo.Checked = true;
-            this.rdbNoActivo.Location = new System.Drawing.Point(391, 79);
+            this.rdbNoActivo.Location = new System.Drawing.Point(455, 109);
             this.rdbNoActivo.Name = "rdbNoActivo";
             this.rdbNoActivo.Size = new System.Drawing.Size(71, 17);
             this.rdbNoActivo.TabIndex = 97;
@@ -228,7 +233,7 @@
             // rdbActivo
             // 
             this.rdbActivo.AutoSize = true;
-            this.rdbActivo.Location = new System.Drawing.Point(391, 102);
+            this.rdbActivo.Location = new System.Drawing.Point(455, 132);
             this.rdbActivo.Name = "rdbActivo";
             this.rdbActivo.Size = new System.Drawing.Size(55, 17);
             this.rdbActivo.TabIndex = 98;
@@ -238,17 +243,18 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(323, 81);
+            this.label6.Location = new System.Drawing.Point(387, 113);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 96;
             this.label6.Text = "Estado";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 76);
+            this.label5.Location = new System.Drawing.Point(42, 110);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(40, 13);
@@ -257,8 +263,9 @@
             // 
             // cmbTiendas
             // 
+            this.cmbTiendas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTiendas.FormattingEnabled = true;
-            this.cmbTiendas.Location = new System.Drawing.Point(121, 73);
+            this.cmbTiendas.Location = new System.Drawing.Point(163, 110);
             this.cmbTiendas.Name = "cmbTiendas";
             this.cmbTiendas.Size = new System.Drawing.Size(160, 21);
             this.cmbTiendas.TabIndex = 93;
@@ -266,16 +273,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 40);
+            this.label4.Location = new System.Drawing.Point(45, 76);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 92;
             this.label4.Text = "Apellidos";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtApellidos
             // 
-            this.txtApellidos.Location = new System.Drawing.Point(124, 37);
+            this.txtApellidos.Location = new System.Drawing.Point(163, 73);
             this.txtApellidos.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(160, 20);
@@ -284,7 +292,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(323, 41);
+            this.label3.Location = new System.Drawing.Point(387, 76);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(23, 13);
@@ -293,15 +301,16 @@
             // 
             // cmbRoles
             // 
+            this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(391, 41);
+            this.cmbRoles.Location = new System.Drawing.Point(455, 73);
             this.cmbRoles.Name = "cmbRoles";
-            this.cmbRoles.Size = new System.Drawing.Size(150, 21);
+            this.cmbRoles.Size = new System.Drawing.Size(160, 21);
             this.cmbRoles.TabIndex = 89;
             // 
             // txtCodigoVendedor
             // 
-            this.txtCodigoVendedor.Location = new System.Drawing.Point(136, 6);
+            this.txtCodigoVendedor.Location = new System.Drawing.Point(163, 35);
             this.txtCodigoVendedor.Margin = new System.Windows.Forms.Padding(2);
             this.txtCodigoVendedor.Name = "txtCodigoVendedor";
             this.txtCodigoVendedor.Size = new System.Drawing.Size(160, 20);
@@ -309,12 +318,12 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(18, 231);
+            this.btnAgregar.Location = new System.Drawing.Point(696, 16);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(182, 25);
+            this.btnAgregar.Size = new System.Drawing.Size(182, 28);
             this.btnAgregar.TabIndex = 87;
-            this.btnAgregar.Text = "Agregar Imagen del Venedor *";
+            this.btnAgregar.Text = "Agregar Imagen del Vendedor ";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -332,10 +341,10 @@
             this.NombreTienda,
             this.Column8,
             this.EstadoDescripcion});
-            this.dgvDatos.Location = new System.Drawing.Point(9, 60);
+            this.dgvDatos.Location = new System.Drawing.Point(9, 319);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
-            this.dgvDatos.Size = new System.Drawing.Size(504, 454);
+            this.dgvDatos.Size = new System.Drawing.Size(943, 315);
             this.dgvDatos.TabIndex = 89;
             // 
             // Column1
@@ -406,18 +415,31 @@
             this.EstadoDescripcion.Name = "EstadoDescripcion";
             this.EstadoDescripcion.ReadOnly = true;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(189, 11);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(64, 34);
+            this.btnCancelar.TabIndex = 90;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // MantenimientoVendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1170, 565);
+            this.ClientSize = new System.Drawing.Size(969, 684);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MantenimientoVendedor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoVendedor";
             this.Load += new System.EventHandler(this.MantenimientoVendedor_Load);
             this.groupBox1.ResumeLayout(false);
@@ -430,7 +452,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -439,7 +461,6 @@
         private System.Windows.Forms.Label Contraseña;
         private System.Windows.Forms.TextBox txtContrasegna;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox ptbFotoVendedor;
@@ -464,5 +485,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreTienda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoDescripcion;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label2;
     }
 }

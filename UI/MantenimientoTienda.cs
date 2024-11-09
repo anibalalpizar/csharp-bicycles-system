@@ -1,6 +1,7 @@
 ﻿using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Interfaces;
+using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -119,7 +120,7 @@ namespace ProyectoProgramadolll.UI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Error al cargar los datos",ex.Message);
             }
         }
 
@@ -177,5 +178,6 @@ namespace ProyectoProgramadolll.UI
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }
