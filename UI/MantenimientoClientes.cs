@@ -1,6 +1,7 @@
 ﻿using log4net;
 using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.DTO;
+using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,16 +20,43 @@ namespace ProyectoProgramadolll.UI
     public partial class MantenimientoClientes : Form
     {
         private static readonly ILog _MyLogControlEventos = log4net.LogManager.GetLogger("MyControlEventos");
+        private List<Canton> listaCantones;
+        private List<Distrito> listaDistritos;
 
         public MantenimientoClientes()
         {
             InitializeComponent();
         }
 
-       
+
         private void MantenimientoClientes_Load(object sender, EventArgs e)
         {
+            try
+            {
+                this.CargarCombosApi();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los combos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void CargarCombosApi()
+        {
+            this.listaCantones = await Utils.ObtenerCantonesAsync();
+            this.listaDistritos = await Utils.ObtenerDistritosAsync();
+            List<Provincia> provincias = await Utils.ObtenerProvinciasAsync();
+            if (provincias != null && provincias.Count > 0)
+            {
+                cmbProvincia.DataSource = provincias;
+                cmbProvincia.DisplayMember = "Descripcion";
+                cmbProvincia.ValueMember = "IdProvincia";
+            }
+            else
+            {
+                MessageBox.Show("No se pudo cargar las provincias", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -38,61 +66,41 @@ namespace ProyectoProgramadolll.UI
         }
 
         ErrorProvider erp = new ErrorProvider();
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private async void btnBuscar_Click(object sender, EventArgs e)
         {
             BLLPadron bLLPadron = new BLLPadron();
             IBLLPadron _BLLPadron = (IBLLPadron)bLLPadron;
+
             try
             {
                 erp.Clear();
 
-                if (string.IsNullOrEmpty(txtIdCliente.Text))
+                if (string.IsNullOrEmpty(txtIdentificacion.Text))
                 {
-                    erp.SetError(txtIdCliente, "Id Requerido");
-                    txtIdCliente.Focus();
+                    erp.SetError(txtIdentificacion, "Id Requerido");
+                    txtIdentificacion.Focus();
                     return;
                 }
 
-                if (txtIdCliente.Text.Trim().Length != 9)
+                if (txtIdentificacion.Text.Trim().Length != 9)
                 {
-                    erp.SetError(txtIdCliente, "Largo de la Cédula 9 digitos");
-                    txtIdCliente.Focus();
+                    erp.SetError(txtIdentificacion, "Largo de la Cédula 9 digitos");
+                    txtIdentificacion.Focus();
                     return;
                 }
-
-
-                // ToDo: Cree La validación que solo permita números en la cédula 
-
-                PadronDTO oPadronDTO = _BLLPadron.GetPersonaById(txtIdCliente.Text.Trim());
-
-
-                string[] array = oPadronDTO.nombre.Split(' ');
-
-                // 1 nombres y dos apellidos
-                if (array.Length == 0)
+                string nombreCliente = await Utils.ObtenerNombreClienteHaciendaAsync(txtIdentificacion.Text);
+                if(nombreCliente == null)
                 {
-                    txtNombre.Text = array[0];
-                 // txtApellido1.Text = array[1];
-                //  txtApellido2.Text = array[2];
+                    MessageBox.Show("No se encontró el cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    txtNombre.Text = nombreCliente;
                 }
 
-                // 2 nombres y dos apellidos
-                if (array.Length == 0)
-                {
-                    txtNombre.Text = array[0] + " " + array[1];
-                 //   txtApellido1.Text = array[2];
-                  //  txtApellido2.Text = array[3];
-                }
 
-                // Ejemplo con varios nombres. 203960070 - ANTONIO MARIA DE LA TRINIDAD RODRIGUEZ CHAVES 
-                // 2 nombres y dos apellidos
-                // Nota: No se valida apellidos compuestos por ejemplo Maria de la O
-                if (array.Length > 0)
-                {
-                    txtNombre.Text = array[0] + " " + array[1];
-                  //  txtApellido1.Text = array[array.Length - 2];
-                  //  txtApellido2.Text = array[array.Length - 1];
-                }
+
 
             }
             catch (Exception er)
@@ -108,6 +116,45 @@ namespace ProyectoProgramadolll.UI
         {
 
         }
+
+        private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (this.cmbProvincia.SelectedValue is int idProvincia)
+            {
+
+                var cantonesFiltrados = listaCantones.Where(c => c.IdProvincia == idProvincia).ToList();
+                cmbCanton.DataSource = cantonesFiltrados;
+                cmbCanton.DisplayMember = "Descripcion";
+                cmbCanton.ValueMember = "IdCanton";
+
+                if (cantonesFiltrados.Count == 0)
+                {
+                    MessageBox.Show("No se encuentran cantones para esta provicia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.cmbCanton.DataSource = null;
+                }
+                this.cmbCanton.Enabled = true;
+            }
+        }
+
+        private void cmbCanton_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbCanton.SelectedValue is int idCanton)
+            {
+
+                var distritosFiltrados = listaDistritos.Where(d => d.IdCanton == idCanton).ToList();
+                cmbDistrito.DataSource = distritosFiltrados;
+                cmbDistrito.DisplayMember = "Descripcion";
+                cmbDistrito.ValueMember = "IdDistrito";
+
+                if (distritosFiltrados.Count == 0)
+                {
+                    MessageBox.Show("No se encuentran distritos para este canton", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.cmbDistrito.DataSource = null;
+                }
+                this.cmbDistrito.Enabled = true;
+            }
+        }
     }
-    }
+}
 

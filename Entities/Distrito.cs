@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoProgramadolll.Entities
 {
-     class Distrito
+     public class Distrito
     {
         public int IdDistrito { get; set; }
         public int IdCanton { get; set; }

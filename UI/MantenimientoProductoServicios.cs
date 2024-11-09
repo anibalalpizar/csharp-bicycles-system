@@ -12,6 +12,7 @@ namespace ProyectoProgramadolll.UI
 {
     public partial class MantenimientoProductoServicios : Form
     {
+        private decimal tipoCambioventa;
         public MantenimientoProductoServicios()
         {
             InitializeComponent();
@@ -27,6 +28,26 @@ namespace ProyectoProgramadolll.UI
         {
             AgregarProductoServicio AgregarProductoServicio = new AgregarProductoServicio();
             AgregarProductoServicio.ShowDialog();
+        }
+
+        private async void btnCalcularPrecioDolar_Click(object sender, EventArgs e)
+        {
+            if(!decimal.TryParse(txtPrecioColones.Text,out decimal precioColones))
+            {
+                MessageBox.Show("El precio en colones no es valido");
+                return;
+            }
+
+            tipoCambioventa = await Utils.ObtenerTipoCambioAsync();
+
+            if(tipoCambioventa == 0)
+            {
+                MessageBox.Show("No se pudo obtener el tipo de cambio");
+                return;
+            }
+
+            decimal precioDolares = precioColones / tipoCambioventa;
+            txtPrecioDolares.Text = $"${precioDolares:0.00}";
         }
     }
 }

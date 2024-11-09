@@ -53,10 +53,10 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.txtIdCliente = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtIdentificacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             this.Column8,
             this.Column11});
             this.dataGridView1.Location = new System.Drawing.Point(14, 57);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -116,7 +116,7 @@
             // btnModificar
             // 
             this.btnModificar.Location = new System.Drawing.Point(82, 10);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(56, 28);
             this.btnModificar.TabIndex = 36;
@@ -126,7 +126,7 @@
             // btnEliminar
             // 
             this.btnEliminar.Location = new System.Drawing.Point(143, 10);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(56, 28);
             this.btnEliminar.TabIndex = 35;
@@ -136,7 +136,7 @@
             // btnCrear
             // 
             this.btnCrear.Location = new System.Drawing.Point(18, 10);
-            this.btnCrear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(56, 28);
             this.btnCrear.TabIndex = 33;
@@ -147,7 +147,7 @@
             // maskedTextBox2
             // 
             this.maskedTextBox2.Location = new System.Drawing.Point(149, 106);
-            this.maskedTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.maskedTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.maskedTextBox2.Mask = "0000-0000";
             this.maskedTextBox2.Name = "maskedTextBox2";
             this.maskedTextBox2.Size = new System.Drawing.Size(83, 20);
@@ -195,35 +195,42 @@
             // 
             // cmbDistrito
             // 
+            this.cmbDistrito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDistrito.Enabled = false;
             this.cmbDistrito.FormattingEnabled = true;
             this.cmbDistrito.Location = new System.Drawing.Point(148, 211);
-            this.cmbDistrito.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbDistrito.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDistrito.Name = "cmbDistrito";
             this.cmbDistrito.Size = new System.Drawing.Size(92, 21);
             this.cmbDistrito.TabIndex = 70;
             // 
             // cmbCanton
             // 
+            this.cmbCanton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCanton.Enabled = false;
             this.cmbCanton.FormattingEnabled = true;
             this.cmbCanton.Location = new System.Drawing.Point(148, 187);
-            this.cmbCanton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbCanton.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCanton.Name = "cmbCanton";
             this.cmbCanton.Size = new System.Drawing.Size(92, 21);
             this.cmbCanton.TabIndex = 69;
+            this.cmbCanton.SelectedIndexChanged += new System.EventHandler(this.cmbCanton_SelectedIndexChanged);
             // 
             // cmbProvincia
             // 
+            this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(148, 162);
-            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbProvincia.Margin = new System.Windows.Forms.Padding(2);
             this.cmbProvincia.Name = "cmbProvincia";
             this.cmbProvincia.Size = new System.Drawing.Size(92, 21);
             this.cmbProvincia.TabIndex = 68;
+            this.cmbProvincia.SelectedIndexChanged += new System.EventHandler(this.cmbProvincia_SelectedIndexChanged);
             // 
             // txtCorreoElectronico
             // 
             this.txtCorreoElectronico.Location = new System.Drawing.Point(148, 131);
-            this.txtCorreoElectronico.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCorreoElectronico.Margin = new System.Windows.Forms.Padding(2);
             this.txtCorreoElectronico.Name = "txtCorreoElectronico";
             this.txtCorreoElectronico.Size = new System.Drawing.Size(160, 20);
             this.txtCorreoElectronico.TabIndex = 67;
@@ -242,7 +249,7 @@
             // 
             this.rdbMasculino.AutoSize = true;
             this.rdbMasculino.Location = new System.Drawing.Point(229, 77);
-            this.rdbMasculino.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdbMasculino.Margin = new System.Windows.Forms.Padding(2);
             this.rdbMasculino.Name = "rdbMasculino";
             this.rdbMasculino.Size = new System.Drawing.Size(73, 17);
             this.rdbMasculino.TabIndex = 65;
@@ -254,7 +261,7 @@
             // 
             this.rbnFemenimo.AutoSize = true;
             this.rbnFemenimo.Location = new System.Drawing.Point(148, 77);
-            this.rbnFemenimo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbnFemenimo.Margin = new System.Windows.Forms.Padding(2);
             this.rbnFemenimo.Name = "rbnFemenimo";
             this.rbnFemenimo.Size = new System.Drawing.Size(73, 17);
             this.rbnFemenimo.TabIndex = 64;
@@ -275,7 +282,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(263, 203);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(56, 34);
             this.btnGuardar.TabIndex = 62;
@@ -286,7 +293,7 @@
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(143, 49);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(160, 20);
             this.txtNombre.TabIndex = 61;
@@ -294,22 +301,13 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(246, 23);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(56, 19);
             this.btnBuscar.TabIndex = 60;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // txtIdCliente
-            // 
-            this.txtIdCliente.Location = new System.Drawing.Point(143, 24);
-            this.txtIdCliente.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtIdCliente.Mask = "0-0000-0000";
-            this.txtIdCliente.Name = "txtIdCliente";
-            this.txtIdCliente.Size = new System.Drawing.Size(83, 20);
-            this.txtIdCliente.TabIndex = 59;
             // 
             // label2
             // 
@@ -333,6 +331,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtIdentificacion);
             this.panel1.Controls.Add(this.maskedTextBox2);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label6);
@@ -349,13 +348,20 @@
             this.panel1.Controls.Add(this.btnGuardar);
             this.panel1.Controls.Add(this.txtNombre);
             this.panel1.Controls.Add(this.btnBuscar);
-            this.panel1.Controls.Add(this.txtIdCliente);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.Nombre);
             this.panel1.Location = new System.Drawing.Point(713, 57);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(334, 297);
             this.panel1.TabIndex = 76;
+            // 
+            // txtIdentificacion
+            // 
+            this.txtIdentificacion.Location = new System.Drawing.Point(142, 22);
+            this.txtIdentificacion.Margin = new System.Windows.Forms.Padding(2);
+            this.txtIdentificacion.Name = "txtIdentificacion";
+            this.txtIdentificacion.Size = new System.Drawing.Size(100, 20);
+            this.txtIdentificacion.TabIndex = 76;
             // 
             // MantenimientoClientes
             // 
@@ -367,7 +373,7 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dataGridView1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MantenimientoClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MantenimientoClientes";
@@ -405,9 +411,9 @@
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.MaskedTextBox txtIdCliente;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Nombre;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtIdentificacion;
     }
 }

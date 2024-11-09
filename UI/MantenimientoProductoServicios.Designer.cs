@@ -37,8 +37,8 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCrear = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPrecioDolares = new System.Windows.Forms.TextBox();
+            this.txtPrecioColones = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBox3 = new System.Windows.Forms.MaskedTextBox();
@@ -47,6 +47,7 @@
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCalcularPrecioDolar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -129,8 +130,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtPrecioDolares);
+            this.groupBox3.Controls.Add(this.txtPrecioColones);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(18, 76);
@@ -142,21 +143,21 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Precio";
             // 
-            // textBox2
+            // txtPrecioDolares
             // 
-            this.textBox2.Location = new System.Drawing.Point(64, 50);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(102, 20);
-            this.textBox2.TabIndex = 22;
+            this.txtPrecioDolares.Location = new System.Drawing.Point(64, 50);
+            this.txtPrecioDolares.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPrecioDolares.Name = "txtPrecioDolares";
+            this.txtPrecioDolares.Size = new System.Drawing.Size(102, 20);
+            this.txtPrecioDolares.TabIndex = 22;
             // 
-            // textBox1
+            // txtPrecioColones
             // 
-            this.textBox1.Location = new System.Drawing.Point(64, 23);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(102, 20);
-            this.textBox1.TabIndex = 21;
+            this.txtPrecioColones.Location = new System.Drawing.Point(64, 23);
+            this.txtPrecioColones.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPrecioColones.Name = "txtPrecioColones";
+            this.txtPrecioColones.Size = new System.Drawing.Size(102, 20);
+            this.txtPrecioColones.TabIndex = 21;
             // 
             // label4
             // 
@@ -228,6 +229,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCalcularPrecioDolar);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.maskedTextBox3);
             this.panel1.Controls.Add(this.label9);
@@ -236,8 +238,19 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(435, 70);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(227, 297);
+            this.panel1.Size = new System.Drawing.Size(273, 297);
             this.panel1.TabIndex = 93;
+            // 
+            // btnCalcularPrecioDolar
+            // 
+            this.btnCalcularPrecioDolar.Location = new System.Drawing.Point(206, 91);
+            this.btnCalcularPrecioDolar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCalcularPrecioDolar.Name = "btnCalcularPrecioDolar";
+            this.btnCalcularPrecioDolar.Size = new System.Drawing.Size(56, 34);
+            this.btnCalcularPrecioDolar.TabIndex = 93;
+            this.btnCalcularPrecioDolar.Text = "Calcular precio del dolar";
+            this.btnCalcularPrecioDolar.UseVisualStyleBackColor = true;
+            this.btnCalcularPrecioDolar.Click += new System.EventHandler(this.btnCalcularPrecioDolar_Click);
             // 
             // MantenimientoProductoServicios
             // 
@@ -270,8 +283,8 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnCrear;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPrecioDolares;
+        private System.Windows.Forms.TextBox txtPrecioColones;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox3;
@@ -284,5 +297,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.Button btnCalcularPrecioDolar;
     }
 }

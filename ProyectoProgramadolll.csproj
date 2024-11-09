@@ -79,10 +79,12 @@
     <Compile Include="DAL\DALTienda.cs" />
     <Compile Include="DAL\DALVendedor.cs" />
     <Compile Include="DAL\ProvinciaDAL.cs" />
+    <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\DTO\PadronDTO.cs" />
     <Compile Include="Entities\Canton.cs" />
     <Compile Include="Entities\Distrito.cs" />
     <Compile Include="Entities\DTO\VendedorDTO.cs" />
+    <Compile Include="Entities\ProductoServicio.cs" />
     <Compile Include="Entities\Provincia.cs" />
     <Compile Include="Entities\QuickResponse.cs" />
     <Compile Include="Entities\Rol.cs" />
