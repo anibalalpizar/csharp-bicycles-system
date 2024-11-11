@@ -130,14 +130,14 @@ namespace ProyectoProgramadolll.UI
                     MessageBox.Show("Debe seleccionar el sexo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                // Validación de Correo Electrónico
+             
                 if (string.IsNullOrWhiteSpace(txtCorreoElectronico.Text))
                 {
                     MessageBox.Show("El correo electrónico es obligatorio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Expresión regular para validar el correo electrónico
+              
                 var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
                 if (!Regex.IsMatch(txtCorreoElectronico.Text, emailPattern))
                 {
@@ -145,7 +145,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                // Validación de Provincia, Cantón y Distrito
+                
                 if (cmbProvincia.SelectedIndex == -1)
                 {
                     MessageBox.Show("Debe seleccionar una provincia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -164,7 +164,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                // Validación de la lista de teléfonos
+                
                 if (lstTelefonos.Items.Count == 0)
                 {
                     MessageBox.Show("Debe agregar al menos un número de teléfono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -178,6 +178,7 @@ namespace ProyectoProgramadolll.UI
                 oCliente.Nombre = txtNombre.Text;
                 oCliente.Sexo = rdbFemenino.Checked ? true : false;
                 oCliente.CorreoElectronico = txtCorreoElectronico.Text;
+                oCliente.IdCliente = lblCliente.Text == "" ? 0 : Convert.ToInt32(lblCliente.Text);
 
                 oDireccion.IdProvincia = (int)cmbProvincia.SelectedValue;
                 oDireccion.IdCanton = (int)cmbCanton.SelectedValue;
@@ -234,17 +235,23 @@ namespace ProyectoProgramadolll.UI
                     break;
                 case EstadoMantenimiento.Editar:
                     this.txtIdentificacion.Enabled = true;
+                    txtNumeroTelefonico.Clear();
                     this.cmbTipo.Enabled = true;
                     this.cmbCanton.Enabled = true;
                     this.cmbDistrito.Enabled = true;
                     this.btnCrear.Enabled = true;
                     this.btnEliminar.Enabled = false;
                     this.btnCancelar.Enabled = true;
+                    this.lstTelefonos.Clear();
+                    this.listaTelefonos.Clear();
+                    ActualizarListView();
+
                     break;
                 case EstadoMantenimiento.Borrar:
                     break;
                 case EstadoMantenimiento.Ninguno:
                     this.txtIdentificacion.Enabled = true;
+                    txtIdentificacion.Clear();
                     this.btnEliminar.Enabled = true;
                     this.txtNumeroTelefonico.Clear();
                     this.txtNombre.Clear();
@@ -315,6 +322,12 @@ namespace ProyectoProgramadolll.UI
                 return;
             }
 
+            if(numeroTelefono.Length != 8)
+            {
+                MessageBox.Show("Por favor ingresa un número de teléfono válido (8 dígitos).");
+                return;
+            }
+
             Telefono telefono = new Telefono
             {
                 NumeroTelefonico = numeroTelefono
@@ -326,16 +339,18 @@ namespace ProyectoProgramadolll.UI
 
             ActualizarListView();
 
+            MessageBox.Show("Recuerda guardar tus cambios!", "Número de teléfono agregado correctamente.", MessageBoxButtons.OK);
+
         }
 
         private void ActualizarListView()
         {
             lstTelefonos.Items.Clear();
 
-            foreach (var telefono in this.listaTelefonos)
+            foreach (var telefono in listaTelefonos)
             {
                 ListViewItem item = new ListViewItem(telefono.NumeroTelefonico);
-                this.lstTelefonos.Items.Add(item);
+                lstTelefonos.Items.Add(item);
             }
         }
 
@@ -388,10 +403,6 @@ namespace ProyectoProgramadolll.UI
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void lblTipoIdentificacion_Click(object sender, EventArgs e)
         {
@@ -444,7 +455,7 @@ namespace ProyectoProgramadolll.UI
                 this.rdbMasculino.Checked = oCliente.Genero == "Masculino";
                 this.rdbFemenino.Checked = oCliente.Genero != "Masculino";
                 this.txtCorreoElectronico.Text = oCliente.CorreoElectronico;
-
+                this.lblCliente.Text = oCliente.IdCliente.ToString();
 
                 if (oCliente.DireccionCompleta != null)
                 {
@@ -490,6 +501,7 @@ namespace ProyectoProgramadolll.UI
                 foreach (var telefono in oCliente.ListaTelefonos)
                 {
                     ListViewItem item = new ListViewItem(telefono.NumeroTelefonico);
+                    this.listaTelefonos.Add(telefono);
                     this.lstTelefonos.Items.Add(item);
                 }
 
@@ -509,7 +521,7 @@ namespace ProyectoProgramadolll.UI
 
             if (this.lstTelefonos.SelectedItems.Count > 0)
             {
-                ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
+                ListViewItem item = (ListViewItem)lstTelefonos.SelectedItems[0];
 
                 string numeroTelefono = item.SubItems[0].Text;
 
@@ -519,10 +531,11 @@ namespace ProyectoProgramadolll.UI
                 {
                     listaTelefonos.Remove(telefono);
                 }
-
+               
                 this.lstTelefonos.Items.Remove(item);
                 this.txtNumeroTelefonico.Clear();
-                this.lstTelefonos.Clear();
+                MessageBox.Show("Recuerda guardar tus cambios!", "Número de teléfono eliminado correctamente.", MessageBoxButtons.OK);
+
             }
         }
 
@@ -530,14 +543,25 @@ namespace ProyectoProgramadolll.UI
         {
             if (this.lstTelefonos.SelectedItems.Count > 0)
             {
+                if (txtNumeroTelefonico.Text.Length != 8)
+                {
+                    MessageBox.Show("Por favor ingresa un número de teléfono válido (8 dígitos).");
+                    return;
+                }
+
                 ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
                 item.Text = this.txtNumeroTelefonico.Text;
+                this.txtNumeroTelefonico.Clear();
+                MessageBox.Show("Recuerda guardar tus cambios!", "Número de teléfono editado correctamente.", MessageBoxButtons.OK);
             }
+
+            
+
         }
 
         private void lstTelefonos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            this.cambiarEstado(EstadoMantenimiento.Editar);
+          //  this.cambiarEstado(EstadoMantenimiento.Editar);
             if (this.lstTelefonos.SelectedItems.Count > 0)
             {
                 ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
@@ -549,9 +573,11 @@ namespace ProyectoProgramadolll.UI
         {
             if (this.cmbTipo.SelectedIndex == 1)
             {
+                this.txtNombre.Enabled = true;
                 this.btnBuscar.Enabled = false;
             }else
             {
+                this.txtNombre.Enabled = false;
                 this.btnBuscar.Enabled = true;
             }
         }

@@ -23,7 +23,7 @@ namespace ProyectoProgramadolll.DAL
             cmd.CommandText = "sp_ActualizarCliente";
             cmd.CommandType = CommandType.StoredProcedure;
             double filas = 0;
-            // Convertir los teléfonos a JSON
+            
             string jsonTelefonos = JsonConvert.SerializeObject(telefonos.Select(t => t.NumeroTelefonico).ToList());
 
             try
@@ -34,9 +34,8 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
                 cmd.Parameters.AddWithValue("@correoElectronico", cliente.CorreoElectronico);
-                //cmd.Parameters.AddWithValue("@idDireccion", cliente.IdDireccion);
+                
 
-                // Parámetros para la dirección
                 cmd.Parameters.AddWithValue("@idProvincia", direccion.IdProvincia);
                 cmd.Parameters.AddWithValue("@descripcionProvincia", direccion.DescripcionProvincia);
                 cmd.Parameters.AddWithValue("@idCanton", direccion.IdCanton);
@@ -44,7 +43,6 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@idDistrito", direccion.IdDistrito);
                 cmd.Parameters.AddWithValue("@descripcionDistrito", direccion.DescripcionDistrito);
 
-                // Parámetro para los teléfonos (JSON)
                 cmd.Parameters.AddWithValue("@telefonos", jsonTelefonos);
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
@@ -54,7 +52,7 @@ namespace ProyectoProgramadolll.DAL
 
                 if (filas > 0)
                 {
-                    oCliente = this.ObtenerClientePorId(cliente.Identificacion);
+                    oCliente = this.ObtenerClientePorId(cliente.IdCliente.ToString());
                 }
 
                 return oCliente;
@@ -108,14 +106,13 @@ namespace ProyectoProgramadolll.DAL
 
             try
             {
-                // Parámetros para el cliente
+                
                 cmd.Parameters.AddWithValue("@identificacion", cliente.Identificacion);
                 cmd.Parameters.AddWithValue("@idTipoIdentificacion", cliente.IdTipoIdentificacion);
                 cmd.Parameters.AddWithValue("@nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
                 cmd.Parameters.AddWithValue("@correoElectronico", cliente.CorreoElectronico);
 
-                // Parámetros para la dirección
                 cmd.Parameters.AddWithValue("@idProvincia", direccion.IdProvincia);
                 cmd.Parameters.AddWithValue("@descripcionProvincia", direccion.DescripcionProvincia);
                 cmd.Parameters.AddWithValue("@idCanton", direccion.IdCanton);
@@ -123,12 +120,12 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@idDistrito", direccion.IdDistrito);
                 cmd.Parameters.AddWithValue("@descripcionDistrito", direccion.DescripcionDistrito);
 
-                // Parámetro para los teléfonos (JSON)
+               
                 cmd.Parameters.AddWithValue("@telefonos", jsonTelefonos);
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
-                    // Ejecutar el procedimiento almacenado
+                    
                     int filasAfectadas = (int)db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
 
                     if (filasAfectadas > 0)
@@ -149,7 +146,7 @@ namespace ProyectoProgramadolll.DAL
 
 
 
-        public ClienteDTO ObtenerClientePorId(string identificacion)
+        public ClienteDTO ObtenerClientePorId(string idCliente)
         {
             DataSet dsCliente = null;
             ClienteDTO oCliente = null;
@@ -157,7 +154,7 @@ namespace ProyectoProgramadolll.DAL
             cmd.CommandText = "sp_ObtenerClientePorId";  
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@identificacion", identificacion);
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
 
             try
             {

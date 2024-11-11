@@ -26,7 +26,7 @@ namespace ProyectoProgramadolll.BLL
             IDALClientes clienteDAL = new DALClientes();
             string mensaje = "";
             ClienteDTO oCliente = null;
-            ClienteDTO clientePorId = clienteDAL.ObtenerClientePorId(cliente.Identificacion);
+            ClienteDTO clientePorId = clienteDAL.ObtenerClientePorId(cliente.IdCliente.ToString());
 
             if (!ValidarCliente(cliente, ref mensaje))
             {
@@ -37,7 +37,7 @@ namespace ProyectoProgramadolll.BLL
             if (clientePorId == null)
                 oCliente = clienteDAL.GuardarCliente(cliente, direccion, telefonos);
             else
-                oCliente = clienteDAL.ActualizarCliente(clientePorId, direccion, telefonos);
+                oCliente = clienteDAL.ActualizarCliente(cliente, direccion, telefonos);
             return oCliente;
         }
         public bool ValidarCliente(ClienteDTO cliente, ref string mensaje)

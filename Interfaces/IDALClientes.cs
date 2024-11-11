@@ -11,7 +11,7 @@ namespace ProyectoProgramadolll.Interfaces
     public interface IDALClientes
     {
         ClienteDTO GuardarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos);
-        ClienteDTO ObtenerClientePorId(string identificacion);
+        ClienteDTO ObtenerClientePorId(string idCliente);
 
         ClienteDTO ActualizarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos);
 

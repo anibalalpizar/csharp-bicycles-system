@@ -65,6 +65,7 @@
             this.txtIdentificacion = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lstTelefonos = new System.Windows.Forms.ListView();
+            this.lblCliente = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -363,7 +364,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(852, 297);
             this.panel1.TabIndex = 76;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnEditarTelefono
             // 
@@ -457,11 +457,24 @@
             this.lstTelefonos.UseCompatibleStateImageBehavior = false;
             this.lstTelefonos.SelectedIndexChanged += new System.EventHandler(this.lstTelefonos_SelectedIndexChanged_1);
             // 
+            // lblCliente
+            // 
+            this.lblCliente.AllowDrop = true;
+            this.lblCliente.AutoSize = true;
+            this.lblCliente.Location = new System.Drawing.Point(4, -1);
+            this.lblCliente.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCliente.Name = "lblCliente";
+            this.lblCliente.Size = new System.Drawing.Size(10, 13);
+            this.lblCliente.TabIndex = 83;
+            this.lblCliente.Text = "-";
+            this.lblCliente.Visible = false;
+            // 
             // MantenimientoClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 643);
+            this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnEditar);
@@ -477,6 +490,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -518,5 +532,6 @@
         private System.Windows.Forms.Button btnEditarTelefono;
         private System.Windows.Forms.Button btnEliminarTelefono;
         private System.Windows.Forms.ListView lstTelefonos;
+        private System.Windows.Forms.Label lblCliente;
     }
 }
