@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,12 @@ using System.Threading.Tasks;
 
 namespace ProyectoProgramadolll.Interfaces
 {
-    internal interface IDALBicicleta
+    public interface IDALBicicleta
     {
+        Task<Bicicleta> GuardarBicicleta(Bicicleta bicicleta);
+        Task<IEnumerable<BicicletaDTO>> ObtenerBicicletas();
+        Task<bool> EliminarBiicleta(string idBicicleta);
+        Bicicleta ObtenerBicicletaPorSerie(string numeroSerie);
+        Task<Bicicleta> ActualizarBicicleta(Bicicleta bicicleta);
     }
 }

@@ -20,9 +20,7 @@ namespace ProyectoProgramadolll.Entities.DTO
         public string DireccionCompleta { get; set; }
         public string Telefonos { get; set; }
         public List<Telefono> ListaTelefonos { get; set; }
-
         public Direccion Direccion { get; set; }
-
-
+        public override string ToString() => $"{Nombre} - {Identificacion}";
     }
 }

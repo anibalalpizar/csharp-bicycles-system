@@ -90,6 +90,7 @@
     <Compile Include="Entities\Bicicleta.cs" />
     <Compile Include="Entities\Cliente.cs" />
     <Compile Include="Entities\Direccion.cs" />
+    <Compile Include="Entities\DTO\BicicletaDTO.cs" />
     <Compile Include="Entities\DTO\ClienteDTO.cs" />
     <Compile Include="Entities\DTO\PadronDTO.cs" />
     <Compile Include="Entities\Canton.cs" />

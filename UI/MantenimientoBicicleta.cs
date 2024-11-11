@@ -30,15 +30,53 @@ namespace ProyectoProgramadolll.UI
             {
                 Bicicleta bicicleta = new Bicicleta();
 
+
                 if (string.IsNullOrEmpty(txtNumeroSerie.Text))
                 {
                     MessageBox.Show("El número de serie es requerido");
                     return;
                 }
 
+                if (string.IsNullOrEmpty(txtMarca.Text))
+                {
+                    MessageBox.Show("La marca es requerida");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtModelo.Text))
+                {
+                    MessageBox.Show("El modelo es requerido");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtColor.Text))
+                {
+                    MessageBox.Show("El color es requerido");
+                    return;
+                }
+
+                //if (this.dgvDatos.Rows.Count > 0)
+                //{
+                //    foreach (DataGridViewRow row in this.dgvDatos.Rows)
+                //    {
+                //        if (row.Cells[0].Value.ToString() == txtNumeroSerie.Text)
+                //        {
+                //            MessageBox.Show("El número de serie ya existe");
+                //            return;
+                //        }
+                //    }
+                //}
+
                 bicicleta.NumeroSerie = txtNumeroSerie.Text;
+                bicicleta.IdCliente = ((ClienteDTO)cmbClientes.SelectedItem).IdCliente;
                 bicicleta.Marca = txtMarca.Text;
-                //bicicleta
+                bicicleta.Modelo = txtModelo.Text;
+                bicicleta.Color = txtColor.Text;
+
+                bicicleta = await bllBicicleta.GuardarBicicleta(bicicleta);
+
+                if (bicicleta != null)
+                    CargarDatos();
 
             }
             catch (Exception ex)
@@ -55,10 +93,18 @@ namespace ProyectoProgramadolll.UI
         private async void CargarDatos()
         {
             IBLLClientes bLLClientes = new BLLClientes();
+            IBLLBicicleta bLLBicicleta = new BLLBicicleta();
             List<ClienteDTO> lista = null;
 
             try
             {
+                // cambiar estado ninguno
+
+                dgvDatos.AutoGenerateColumns = false;
+                dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+                this.dgvDatos.DataSource = await bLLBicicleta.ObtenerBicicletas();
+
                 this.cmbClientes.Items.Clear();
                 lista = bLLClientes.ObtenerClientes();
                 foreach (ClienteDTO cliente in lista)
@@ -67,6 +113,62 @@ namespace ProyectoProgramadolll.UI
                 }
 
                 this.cmbClientes.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            IBLLBicicleta bllBicicleta = new BLLBicicleta();
+
+            try
+            {
+                if (this.dgvDatos.SelectedRows.Count > 0)
+                {
+                    // cambiar estado a borrar
+
+                    BicicletaDTO oBicicleta = this.dgvDatos.SelectedRows[0].DataBoundItem as BicicletaDTO;
+                    if (MessageBox.Show($"¿Está seguro de eliminar la bicicleta con número de serie {oBicicleta.NumeroSerie}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bllBicicleta.EliminarBicicleta(oBicicleta.IdBicicleta.ToString());
+                        this.CargarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Seleccione el registro !", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            BicicletaDTO bicicleta = new BicicletaDTO();
+            try
+            {
+                if (this.dgvDatos.SelectedRows.Count > 0)
+                {
+
+                    bicicleta = this.dgvDatos.SelectedRows[0].DataBoundItem as BicicletaDTO;
+                    txtNumeroSerie.Text = bicicleta.NumeroSerie;
+                    txtMarca.Text = bicicleta.Marca;
+                    txtModelo.Text = bicicleta.Modelo;
+                    txtColor.Text = bicicleta.Color;
+                    cmbClientes.SelectedIndex = cmbClientes.FindString(bicicleta.NombreCliente);
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione el registro !", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             catch (Exception ex)
             {

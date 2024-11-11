@@ -247,9 +247,7 @@ namespace ProyectoProgramadolll.DAL
                             clienteDto.ListaTelefonos.AddRange(telefonos);
                         }
 
-                    }
-
-                   
+                    }             
                 }
                 return listaClientes;
             }

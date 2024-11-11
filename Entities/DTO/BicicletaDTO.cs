@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoProgramadolll.Entities
+namespace ProyectoProgramadolll.Entities.DTO
 {
-    public class Bicicleta
+    public class BicicletaDTO
     {
         public int IdBicicleta { get; set; }
         public string NumeroSerie { get; set; }
@@ -14,6 +14,6 @@ namespace ProyectoProgramadolll.Entities
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public string Color { get; set; }
-        public override string ToString() => $"IdBicicleta: {IdBicicleta}, NumeroSerie: {NumeroSerie}, IdCliente: {IdCliente}, Marca: {Marca}, Modelo: {Modelo}, Color: {Color}";
+        public string NombreCliente { get; set; }
     }
 }
