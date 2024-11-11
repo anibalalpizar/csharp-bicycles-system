@@ -1,5 +1,6 @@
 ﻿using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -54,13 +55,13 @@ namespace ProyectoProgramadolll.UI
         private async void CargarDatos()
         {
             IBLLClientes bLLClientes = new BLLClientes();
-            List<Cliente> lista = null;
+            List<ClienteDTO> lista = null;
 
             try
             {
                 this.cmbClientes.Items.Clear();
                 lista = bLLClientes.ObtenerClientes();
-                foreach (Cliente cliente in lista)
+                foreach (ClienteDTO cliente in lista)
                 {
                     this.cmbClientes.Items.Add(cliente);
                 }

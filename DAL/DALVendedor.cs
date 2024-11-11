@@ -163,7 +163,7 @@ namespace ProyectoProgramadolll.DAL
 
         public IEnumerable<VendedorDTO> ObtenerVendedores()
         {
-            StringBuilder conexion = new StringBuilder();
+            
             SqlCommand cmd = new SqlCommand();
             IDataReader reader = null;
             IList<VendedorDTO> lista = new List<VendedorDTO>();
@@ -239,7 +239,6 @@ namespace ProyectoProgramadolll.DAL
                         oVendedor.Apellidos = dr["Apellidos"].ToString();
                         oVendedor.FechaNacimiento = DateTime.Parse(dr["FechaNacimiento"].ToString());
                         oVendedor.Fotografia = dr["Fotografia"] == DBNull.Value ? null : (byte[])dr["Fotografia"];
-                        //oVendedor.Estado = bool.Parse(dr["Estado"].ToString());
                         oVendedor.Estado = dr["Estado"] != DBNull.Value && (dr["Estado"].ToString() == "1" || dr["Estado"].ToString().ToLower() == "true");
 
 

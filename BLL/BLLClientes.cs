@@ -5,15 +5,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using ProyectoProgramadolll.Util;
+using ProyectoProgramadolll.DAL;
+using ProyectoProgramadolll.Entities.DTO;
 
 namespace ProyectoProgramadolll.BLL
 {
     public class BLLClientes : IBLLClientes
     {
-        public List<Cliente> ObtenerClientes()
+        public Task<bool> EliminarCliente(string identificacion)
         {
-            IDALClientes dalClientes = new DAL.DALClientes();
+            IDALClientes clienteDAL = new DALClientes();
+            return clienteDAL.EliminarCliente(identificacion);
+        }
+
+        public ClienteDTO GuardarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos)
+        {
+
+            IDALClientes clienteDAL = new DALClientes();
+            string mensaje = "";
+            ClienteDTO oCliente = null;
+            ClienteDTO clientePorId = clienteDAL.ObtenerClientePorId(cliente.Identificacion);
+
+            if (!ValidarCliente(cliente, ref mensaje))
+            {
+                Log.LogException(new Exception(mensaje));
+                return null;
+            }
+
+            if (clientePorId == null)
+                oCliente = clienteDAL.GuardarCliente(cliente, direccion, telefonos);
+            else
+                oCliente = clienteDAL.ActualizarCliente(clientePorId, direccion, telefonos);
+            return oCliente;
+        }
+        public bool ValidarCliente(ClienteDTO cliente, ref string mensaje)
+        {
+            if (string.IsNullOrWhiteSpace(cliente.Identificacion))
+            {
+                mensaje = "Debe ingresar una identificación.";
+                return false;
+            }
+            else if (cliente.IdTipoIdentificacion <= 0)
+            {
+                mensaje = "Debe seleccionar un tipo de identificación válido.";
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(cliente.Nombre))
+            {
+                mensaje = "Debe ingresar un nombre.";
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(cliente.CorreoElectronico))
+            {
+                mensaje = "Debe ingresar un correo electrónico.";
+                return false;
+            }
+            else if (!cliente.CorreoElectronico.Contains("@"))
+            {
+                mensaje = "Debe ingresar un correo electrónico válido.";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public List<ClienteDTO> ObtenerClientes()
+        {
+            IDALClientes dalClientes = new DALClientes();
             return dalClientes.ObtenerClientes();
         }
+
+        
     }
 }

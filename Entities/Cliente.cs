@@ -12,11 +12,12 @@ namespace ProyectoProgramadolll.Entities
         public string Identificacion { get; set; }
         public int IdTipoIdentificacion { get; set; }
         public string Nombre { get; set; }
-        public string Apellidos { get; set; }
-        public int Sexo { get; set; }
+        public bool Sexo { get; set; }
         public string CorreoElectronico { get; set; }
         public int IdDireccion { get; set; }
-        public override string ToString() => $"{Nombre} {Apellidos}";
+
+        public Direccion Direccion { get; set; }
+        public override string ToString() => $"{Nombre}";
 
     }
 }

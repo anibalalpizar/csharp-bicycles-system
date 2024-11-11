@@ -1,4 +1,5 @@
 ﻿using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IBLLClientes
     {
-        List<Cliente> ObtenerClientes();
+        List<ClienteDTO> ObtenerClientes();
+        ClienteDTO GuardarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos);
+        Task<bool> EliminarCliente(string identificacion);
     }
 }

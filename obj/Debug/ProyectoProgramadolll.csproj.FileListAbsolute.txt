@@ -123,7 +123,6 @@ D:\Bicycle\obj\Debug\ProyectoProgramadolll.Form1.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.Properties.Resources.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.AgregarClientes.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.AgregarProductoServicio.resources
-D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.Bicicletas.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.frmLogin.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.MantenimientoBicicleta.resources
 D:\Bicycle\obj\Debug\ProyectoProgramadolll.UI.MantenimientoClientes.resources

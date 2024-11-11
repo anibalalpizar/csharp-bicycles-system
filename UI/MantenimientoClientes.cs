@@ -1,16 +1,22 @@
 ﻿using log4net;
+using Newtonsoft.Json;
 using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.DTO;
 using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
+using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTN.Winform.Electronics.Extensions;
@@ -20,8 +26,11 @@ namespace ProyectoProgramadolll.UI
     public partial class MantenimientoClientes : Form
     {
         private static readonly ILog _MyLogControlEventos = log4net.LogManager.GetLogger("MyControlEventos");
+        private List<Provincia> listProvincias;
         private List<Canton> listaCantones;
         private List<Distrito> listaDistritos;
+        private IList<Telefono> listaTelefonos = new List<Telefono>();
+
 
         public MantenimientoClientes()
         {
@@ -34,6 +43,7 @@ namespace ProyectoProgramadolll.UI
             try
             {
                 this.CargarCombosApi();
+                this.CargarDatos();
 
             }
             catch (Exception ex)
@@ -44,6 +54,7 @@ namespace ProyectoProgramadolll.UI
 
         private async void CargarCombosApi()
         {
+            this.listProvincias = await Utils.ObtenerProvinciasAsync();
             this.listaCantones = await Utils.ObtenerCantonesAsync();
             this.listaDistritos = await Utils.ObtenerDistritosAsync();
             List<Provincia> provincias = await Utils.ObtenerProvinciasAsync();
@@ -59,11 +70,196 @@ namespace ProyectoProgramadolll.UI
             }
         }
 
+        private async void CargarDatos()
+        {
+            IBLLClientes bllClientes = new BLLClientes();
+            IBLLTipoIdentificacion bllTipo;
+
+            List<TipoIdentificacion> listaTipoIdentificacion;
+            try
+            {
+                bllTipo = new BLLTipoIdentificacion();
+
+                listaTipoIdentificacion = bllTipo.ObtenerTipoIdentificacion();
+
+                cmbTipo.DataSource = listaTipoIdentificacion;
+                cmbTipo.DisplayMember = "Descripcion";
+                cmbTipo.ValueMember = "IdTipoIdentificacion";
+
+                dgvDatos.AutoGenerateColumns = false;
+                dgvDatos.RowTemplate.Height = 100;
+                dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+
+                this.dgvDatos.DataSource = bllClientes.ObtenerClientes();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos", ex.Message);
+            }
+        }
+
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            AgregarClientes AgregarClientes = new AgregarClientes();
-            AgregarClientes.ShowDialog();
+            IBLLClientes bllClientes = new BLLClientes();
+
+            try
+            {
+
+               
+               if (cmbTipo.SelectedIndex == 1) 
+                {
+                    if (txtIdentificacion.Text.Length != 7 || !Char.IsLetter(txtIdentificacion.Text[0]) || !txtIdentificacion.Text.Substring(1).All(Char.IsDigit))
+                    {
+                        MessageBox.Show("El pasaporte debe tener 1 letra y 6 dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(txtNombre.Text))
+                {
+                    MessageBox.Show("El nombre es obligatorio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+               
+                if (!rdbFemenino.Checked && !rdbMasculino.Checked)  
+                {
+                    MessageBox.Show("Debe seleccionar el sexo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // Validación de Correo Electrónico
+                if (string.IsNullOrWhiteSpace(txtCorreoElectronico.Text))
+                {
+                    MessageBox.Show("El correo electrónico es obligatorio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Expresión regular para validar el correo electrónico
+                var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
+                if (!Regex.IsMatch(txtCorreoElectronico.Text, emailPattern))
+                {
+                    MessageBox.Show("El formato del correo electrónico es inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validación de Provincia, Cantón y Distrito
+                if (cmbProvincia.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Debe seleccionar una provincia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmbCanton.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Debe seleccionar un cantón", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmbDistrito.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Debe seleccionar un distrito", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Validación de la lista de teléfonos
+                if (lstTelefonos.Items.Count == 0)
+                {
+                    MessageBox.Show("Debe agregar al menos un número de teléfono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; 
+                }
+
+                ClienteDTO oCliente = new ClienteDTO();
+                Direccion oDireccion = new Direccion();
+                oCliente.Identificacion = txtIdentificacion.Text;
+                oCliente.IdTipoIdentificacion = (int)cmbTipo.SelectedValue;
+                oCliente.Nombre = txtNombre.Text;
+                oCliente.Sexo = rdbFemenino.Checked ? true : false;
+                oCliente.CorreoElectronico = txtCorreoElectronico.Text;
+
+                oDireccion.IdProvincia = (int)cmbProvincia.SelectedValue;
+                oDireccion.IdCanton = (int)cmbCanton.SelectedValue;
+                oDireccion.IdDistrito = (int)cmbDistrito.SelectedValue;
+                oDireccion.DescripcionProvincia = cmbProvincia.Text;
+                oDireccion.DescripcionCanton = cmbCanton.Text;
+                oDireccion.DescripcionDistrito = cmbDistrito.Text;
+
+
+                List<Telefono> listaTelefonos = new List<Telefono>();
+
+                foreach (ListViewItem item in lstTelefonos.Items)
+                {
+                    var telefono = new Telefono
+                    {
+                        NumeroTelefonico = item.SubItems[0].Text 
+                    };
+
+                    listaTelefonos.Add(telefono);
+                }
+
+                oCliente.ListaTelefonos = listaTelefonos;
+
+
+
+
+     oCliente = bllClientes.GuardarCliente(oCliente, oDireccion, listaTelefonos);
+                MessageBox.Show("Datos del Cliente guardados correctamente!", "Exito", MessageBoxButtons.OK);
+                this.CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el cliente", ex.Message);
+            }
+
+
         }
+
+        private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
+        {
+            this.btnCancelar.Enabled = false;
+         
+
+
+
+            switch (estadoMantenimiento)
+            {
+                case EstadoMantenimiento.Nuevo:
+                    this.cmbTipo.Enabled = true;
+                    this.btnCrear.Enabled = true;
+                    this.txtIdentificacion.Enabled = true;
+                    this.btnEliminar.Enabled = false;
+                    this.btnCancelar.Enabled = true;
+                    break;
+                case EstadoMantenimiento.Editar:
+                    this.txtIdentificacion.Enabled = true;
+                    this.cmbTipo.Enabled = true;
+                    this.cmbCanton.Enabled = true;
+                    this.cmbDistrito.Enabled = true;
+                    this.btnCrear.Enabled = true;
+                    this.btnEliminar.Enabled = false;
+                    this.btnCancelar.Enabled = true;
+                    break;
+                case EstadoMantenimiento.Borrar:
+                    break;
+                case EstadoMantenimiento.Ninguno:
+                    this.txtIdentificacion.Enabled = true;
+                    this.btnEliminar.Enabled = true;
+                    this.txtNumeroTelefonico.Clear();
+                    this.txtNombre.Clear();
+                    this.txtCorreoElectronico.Clear();
+                    this.cmbCanton.DataSource = null;
+                    this.cmbDistrito.DataSource = null;
+                    this.rdbFemenino.Checked = false;
+                    this.rdbMasculino.Checked = false;
+                    this.lstTelefonos.Clear();
+                    break;
+            }
+        }
+
+
+
 
         ErrorProvider erp = new ErrorProvider();
         private async void btnBuscar_Click(object sender, EventArgs e)
@@ -89,7 +285,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
                 string nombreCliente = await Utils.ObtenerNombreClienteHaciendaAsync(txtIdentificacion.Text);
-                if(nombreCliente == null)
+                if (nombreCliente == null)
                 {
                     MessageBox.Show("No se encontró el cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -98,9 +294,6 @@ namespace ProyectoProgramadolll.UI
                 {
                     txtNombre.Text = nombreCliente;
                 }
-
-
-
 
             }
             catch (Exception er)
@@ -114,7 +307,36 @@ namespace ProyectoProgramadolll.UI
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            string numeroTelefono = txtNumeroTelefonico.Text.Trim();
 
+            if (string.IsNullOrEmpty(numeroTelefono))
+            {
+                MessageBox.Show("Por favor ingresa un número de teléfono.");
+                return;
+            }
+
+            Telefono telefono = new Telefono
+            {
+                NumeroTelefonico = numeroTelefono
+            };
+
+            listaTelefonos.Add(telefono);
+
+            txtNumeroTelefonico.Clear();
+
+            ActualizarListView();
+
+        }
+
+        private void ActualizarListView()
+        {
+            lstTelefonos.Items.Clear();
+
+            foreach (var telefono in this.listaTelefonos)
+            {
+                ListViewItem item = new ListViewItem(telefono.NumeroTelefonico);
+                this.lstTelefonos.Items.Add(item);
+            }
         }
 
         private void cmbProvincia_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,6 +375,184 @@ namespace ProyectoProgramadolll.UI
                     this.cmbDistrito.DataSource = null;
                 }
                 this.cmbDistrito.Enabled = true;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblTipoIdentificacion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            IBLLClientes bllCliente = new BLLClientes();
+            try
+            {
+                if (this.dgvDatos.SelectedRows.Count > 0)
+                {
+                    ClienteDTO oCliente = (ClienteDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as ClienteDTO;
+                    if (MessageBox.Show("¿Está seguro de eliminar el cliente?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bllCliente.EliminarCliente(oCliente.Identificacion);
+                        MessageBox.Show("Cliente eliminado correctamente!", "Exito", MessageBoxButtons.OK);
+                        this.CargarDatos();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar un cliente para eliminar", "Atención");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar el cliente", ex.Message);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.cambiarEstado(EstadoMantenimiento.Ninguno);
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            ClienteDTO oCliente = null;
+            if (this.dgvDatos.SelectedRows.Count > 0)
+            {
+                this.cambiarEstado(EstadoMantenimiento.Editar);
+                oCliente = (ClienteDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as ClienteDTO;
+
+                this.txtIdentificacion.Text = oCliente.Identificacion;
+                this.cmbTipo.SelectedValue = oCliente.IdTipoIdentificacion;
+                this.txtNombre.Text = oCliente.Nombre;
+                this.rdbMasculino.Checked = oCliente.Genero == "Masculino";
+                this.rdbFemenino.Checked = oCliente.Genero != "Masculino";
+                this.txtCorreoElectronico.Text = oCliente.CorreoElectronico;
+
+
+                if (oCliente.DireccionCompleta != null)
+                {
+
+                    string provincia = oCliente.DireccionCompleta.Split(',')[0].Trim();
+                    string canton = oCliente.DireccionCompleta.Split(',')[1].Trim();
+                    string distrito = oCliente.DireccionCompleta.Split(',')[2].Trim();
+
+
+                    cmbProvincia.DataSource = this.listProvincias;
+                    cmbProvincia.DisplayMember = "Descripcion";
+                    cmbProvincia.ValueMember = "IdProvincia";
+
+                    cmbCanton.DataSource = listaCantones;
+                    cmbCanton.DisplayMember = "Descripcion";
+                    cmbCanton.ValueMember = "IdCanton";
+
+                    cmbDistrito.DataSource = listaDistritos;
+                    cmbDistrito.DisplayMember = "Descripcion";
+                    cmbDistrito.ValueMember = "IdDistrito";
+
+                    var provinciaSeleccionada = listProvincias.FirstOrDefault(p => p.Descripcion == provincia);
+                    if (provinciaSeleccionada != null)
+                    {
+                        cmbProvincia.SelectedValue = provinciaSeleccionada.IdProvincia;
+
+                        var cantonSeleccionado = listaCantones.FirstOrDefault(c => c.Descripcion == canton && c.IdProvincia == provinciaSeleccionada.IdProvincia);
+                        if (cantonSeleccionado != null)
+                        {
+                            cmbCanton.SelectedValue = cantonSeleccionado.IdCanton;
+
+                            var distritoSeleccionado = listaDistritos.FirstOrDefault(d => d.Descripcion == distrito && d.IdCanton == cantonSeleccionado.IdCanton);
+                            if (distritoSeleccionado != null)
+                            {
+                                cmbDistrito.SelectedValue = distritoSeleccionado.IdDistrito;
+                            }
+                        }
+                    }
+                }
+
+                this.lstTelefonos.Items.Clear();
+
+                foreach (var telefono in oCliente.ListaTelefonos)
+                {
+                    ListViewItem item = new ListViewItem(telefono.NumeroTelefonico);
+                    this.lstTelefonos.Items.Add(item);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente para editar", "Atención");
+            }
+        }
+
+  
+  
+
+        private void btnEliminarTelefono_Click(object sender, EventArgs e)
+        {
+
+            if (this.lstTelefonos.SelectedItems.Count > 0)
+            {
+                ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
+
+                string numeroTelefono = item.SubItems[0].Text;
+
+                var telefono = listaTelefonos.FirstOrDefault(t => t.NumeroTelefonico == numeroTelefono);
+
+                if (telefono != null)
+                {
+                    listaTelefonos.Remove(telefono);
+                }
+
+                this.lstTelefonos.Items.Remove(item);
+                this.txtNumeroTelefonico.Clear();
+                this.lstTelefonos.Clear();
+            }
+        }
+
+        private void btnEditarTelefono_Click(object sender, EventArgs e)
+        {
+            if (this.lstTelefonos.SelectedItems.Count > 0)
+            {
+                ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
+                item.Text = this.txtNumeroTelefonico.Text;
+            }
+        }
+
+        private void lstTelefonos_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            this.cambiarEstado(EstadoMantenimiento.Editar);
+            if (this.lstTelefonos.SelectedItems.Count > 0)
+            {
+                ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
+                this.txtNumeroTelefonico.Text = item.Text;
+            }
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.cmbTipo.SelectedIndex == 1)
+            {
+                this.btnBuscar.Enabled = false;
+            }else
+            {
+                this.btnBuscar.Enabled = true;
             }
         }
     }
