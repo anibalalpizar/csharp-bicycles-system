@@ -16,9 +16,12 @@ namespace ProyectoProgramadolll.UI
 {
     public partial class MantenimientoBicicleta : Form
     {
-        public MantenimientoBicicleta()
+        private Vendedor vendedor;
+
+        public MantenimientoBicicleta(Vendedor oVendedor)
         {
             InitializeComponent();
+            this.vendedor = oVendedor;
         }
 
 
@@ -76,7 +79,7 @@ namespace ProyectoProgramadolll.UI
                 bicicleta = await bllBicicleta.GuardarBicicleta(bicicleta);
 
                 if (bicicleta != null)
-                    CargarDatos();
+                    CargarDatos(vendedor);
 
             }
             catch (Exception ex)
@@ -87,36 +90,56 @@ namespace ProyectoProgramadolll.UI
 
         private void MantenimientoBicicleta_Load(object sender, EventArgs e)
         {
-            CargarDatos();
+            CargarDatos(vendedor);
         }
 
-        private async void CargarDatos()
+        private void CargarClientes()
         {
             IBLLClientes bLLClientes = new BLLClientes();
-            IBLLBicicleta bLLBicicleta = new BLLBicicleta();
             List<ClienteDTO> lista = null;
 
-            try
+            this.cmbClientes.Items.Clear();
+
+            lista = bLLClientes.ObtenerClientes();
+
+            foreach (ClienteDTO cliente in lista)
             {
-                // cambiar estado ninguno
+                this.cmbClientes.Items.Add(cliente);
+            }
 
-                dgvDatos.AutoGenerateColumns = false;
-                dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.cmbClientes.SelectedIndex = 0;
+        }
 
-                this.dgvDatos.DataSource = await bLLBicicleta.ObtenerBicicletas();
+        private async void CargarDatos(Vendedor vendedor)
+        {
+            IBLLBicicleta bLLBicicleta = new BLLBicicleta();
+            CargarClientes();
+            dgvDatos.AutoGenerateColumns = false;
+            dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
 
-                this.cmbClientes.Items.Clear();
-                lista = bLLClientes.ObtenerClientes();
-                foreach (ClienteDTO cliente in lista)
+            if (vendedor.IdRol == "1")
+            {
+                try
                 {
-                    this.cmbClientes.Items.Add(cliente);
+
+                    this.dgvDatos.DataSource = await bLLBicicleta.ObtenerBicicletas();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                   this.dgvDatos.DataSource = await bLLBicicleta.ObtenerBicicletasPorVendedor(vendedor.IdVendedor);
                 }
 
-                this.cmbClientes.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
@@ -134,7 +157,7 @@ namespace ProyectoProgramadolll.UI
                     if (MessageBox.Show($"¿Está seguro de eliminar la bicicleta con número de serie {oBicicleta.NumeroSerie}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         bllBicicleta.EliminarBicicleta(oBicicleta.IdBicicleta.ToString());
-                        this.CargarDatos();
+                        this.CargarDatos(vendedor);
                     }
                     else
                     {

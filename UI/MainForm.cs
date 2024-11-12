@@ -1,4 +1,5 @@
 ﻿using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,17 +17,17 @@ namespace ProyectoProgramadolll.UI
 {
     public partial class MainForm : Form
     {
-        private string idRol;
+        private Vendedor vendedor;
 
-        public MainForm(string idRol)
+        public MainForm(Vendedor oVendedor)
         {
             InitializeComponent();
-            this.idRol = idRol;
+            this.vendedor = oVendedor;
         }
 
         private void mantenimientoClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1")
+            if (vendedor.IdRol == "1")
             {
                 MantenimientoClientes MantenimientoCliente = new MantenimientoClientes();
                 MantenimientoCliente.ShowDialog();
@@ -39,7 +40,7 @@ namespace ProyectoProgramadolll.UI
 
         private void orderDeTrabajoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2" || idRol == "3")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2" || vendedor.IdRol == "3")
             {
                 ProcesoOrdenTrabajo ProcesoOrdenTrabajo = new ProcesoOrdenTrabajo();
                 ProcesoOrdenTrabajo.ShowDialog();
@@ -52,7 +53,7 @@ namespace ProyectoProgramadolll.UI
 
         private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
             {
                 ProcesoFacturacion ProcesoFacturacion = new ProcesoFacturacion();
                 ProcesoFacturacion.ShowDialog();
@@ -65,7 +66,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoProductoServicioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
             {
                 MantenimientoProductoServicios MantenimientoProductoServicios = new MantenimientoProductoServicios();
                 MantenimientoProductoServicios.ShowDialog();
@@ -78,7 +79,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoVendedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
             {
                 MantenimientoVendedor MantenimientoVendedor = new MantenimientoVendedor();
                 MantenimientoVendedor.ShowDialog();
@@ -92,9 +93,9 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoBicicletaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2" || idRol == "3")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2" || vendedor.IdRol == "3")
             {
-                MantenimientoBicicleta MantenimientoBicicleta = new MantenimientoBicicleta();
+                MantenimientoBicicleta MantenimientoBicicleta = new MantenimientoBicicleta(vendedor);
                 MantenimientoBicicleta.ShowDialog();
             }
             else
@@ -106,7 +107,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoTiendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (idRol == "1" || idRol == "2")
+            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
             {
                 MantenimientoTienda MantenimientoTienda = new MantenimientoTienda();
                 MantenimientoTienda.ShowDialog();

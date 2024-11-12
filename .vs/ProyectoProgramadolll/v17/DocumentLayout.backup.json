@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\dal\\dalbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\mantenimientobicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientobicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\mantenimientobicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientobicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\dal\\dalbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\bll\\bllbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\interfaces\\ibllbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:interfaces\\ibllbicicleta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 18,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,54 +90,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BLLBicicleta.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLBicicleta.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLBicicleta.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLBicicleta.cs",
-              "RelativeToolTip": "BLL\\BLLBicicleta.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAiwB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T08:44:52.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DALBicicleta.cs",
               "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALBicicleta.cs",
               "RelativeDocumentMoniker": "DAL\\DALBicicleta.cs",
               "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALBicicleta.cs",
               "RelativeToolTip": "DAL\\DALBicicleta.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJgAAAAAAAAAAAAywLwAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T08:35:13.621Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MantenimientoBicicleta.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\MantenimientoBicicleta.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoBicicleta.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\MantenimientoBicicleta.cs",
-              "RelativeToolTip": "UI\\MantenimientoBicicleta.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAUwE4AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T08:28:12.628Z",
+              "WhenOpened": "2024-11-11T23:51:03.058Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MantenimientoBicicleta.cs [Design]",
+              "Title": "BLLBicicleta.cs",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLBicicleta.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLBicicleta.cs",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLBicicleta.cs",
+              "RelativeToolTip": "BLL\\BLLBicicleta.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwCQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T23:50:42.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IBLLBicicleta.cs",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Interfaces\\IBLLBicicleta.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IBLLBicicleta.cs",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Interfaces\\IBLLBicicleta.cs",
+              "RelativeToolTip": "Interfaces\\IBLLBicicleta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-11T23:49:39.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MantenimientoBicicleta.cs",
               "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\MantenimientoBicicleta.cs",
               "RelativeDocumentMoniker": "UI\\MantenimientoBicicleta.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\MantenimientoBicicleta.cs [Design]",
-              "RelativeToolTip": "UI\\MantenimientoBicicleta.cs [Design]",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\MantenimientoBicicleta.cs",
+              "RelativeToolTip": "UI\\MantenimientoBicicleta.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAqwI8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T08:00:28.885Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-11T23:34:08.301Z",
+              "EditorCaption": ""
             }
           ]
         },

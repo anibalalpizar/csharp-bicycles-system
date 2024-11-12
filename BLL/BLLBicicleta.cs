@@ -36,5 +36,12 @@ namespace ProyectoProgramadolll.BLL
             IDALBicicleta dalBicicleta = new DALBicicleta();
             return dalBicicleta.ObtenerBicicletas();
         }
+
+        public Task<IEnumerable<BicicletaDTO>> ObtenerBicicletasPorVendedor(int idVendedor)
+        {
+            IDALBicicleta dalBicicleta = new DALBicicleta();
+            return dalBicicleta.ObtenerBicicletasPorVendedor(idVendedor);
+
+        }
     }
 }

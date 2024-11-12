@@ -187,5 +187,43 @@ namespace ProyectoProgramadolll.DAL
                 throw;
             }
         }
+
+        public async Task<IEnumerable<BicicletaDTO>> ObtenerBicicletasPorVendedor(int idVendedor)
+        {
+            List<BicicletaDTO> lista = new List<BicicletaDTO>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "sp_ObtenerBicicletasPorVendedor";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.Add(new SqlParameter("@idVendedor", idVendedor));
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    DataTable dt = await db.ExecuteReaderAsync(cmd, "T");
+
+                    foreach (DataRow reader in dt.Rows)
+                    {
+                        BicicletaDTO bicicleta = new BicicletaDTO();
+                        bicicleta.IdBicicleta = Convert.ToInt32(reader["IdBicicleta"]);
+                        bicicleta.NumeroSerie = reader["NumeroSerie"].ToString();
+                        bicicleta.IdCliente = Convert.ToInt32(reader["IdCliente"]);
+                        bicicleta.Marca = reader["Marca"].ToString();
+                        bicicleta.Modelo = reader["Modelo"].ToString();
+                        bicicleta.Color = reader["Color"].ToString();
+                        bicicleta.NombreCliente = reader["NombreCliente"].ToString();
+
+                        lista.Add(bicicleta);
+                    }
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw;
+            }
+        }
     }
 }

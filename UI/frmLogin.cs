@@ -64,7 +64,7 @@ namespace ProyectoProgramadolll.UI
                         return;
                     }
 
-                    MainForm oMainForm = new MainForm(oVendedor.IdRol);
+                    MainForm oMainForm = new MainForm(oVendedor);
                     oMainForm.Show();
 
                 }
