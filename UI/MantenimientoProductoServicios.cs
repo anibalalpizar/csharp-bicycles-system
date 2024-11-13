@@ -67,14 +67,7 @@ namespace ProyectoProgramadolll.UI
         private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
         {
             this.btnCancelar.Enabled = false;
-            this.txtCodigoProductoServicio.Clear();
-            this.cmbTiendas.SelectedIndex = 0;
-            this.rdbActivo.Checked = true;
-            this.rdbNoActivo.Checked = false;
-            this.txtDescripcion.Clear();
-            this.txtCantidadInventario.Clear();
-            this.txtPrecioColones.Clear();
-            this.txtPrecioDolares.Clear();
+            
 
 
             switch (estadoMantenimiento)
@@ -87,10 +80,10 @@ namespace ProyectoProgramadolll.UI
                     this.btnCrear.Enabled = true;
                     this.btnEliminar.Enabled = false;
                     this.btnCancelar.Enabled = true;
+                    
                     break;
                 case EstadoMantenimiento.Editar:
                     this.txtCodigoProductoServicio.Enabled = false;
-                    this.txtCodigoProductoServicio.Focus();
                     this.rdbActivo.Enabled = true;
                     this.rdbNoActivo.Enabled = true;
                     this.cmbTiendas.Enabled = true;
@@ -103,6 +96,11 @@ namespace ProyectoProgramadolll.UI
                 case EstadoMantenimiento.Ninguno:
                     this.txtCodigoProductoServicio.Enabled = true;
                     this.btnEliminar.Enabled = true;
+                    this.txtCantidadInventario.Clear();
+                    this.txtDescripcion.Clear();
+                    this.txtPrecioColones.Clear();
+                    this.txtPrecioDolares.Clear();
+                    this.txtCodigoProductoServicio.Clear();
                     break;
             }
         }
@@ -113,12 +111,47 @@ namespace ProyectoProgramadolll.UI
 
             try
             {
-                //validaciones
+                this.cambiarEstado(EstadoMantenimiento.Nuevo);
+
                 if (string.IsNullOrEmpty(txtCodigoProductoServicio.Text))
                 {
-                    MessageBox.Show("El código del producto/servicio es requerido");
+                    MessageBox.Show("El código del producto/servicio es requerido", "Atencion!");
                     return;
                 }
+
+                if (string.IsNullOrEmpty(txtDescripcion.Text))
+                {
+                    MessageBox.Show("La descripción del producto/servicio es requerida", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtCantidadInventario.Text))
+                {
+                    MessageBox.Show("La cantidad en inventario del producto/servicio es requerida", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtPrecioColones.Text))
+                {
+                    MessageBox.Show("El precio en colones del producto/servicio es requerido", "Atencion!");
+                    return;
+                }
+
+                if (!int.TryParse(txtCantidadInventario.Text, out int cantidadInventario))
+                {
+                    MessageBox.Show("La cantidad en inventario debe ser un número", "Atencion!");
+                    return;
+                }
+
+                if (txtCodigoProductoServicio.Text.Length > 50 ||
+                    txtDescripcion.Text.Length > 50 ||
+                    txtCantidadInventario.Text.Length > 50 ||
+                    txtPrecioColones.Text.Length > 50)
+                {
+                    MessageBox.Show("Ningún campo debe exceder los 50 caracteres", "Atención!");
+                    return;
+                }
+
 
                 ProductoServicio productoServicio = new ProductoServicio();
 
@@ -132,6 +165,7 @@ namespace ProyectoProgramadolll.UI
 
                 bllProductoServicio.GuardarProductoServicio(productoServicio);
                 MessageBox.Show("Producto/servicio guardado correctamente", "Exito", MessageBoxButtons.OK);
+                this.cambiarEstado(EstadoMantenimiento.Ninguno);
                 this.CargarDatos();
 
 
@@ -178,7 +212,7 @@ namespace ProyectoProgramadolll.UI
             IBLLProductoServicio bllProductoServicio = new BLLProductoServicio();
             try
             {
-
+                this.cambiarEstado(EstadoMantenimiento.Borrar);
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
                     ProductoServicioDTO oProductoServicio = (ProductoServicioDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as ProductoServicioDTO;

@@ -34,7 +34,8 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
                 cmd.Parameters.AddWithValue("@correoElectronico", cliente.CorreoElectronico);
-                
+                cmd.Parameters.AddWithValue("@contrasegna", cliente.Contrasegna);
+                cmd.Parameters.AddWithValue("@estado", cliente.Estado);
 
                 cmd.Parameters.AddWithValue("@idProvincia", direccion.IdProvincia);
                 cmd.Parameters.AddWithValue("@descripcionProvincia", direccion.DescripcionProvincia);
@@ -90,7 +91,8 @@ namespace ProyectoProgramadolll.DAL
             catch (Exception ex)
             {
                 Log.LogException(ex);
-                throw;
+                throw new Exception("Verifique sus biciletas");
+
             }
         }
 
@@ -112,6 +114,8 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@nombre", cliente.Nombre);
                 cmd.Parameters.AddWithValue("@sexo", cliente.Sexo);
                 cmd.Parameters.AddWithValue("@correoElectronico", cliente.CorreoElectronico);
+                cmd.Parameters.AddWithValue("@contrasegna", cliente.Contrasegna);
+                cmd.Parameters.AddWithValue("@estado", cliente.Estado);
 
                 cmd.Parameters.AddWithValue("@idProvincia", direccion.IdProvincia);
                 cmd.Parameters.AddWithValue("@descripcionProvincia", direccion.DescripcionProvincia);
@@ -175,6 +179,8 @@ namespace ProyectoProgramadolll.DAL
                     oCliente.Sexo = Convert.ToBoolean(row["Sexo"]);
                     oCliente.CorreoElectronico = row["CorreoElectronico"].ToString();
                     oCliente.IdDireccion = Convert.ToInt32(row["IdDireccion"]);
+                    oCliente.Estado = Convert.ToBoolean(row["Estado"]);
+                    //row["Estado"] != DBNull.Value && (row["Estado"].ToString() == "1" || row["Estado"].ToString().ToLower() == "true");
 
                     if (row["descripcionProvincia"] != DBNull.Value)
                     {
@@ -234,6 +240,9 @@ namespace ProyectoProgramadolll.DAL
                         clienteDto.Nombre = reader.GetString(reader.GetOrdinal("Nombre")); 
                         clienteDto.Genero = reader.GetString(reader.GetOrdinal("Genero"));
                         clienteDto.CorreoElectronico = reader.GetString(reader.GetOrdinal("CorreoElectronico"));
+                        clienteDto.EstadoDescripcion = reader.GetString(reader.GetOrdinal("EstadoDescripcion"));
+                        clienteDto.Contrasegna = Cryptography.DecrypthAES(reader.GetString(reader.GetOrdinal("Contrasegna")));
+
                         clienteDto.IdDireccion = reader.GetInt32(reader.GetOrdinal("IdDireccion"));  
                         clienteDto.DireccionCompleta = reader.GetString(reader.GetOrdinal("DireccionCompleta")); 
                         clienteDto.Telefonos = reader.GetString(reader.GetOrdinal("Telefonos"));
@@ -254,6 +263,38 @@ namespace ProyectoProgramadolll.DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public bool ValidarCliente(string idCliente)
+        {
+            IDataReader reader = null;
+            bool eliminado = false;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "sp_ValidarClienteRelaciones";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    reader =  db.ExecuteReader(cmd);
+
+                    while (reader.Read())
+                    {
+
+                        eliminado = reader.GetBoolean(reader.GetOrdinal("existe"));
+
+                    }
+                }
+                return eliminado;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw;
             }
         }
     }

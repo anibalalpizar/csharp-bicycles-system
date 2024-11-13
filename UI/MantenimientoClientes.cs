@@ -104,12 +104,12 @@ namespace ProyectoProgramadolll.UI
         private void btnCrear_Click(object sender, EventArgs e)
         {
             IBLLClientes bllClientes = new BLLClientes();
-
+            int idCliente;
             try
             {
 
-               
-               if (cmbTipo.SelectedIndex == 1) 
+                this.cambiarEstado(EstadoMantenimiento.Nuevo);
+                if (cmbTipo.SelectedIndex == 1)
                 {
                     if (txtIdentificacion.Text.Length != 7 || !Char.IsLetter(txtIdentificacion.Text[0]) || !txtIdentificacion.Text.Substring(1).All(Char.IsDigit))
                     {
@@ -118,26 +118,39 @@ namespace ProyectoProgramadolll.UI
                     }
                 }
 
+                if (string.IsNullOrWhiteSpace(txtIdentificacion.Text))
+                {
+                    MessageBox.Show("La identificacion es obligatoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 if (string.IsNullOrWhiteSpace(txtNombre.Text))
                 {
                     MessageBox.Show("El nombre es obligatorio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-               
-                if (!rdbFemenino.Checked && !rdbMasculino.Checked)  
+
+                if (string.IsNullOrWhiteSpace(txtContrasegna.Text))
+                {
+                    MessageBox.Show("La contraseña es obligatoria", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+
+                if (!rdbFemenino.Checked && !rdbMasculino.Checked)
                 {
                     MessageBox.Show("Debe seleccionar el sexo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-             
+
                 if (string.IsNullOrWhiteSpace(txtCorreoElectronico.Text))
                 {
                     MessageBox.Show("El correo electrónico es obligatorio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-              
+
                 var emailPattern = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
                 if (!Regex.IsMatch(txtCorreoElectronico.Text, emailPattern))
                 {
@@ -145,7 +158,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                
+
                 if (cmbProvincia.SelectedIndex == -1)
                 {
                     MessageBox.Show("Debe seleccionar una provincia", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -164,12 +177,27 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                
+
                 if (lstTelefonos.Items.Count == 0)
                 {
                     MessageBox.Show("Debe agregar al menos un número de teléfono", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; 
+                    return;
                 }
+
+                if (txtIdentificacion.Text.Length > 50 ||
+                    txtNombre.Text.Length > 50 ||
+                    txtCorreoElectronico.Text.Length > 50)
+                {
+                    MessageBox.Show("Ningún campo debe exceder los 50 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!txtNombre.Text.All(c => Char.IsLetter(c)))
+                {
+                    MessageBox.Show("El nombre solo pueden contener letras y espacios", "Atención");
+                    return;
+                }
+
 
                 ClienteDTO oCliente = new ClienteDTO();
                 Direccion oDireccion = new Direccion();
@@ -178,7 +206,17 @@ namespace ProyectoProgramadolll.UI
                 oCliente.Nombre = txtNombre.Text;
                 oCliente.Sexo = rdbFemenino.Checked ? true : false;
                 oCliente.CorreoElectronico = txtCorreoElectronico.Text;
-                oCliente.IdCliente = lblCliente.Text == "" ? 0 : Convert.ToInt32(lblCliente.Text);
+                oCliente.Contrasegna = txtContrasegna.Text;
+                oCliente.Estado = rdbActivo.Checked ? true : false;
+
+                if (int.TryParse(lblCliente.Text, out idCliente))
+                {
+                    oCliente.IdCliente = idCliente;
+                }
+                else
+                {
+                    oCliente.IdCliente = 0;
+                }
 
                 oDireccion.IdProvincia = (int)cmbProvincia.SelectedValue;
                 oDireccion.IdCanton = (int)cmbCanton.SelectedValue;
@@ -194,7 +232,7 @@ namespace ProyectoProgramadolll.UI
                 {
                     var telefono = new Telefono
                     {
-                        NumeroTelefonico = item.SubItems[0].Text 
+                        NumeroTelefonico = item.SubItems[0].Text
                     };
 
                     listaTelefonos.Add(telefono);
@@ -205,13 +243,14 @@ namespace ProyectoProgramadolll.UI
 
 
 
-     oCliente = bllClientes.GuardarCliente(oCliente, oDireccion, listaTelefonos);
+                oCliente = bllClientes.GuardarCliente(oCliente, oDireccion, listaTelefonos);
                 MessageBox.Show("Datos del Cliente guardados correctamente!", "Exito", MessageBoxButtons.OK);
+                this.cambiarEstado(EstadoMantenimiento.Ninguno);
                 this.CargarDatos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al crear el cliente", ex.Message);
+                MessageBox.Show("Error al crear el cliente ", "Identificacion ya registrada");
             }
 
 
@@ -220,7 +259,7 @@ namespace ProyectoProgramadolll.UI
         private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
         {
             this.btnCancelar.Enabled = false;
-         
+
 
 
 
@@ -234,7 +273,7 @@ namespace ProyectoProgramadolll.UI
                     this.btnCancelar.Enabled = true;
                     break;
                 case EstadoMantenimiento.Editar:
-                    this.txtIdentificacion.Enabled = true;
+                    this.txtIdentificacion.Enabled = false;
                     txtNumeroTelefonico.Clear();
                     this.cmbTipo.Enabled = true;
                     this.cmbCanton.Enabled = true;
@@ -261,6 +300,9 @@ namespace ProyectoProgramadolll.UI
                     this.rdbFemenino.Checked = false;
                     this.rdbMasculino.Checked = false;
                     this.lstTelefonos.Clear();
+                    this.listaTelefonos.Clear();
+                    this.txtContrasegna.Clear();
+                    this.lblCliente.Text = "";
                     break;
             }
         }
@@ -322,7 +364,7 @@ namespace ProyectoProgramadolll.UI
                 return;
             }
 
-            if(numeroTelefono.Length != 8)
+            if (numeroTelefono.Length != 8)
             {
                 MessageBox.Show("Por favor ingresa un número de teléfono válido (8 dígitos).");
                 return;
@@ -414,13 +456,23 @@ namespace ProyectoProgramadolll.UI
             IBLLClientes bllCliente = new BLLClientes();
             try
             {
+                this.cambiarEstado(EstadoMantenimiento.Borrar);
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
                     ClienteDTO oCliente = (ClienteDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as ClienteDTO;
                     if (MessageBox.Show("¿Está seguro de eliminar el cliente?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        bllCliente.EliminarCliente(oCliente.Identificacion);
-                        MessageBox.Show("Cliente eliminado correctamente!", "Exito", MessageBoxButtons.OK);
+                        if (bllCliente.ValidarCliente(oCliente.IdCliente.ToString()))
+                        {
+                            MessageBox.Show("No se pudo eliminar el cliente, debido a que tiene bicicletas asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        }
+                        else
+                        {
+
+                            bllCliente.EliminarCliente(oCliente.Identificacion);
+                            MessageBox.Show("Cliente eliminado correctamente!", "Exito", MessageBoxButtons.OK);
+                        }
                         this.CargarDatos();
                     }
 
@@ -456,6 +508,9 @@ namespace ProyectoProgramadolll.UI
                 this.rdbFemenino.Checked = oCliente.Genero != "Masculino";
                 this.txtCorreoElectronico.Text = oCliente.CorreoElectronico;
                 this.lblCliente.Text = oCliente.IdCliente.ToString();
+                this.rdbActivo.Checked = oCliente.EstadoDescripcion == "Activo";
+                this.rdbNoActivo.Checked = oCliente.EstadoDescripcion != "Activo";
+                this.txtContrasegna.Text = oCliente.Contrasegna;
 
                 if (oCliente.DireccionCompleta != null)
                 {
@@ -513,8 +568,8 @@ namespace ProyectoProgramadolll.UI
             }
         }
 
-  
-  
+
+
 
         private void btnEliminarTelefono_Click(object sender, EventArgs e)
         {
@@ -531,7 +586,7 @@ namespace ProyectoProgramadolll.UI
                 {
                     listaTelefonos.Remove(telefono);
                 }
-               
+
                 this.lstTelefonos.Items.Remove(item);
                 this.txtNumeroTelefonico.Clear();
                 MessageBox.Show("Recuerda guardar tus cambios!", "Número de teléfono eliminado correctamente.", MessageBoxButtons.OK);
@@ -555,13 +610,13 @@ namespace ProyectoProgramadolll.UI
                 MessageBox.Show("Recuerda guardar tus cambios!", "Número de teléfono editado correctamente.", MessageBoxButtons.OK);
             }
 
-            
+
 
         }
 
         private void lstTelefonos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-          //  this.cambiarEstado(EstadoMantenimiento.Editar);
+            //  this.cambiarEstado(EstadoMantenimiento.Editar);
             if (this.lstTelefonos.SelectedItems.Count > 0)
             {
                 ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];
@@ -575,7 +630,8 @@ namespace ProyectoProgramadolll.UI
             {
                 this.txtNombre.Enabled = true;
                 this.btnBuscar.Enabled = false;
-            }else
+            }
+            else
             {
                 this.txtNombre.Enabled = false;
                 this.btnBuscar.Enabled = true;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoVendedor));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.txtCodigoVendedor = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,7 +65,6 @@
             this.NombreTienda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EstadoDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoVendedor)).BeginInit();
             this.panel1.SuspendLayout();
@@ -72,35 +73,44 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(69, 11);
+            this.btnEditar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.Location = new System.Drawing.Point(101, 11);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(56, 34);
+            this.btnEditar.Size = new System.Drawing.Size(88, 48);
             this.btnEditar.TabIndex = 36;
             this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(129, 11);
+            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.Location = new System.Drawing.Point(193, 11);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(56, 34);
+            this.btnEliminar.Size = new System.Drawing.Size(88, 48);
             this.btnEliminar.TabIndex = 35;
             this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
+            this.btnGuardar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
             this.btnGuardar.Location = new System.Drawing.Point(9, 11);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(56, 34);
+            this.btnGuardar.Size = new System.Drawing.Size(88, 48);
             this.btnGuardar.TabIndex = 86;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // groupBox1
@@ -131,9 +141,9 @@
             this.label1.Location = new System.Drawing.Point(42, 188);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.Size = new System.Drawing.Size(111, 13);
             this.label1.TabIndex = 84;
-            this.label1.Text = "Fecha de Nacimiento";
+            this.label1.Text = "Fecha de Nacimiento:";
             // 
             // dtpFechaNacimiento
             // 
@@ -149,9 +159,9 @@
             this.Contraseña.Location = new System.Drawing.Point(42, 145);
             this.Contraseña.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Contraseña.Name = "Contraseña";
-            this.Contraseña.Size = new System.Drawing.Size(61, 13);
+            this.Contraseña.Size = new System.Drawing.Size(64, 13);
             this.Contraseña.TabIndex = 80;
-            this.Contraseña.Text = "Contraseña";
+            this.Contraseña.Text = "Contraseña:";
             this.Contraseña.Click += new System.EventHandler(this.Apellido_Click);
             // 
             // txtContrasegna
@@ -177,9 +187,9 @@
             this.label2.Location = new System.Drawing.Point(29, 38);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 13);
+            this.label2.Size = new System.Drawing.Size(91, 13);
             this.label2.TabIndex = 74;
-            this.label2.Text = "Ingrese codigo vendedor";
+            this.label2.Text = "Código vendedor:";
             // 
             // Nombre
             // 
@@ -187,9 +197,9 @@
             this.Nombre.Location = new System.Drawing.Point(387, 36);
             this.Nombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Nombre.Name = "Nombre";
-            this.Nombre.Size = new System.Drawing.Size(44, 13);
+            this.Nombre.Size = new System.Drawing.Size(47, 13);
             this.Nombre.TabIndex = 73;
-            this.Nombre.Text = "Nombre";
+            this.Nombre.Text = "Nombre:";
             // 
             // panel1
             // 
@@ -246,9 +256,9 @@
             this.label6.Location = new System.Drawing.Point(387, 113);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 96;
-            this.label6.Text = "Estado";
+            this.label6.Text = "Estado:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
@@ -257,12 +267,13 @@
             this.label5.Location = new System.Drawing.Point(42, 110);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 94;
-            this.label5.Text = "Tienda";
+            this.label5.Text = "Tienda:";
             // 
             // cmbTiendas
             // 
+            this.cmbTiendas.BackColor = System.Drawing.Color.Wheat;
             this.cmbTiendas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTiendas.FormattingEnabled = true;
             this.cmbTiendas.Location = new System.Drawing.Point(163, 110);
@@ -276,9 +287,9 @@
             this.label4.Location = new System.Drawing.Point(45, 76);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.Size = new System.Drawing.Size(52, 13);
             this.label4.TabIndex = 92;
-            this.label4.Text = "Apellidos";
+            this.label4.Text = "Apellidos:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtApellidos
@@ -295,12 +306,13 @@
             this.label3.Location = new System.Drawing.Point(387, 76);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
+            this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 90;
-            this.label3.Text = "Rol";
+            this.label3.Text = "Rol:";
             // 
             // cmbRoles
             // 
+            this.cmbRoles.BackColor = System.Drawing.Color.Wheat;
             this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRoles.FormattingEnabled = true;
             this.cmbRoles.Location = new System.Drawing.Point(455, 73);
@@ -318,18 +330,20 @@
             // 
             // btnAgregar
             // 
+            this.btnAgregar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnAgregar.Location = new System.Drawing.Point(696, 16);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(182, 28);
             this.btnAgregar.TabIndex = 87;
             this.btnAgregar.Text = "Agregar Imagen del Vendedor ";
-            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.UseVisualStyleBackColor = false;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dgvDatos
             // 
             this.dgvDatos.AllowUserToAddRows = false;
+            this.dgvDatos.BackgroundColor = System.Drawing.Color.OldLace;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -347,10 +361,24 @@
             this.dgvDatos.Size = new System.Drawing.Size(943, 315);
             this.dgvDatos.TabIndex = 89;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.Location = new System.Drawing.Point(285, 11);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(91, 48);
+            this.btnCancelar.TabIndex = 90;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Column1
             // 
             this.Column1.DataPropertyName = "IdVendedor";
-            this.Column1.HeaderText = "IdVendedor";
+            this.Column1.HeaderText = "Vendedor";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
@@ -380,7 +408,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "CodigoVendedor";
-            this.Column2.HeaderText = "CodigoVendedor";
+            this.Column2.HeaderText = "Código de Vendedor";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             // 
@@ -390,46 +418,36 @@
             dataGridViewCellStyle1.Format = "N2";
             dataGridViewCellStyle1.NullValue = "0";
             this.RolDescripcion.DefaultCellStyle = dataGridViewCellStyle1;
-            this.RolDescripcion.HeaderText = "RolDescripcion";
+            this.RolDescripcion.HeaderText = "Rol";
             this.RolDescripcion.Name = "RolDescripcion";
             this.RolDescripcion.ReadOnly = true;
             // 
             // NombreTienda
             // 
             this.NombreTienda.DataPropertyName = "NombreTienda";
-            this.NombreTienda.HeaderText = "NombreTienda";
+            this.NombreTienda.HeaderText = "Nombre de la Tienda";
             this.NombreTienda.Name = "NombreTienda";
             this.NombreTienda.ReadOnly = true;
             // 
             // Column8
             // 
             this.Column8.DataPropertyName = "FechaNacimiento";
-            this.Column8.HeaderText = "FechaNacimiento";
+            this.Column8.HeaderText = "Fecha de Nacimiento";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
             // EstadoDescripcion
             // 
             this.EstadoDescripcion.DataPropertyName = "EstadoDescripcion";
-            this.EstadoDescripcion.HeaderText = "EstadoDescripcion";
+            this.EstadoDescripcion.HeaderText = "Estado";
             this.EstadoDescripcion.Name = "EstadoDescripcion";
             this.EstadoDescripcion.ReadOnly = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(189, 11);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(64, 34);
-            this.btnCancelar.TabIndex = 90;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // MantenimientoVendedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(969, 684);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgvDatos);
@@ -437,10 +455,12 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "MantenimientoVendedor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MantenimientoVendedor";
+            this.Text = "Mantenimiento de Vendedores";
             this.Load += new System.EventHandler(this.MantenimientoVendedor_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoVendedor)).EndInit();
@@ -476,6 +496,8 @@
         private System.Windows.Forms.RadioButton rdbActivo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellidos;
@@ -485,7 +507,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreTienda;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn EstadoDescripcion;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label2;
     }
 }

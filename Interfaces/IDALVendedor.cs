@@ -10,7 +10,7 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IDALVendedor
     {
-        Vendedor Login(string codigoVendedor, string contrasegna);
+        VendedorClienteDTO Login(string codigoVendedor, string contrasegna);
         Vendedor GuardarVendedor(Vendedor vendedor);
         IEnumerable<VendedorDTO> ObtenerVendedores();
         Vendedor ObtenerVendedorPorId(string codigoVendedor);

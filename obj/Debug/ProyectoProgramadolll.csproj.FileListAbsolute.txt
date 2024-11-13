@@ -145,3 +145,30 @@ D:\Bicycle\bin\Debug\log4net.pdb
 D:\Bicycle\bin\Debug\log4net.xml
 D:\Bicycle\bin\Debug\Newtonsoft.Json.xml
 D:\Bicycle\obj\Debug\Proyecto.422C1932.Up2Date
+D:\Bicycle 2.0\bin\Debug\ProyectoProgramadolll.exe.config
+D:\Bicycle 2.0\bin\Debug\ProyectoProgramadolll.exe
+D:\Bicycle 2.0\bin\Debug\ProyectoProgramadolll.pdb
+D:\Bicycle 2.0\bin\Debug\log4net.dll
+D:\Bicycle 2.0\bin\Debug\Newtonsoft.Json.dll
+D:\Bicycle 2.0\bin\Debug\log4net.pdb
+D:\Bicycle 2.0\bin\Debug\log4net.xml
+D:\Bicycle 2.0\bin\Debug\Newtonsoft.Json.xml
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.csproj.AssemblyReference.cache
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.Form1.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.Properties.Resources.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.AgregarClientes.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.AgregarProductoServicio.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.frmLogin.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MantenimientoBicicleta.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MantenimientoClientes.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MainForm.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MantenimientoProductoServicios.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MantenimientoTienda.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.MantenimientoVendedor.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.ProcesoFacturacion.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.UI.ProcesoOrdenTrabajo.resources
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.csproj.GenerateResource.cache
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.csproj.CoreCompileInputs.cache
+D:\Bicycle 2.0\obj\Debug\Proyecto.422C1932.Up2Date
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.exe
+D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.pdb

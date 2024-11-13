@@ -96,6 +96,7 @@
     <Compile Include="Entities\Canton.cs" />
     <Compile Include="Entities\Distrito.cs" />
     <Compile Include="Entities\DTO\ProductoServicioDTO.cs" />
+    <Compile Include="Entities\DTO\VendedorClienteDTO.cs" />
     <Compile Include="Entities\DTO\VendedorDTO.cs" />
     <Compile Include="Entities\ProductoServicio.cs" />
     <Compile Include="Entities\Provincia.cs" />
@@ -286,7 +287,10 @@
     <None Include="Resources\cicloRuso.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\cancel.png" />
+    <Content Include="Resources\edit.png" />
     <Content Include="Resources\noImagen.jpg" />
+    <Content Include="Resources\update.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

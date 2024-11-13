@@ -38,15 +38,29 @@ namespace ProyectoProgramadolll.UI
 
             try
             {
+                this.cambiarEstado(EstadoMantenimiento.Nuevo);
                 if (string.IsNullOrEmpty(txtCodigoVendedor.Text))
                 {
-                    txtCodigoVendedor.Focus();
+                    MessageBox.Show("El código del vendedor es requerido", "Atencion!"); 
                     return;
                 }
 
                 if (string.IsNullOrEmpty(txtContrasegna.Text))
                 {
-                    txtContrasegna.Focus();
+                    
+                    MessageBox.Show("La contraseña es requerida", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtNombre.Text))
+                {
+                    MessageBox.Show("El nombre del vendedor es requerido", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtApellidos.Text))
+                {
+                    MessageBox.Show("El apellido del vendedor es requerido", "Atencion!");
                     return;
                 }
 
@@ -55,6 +69,34 @@ namespace ProyectoProgramadolll.UI
                     MessageBox.Show("La Imagen  es un dato requerido !", "Atención");
                     return;
                 }
+
+                if (!txtNombre.Text.All(c => Char.IsLetter(c) || Char.IsWhiteSpace(c)) ||
+                    !txtApellidos.Text.All(c => Char.IsLetter(c) || Char.IsWhiteSpace(c)))
+                {
+                    MessageBox.Show("El nombre y apellido solo pueden contener letras y espacios", "Atención");
+                    return;
+                }
+
+
+                if (txtNombre.Text.Length > 50 || txtApellidos.Text.Length > 50 || txtCodigoVendedor.Text.Length > 50 || txtContrasegna.Text.Length > 50)
+                {
+                    MessageBox.Show("Los datos no pueden tener más de 50 caracteres", "Atención");
+                    return;
+                }
+
+                if (txtContrasegna.Text.Length < 8)
+                {
+                    MessageBox.Show("La contraseña debe tener al menos 8 caracteres");
+                 
+                }
+
+                if (txtContrasegna.Text.Trim().Length > 10)
+                {
+                    MessageBox.Show("La contraseña no puede tener más de 10 caracteres");
+                  
+                }
+
+
 
                 Vendedor vendedor = new Vendedor();
 
@@ -70,6 +112,7 @@ namespace ProyectoProgramadolll.UI
 
                 vendedor =  bllVendedor.GuardarVendedor(vendedor);
                 MessageBox.Show("Datos del Vendedor guardados correctamente!", "Exito", MessageBoxButtons.OK);
+                this.cambiarEstado(EstadoMantenimiento.Ninguno);
                 this.CargarDatos();
 
             }
@@ -83,17 +126,7 @@ namespace ProyectoProgramadolll.UI
         private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
         {
             this.btnCancelar.Enabled = false;
-            this.txtCodigoVendedor.Clear();
-            this.txtContrasegna.Clear();
-            this.cmbRoles.SelectedIndex = 0;
-            this.cmbTiendas.SelectedIndex = 0;
-            this.txtNombre.Clear();
-            this.txtApellidos.Clear();
-            this.dtpFechaNacimiento.Value = DateTime.Now;
-            this.rdbActivo.Checked = true;
-            this.rdbNoActivo.Checked = false;
-            this.ptbFotoVendedor.Image = null;
-            this.ptbFotoVendedor.Tag = null;
+            
 
             switch (estadoMantenimiento)
             {
@@ -131,6 +164,17 @@ namespace ProyectoProgramadolll.UI
                 case EstadoMantenimiento.Ninguno:
                     this.txtCodigoVendedor.Enabled = true;
                     this.btnEliminar.Enabled = true;
+                    this.txtCodigoVendedor.Clear();
+                    this.txtContrasegna.Clear();
+                    this.cmbRoles.SelectedIndex = 0;
+                    this.cmbTiendas.SelectedIndex = 0;
+                    this.txtNombre.Clear();
+                    this.txtApellidos.Clear();
+                    this.dtpFechaNacimiento.Value = DateTime.Now;
+                    this.rdbActivo.Checked = true;
+                    this.rdbNoActivo.Checked = false;
+                    this.ptbFotoVendedor.Image = null;
+                    this.ptbFotoVendedor.Tag = null;
                     break;
             }
         }
@@ -141,23 +185,28 @@ namespace ProyectoProgramadolll.UI
             opt.Title = "Seleccione la Imagen ";
             opt.SupportMultiDottedExtensions = true;
             opt.DefaultExt = "*.jpg";
-            opt.Filter = "Archivos de Imagenes (*.jpg)|*.jpg| All files (*.*)|*.*";
+            opt.Filter = "Archivos de Imagenes (*.jpg; *.jpeg; *.png)|*.jpg;*.jpeg;*.png| All files (*.*)|*.*";
             opt.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             opt.FileName = "";
 
             if (opt.ShowDialog(this) == DialogResult.OK)
             {
+                // Validar la extensión del archivo
+                string extension = Path.GetExtension(opt.FileName).ToLower();
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                {
+                    this.ptbFotoVendedor.ImageLocation = opt.FileName;
+                    ptbFotoVendedor.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                //ruta = opt.FileName.Trim();
-                this.ptbFotoVendedor.ImageLocation = opt.FileName;
-                ptbFotoVendedor.SizeMode = PictureBoxSizeMode.StretchImage;
+                    byte[] cadenaBytes = File.ReadAllBytes(opt.FileName);
 
-                byte[] cadenaBytes = File.ReadAllBytes(opt.FileName);
-
-                // Guarla la imagenen Bytes en el Tag de la imagen.
-                ptbFotoVendedor.Tag = (byte[])cadenaBytes;
-
-
+                    // Guarda la imagen en bytes en el Tag de la imagen.
+                    ptbFotoVendedor.Tag = cadenaBytes;
+                }
+                else
+                {
+                    MessageBox.Show("Solo se permiten archivos con extensión .jpg, .jpeg o .png", "Formato no permitido", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -258,7 +307,7 @@ namespace ProyectoProgramadolll.UI
             {
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
-                    Vendedor oVendedor = (Vendedor)this.dgvDatos.SelectedRows[0].DataBoundItem as Vendedor;
+                    VendedorDTO oVendedor = (VendedorDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as VendedorDTO;
                     if (MessageBox.Show("¿Está seguro de eliminar el vendedor?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         bllVendedor.EliminarVendedor(oVendedor.CodigoVendedor.ToString());

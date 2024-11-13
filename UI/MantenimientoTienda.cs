@@ -28,13 +28,71 @@ namespace ProyectoProgramadolll.UI
             IBLLTienda bllTienda = new BLLTienda();
             try
             {
+                cambiarEstado(EstadoMantenimiento.Nuevo);
                 Tienda oTienda = new Tienda();
                 if (string.IsNullOrEmpty(txtCedulaJuridica.Text))
                 {
 
-                    txtCedulaJuridica.Focus();
+                    MessageBox.Show("El código la tienda es requerido", "Atencion!");
                     return;
                 }
+
+                if (string.IsNullOrEmpty(txtNombre.Text))
+                {
+
+                    MessageBox.Show("El nombre de la tienda es requerido", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtNumeroTelefonico.Text))
+                {
+
+                    MessageBox.Show("El número telefónico de la tienda es requerido", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtDireccion.Text))
+                {
+
+                    MessageBox.Show("La dirección de la tienda es requerida", "Atencion!");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(txtImpuestoVenta.Text))
+                {
+
+                    MessageBox.Show("El impuesto de venta de la tienda es requerido", "Atencion!");
+                    return;
+                }
+
+                if (txtNumeroTelefonico.Text.Length != 8 || txtNumeroTelefonico.Text.Contains("-"))
+                {
+                    MessageBox.Show("El número telefónico de la tienda debe tener 8 digitos y no contener guiones (-)", "Atencion!");
+                    return;
+                }
+
+                if (!decimal.TryParse(txtImpuestoVenta.Text, out decimal impuesto) || impuesto <= 0)
+                {
+                    MessageBox.Show("El impuesto de venta de la tienda debe ser un número positivo", "Atención!");
+                    return;
+                }
+
+                if (txtCedulaJuridica.Text.Length > 50 ||
+                   txtNombre.Text.Length > 50 ||
+                   txtNumeroTelefonico.Text.Length > 50 ||
+                   txtDireccion.Text.Length > 50 ||
+                   txtImpuestoVenta.Text.Length > 50)
+                {
+                    MessageBox.Show("Ningún campo debe exceder los 50 caracteres", "Atención!");
+                    return;
+                }
+                if (!txtNombre.Text.All(c => Char.IsLetter(c)))
+                {
+                    MessageBox.Show("El nombre solamente pueden contener letras y espacios", "Atención");
+                    return;
+                }
+
+
 
                 oTienda.CedulaJuridica = int.Parse(txtCedulaJuridica.Text);
                 oTienda.Nombre = txtNombre.Text;
@@ -43,6 +101,7 @@ namespace ProyectoProgramadolll.UI
                 oTienda.ImpuestoVenta = decimal.Parse(txtImpuestoVenta.Text);
 
                 oTienda = await bllTienda.GuardarTienda(oTienda);
+                this.cambiarEstado(EstadoMantenimiento.Ninguno);
                 this.CargarDatos();
             }
             catch(Exception ex)
@@ -59,11 +118,7 @@ namespace ProyectoProgramadolll.UI
         private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
         {
             this.btnCancelar.Enabled = false;
-            this.txtCedulaJuridica.Clear();
-            this.txtNombre.Clear();
-            this.txtNumeroTelefonico.Clear();
-            this.txtDireccion.Clear();
-            this.txtImpuestoVenta.Clear();
+            
             switch (estadoMantenimiento)
             {
                 case EstadoMantenimiento.Nuevo:
@@ -78,7 +133,6 @@ namespace ProyectoProgramadolll.UI
                     break;
                 case EstadoMantenimiento.Editar:
                     this.txtCedulaJuridica.Enabled = false;
-                    this.txtCedulaJuridica.Focus();
                     this.txtNombre.Enabled = true;
                     this.txtNumeroTelefonico.Enabled = true;
                     this.txtDireccion.Enabled = true;
@@ -91,6 +145,11 @@ namespace ProyectoProgramadolll.UI
                     break;
                 case EstadoMantenimiento.Ninguno:
                     this.txtCedulaJuridica.Enabled = true;
+                    this.txtNombre.Clear();
+                    this.txtCedulaJuridica.Clear();
+                    this.txtNumeroTelefonico.Clear();
+                    this.txtDireccion.Clear();
+                    this.txtImpuestoVenta.Clear();
                     this.btnEliminar.Enabled = true;
                     break;
             }
@@ -101,7 +160,7 @@ namespace ProyectoProgramadolll.UI
             IBLLTienda bllTienda = new BLLTienda();
             try
             {
-                this.cambiarEstado(EstadoMantenimiento.Ninguno);
+                
                 dgvDatos.AutoGenerateColumns = false;
                 dgvDatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
                 this.dgvDatos.DataSource = await bllTienda.ObtenerTodasLasTiendas();
@@ -126,6 +185,7 @@ namespace ProyectoProgramadolll.UI
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            
             Tienda oTienda = null;
             if(this.dgvDatos.SelectedRows.Count > 0)
             {

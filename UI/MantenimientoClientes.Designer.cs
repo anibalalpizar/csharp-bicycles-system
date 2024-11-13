@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MantenimientoClientes));
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.TipoIdentificacionDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Identificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +57,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Nombre = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.gbEstado = new System.Windows.Forms.GroupBox();
+            this.rdbNoActivo = new System.Windows.Forms.RadioButton();
+            this.rdbActivo = new System.Windows.Forms.RadioButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtContrasegna = new System.Windows.Forms.TextBox();
+            this.lblContrasegna = new System.Windows.Forms.Label();
+            this.lstTelefonos = new System.Windows.Forms.ListView();
             this.btnEditarTelefono = new System.Windows.Forms.Button();
             this.btnEliminarTelefono = new System.Windows.Forms.Button();
             this.lblTipoIdentificacion = new System.Windows.Forms.Label();
@@ -64,14 +72,15 @@
             this.txtNumeroTelefonico = new System.Windows.Forms.TextBox();
             this.txtIdentificacion = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.lstTelefonos = new System.Windows.Forms.ListView();
             this.lblCliente = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.panel1.SuspendLayout();
+            this.gbEstado.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvDatos
             // 
+            this.dgvDatos.BackgroundColor = System.Drawing.Color.OldLace;
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TipoIdentificacionDescripcion,
@@ -88,7 +97,6 @@
             this.dgvDatos.RowTemplate.Height = 24;
             this.dgvDatos.Size = new System.Drawing.Size(852, 256);
             this.dgvDatos.TabIndex = 18;
-            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // TipoIdentificacionDescripcion
             // 
@@ -136,35 +144,44 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(82, 10);
+            this.btnEditar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
+            this.btnEditar.Location = new System.Drawing.Point(110, 11);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(56, 28);
+            this.btnEditar.Size = new System.Drawing.Size(86, 41);
             this.btnEditar.TabIndex = 36;
             this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(143, 10);
+            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.Location = new System.Drawing.Point(200, 11);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(56, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(89, 41);
             this.btnEliminar.TabIndex = 35;
             this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnCrear
             // 
+            this.btnCrear.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
             this.btnCrear.Location = new System.Drawing.Point(18, 10);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(56, 28);
+            this.btnCrear.Size = new System.Drawing.Size(88, 42);
             this.btnCrear.TabIndex = 33;
             this.btnCrear.Text = "Guardar";
-            this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCrear.UseVisualStyleBackColor = false;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // label6
@@ -199,6 +216,7 @@
             // 
             // cmbDistrito
             // 
+            this.cmbDistrito.BackColor = System.Drawing.Color.Wheat;
             this.cmbDistrito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDistrito.Enabled = false;
             this.cmbDistrito.FormattingEnabled = true;
@@ -210,6 +228,7 @@
             // 
             // cmbCanton
             // 
+            this.cmbCanton.BackColor = System.Drawing.Color.Wheat;
             this.cmbCanton.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCanton.Enabled = false;
             this.cmbCanton.FormattingEnabled = true;
@@ -222,6 +241,7 @@
             // 
             // cmbProvincia
             // 
+            this.cmbProvincia.BackColor = System.Drawing.Color.Wheat;
             this.cmbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvincia.FormattingEnabled = true;
             this.cmbProvincia.Location = new System.Drawing.Point(137, 186);
@@ -253,7 +273,7 @@
             // rdbMasculino
             // 
             this.rdbMasculino.AutoSize = true;
-            this.rdbMasculino.Location = new System.Drawing.Point(224, 105);
+            this.rdbMasculino.Location = new System.Drawing.Point(224, 114);
             this.rdbMasculino.Margin = new System.Windows.Forms.Padding(2);
             this.rdbMasculino.Name = "rdbMasculino";
             this.rdbMasculino.Size = new System.Drawing.Size(73, 17);
@@ -265,7 +285,7 @@
             // rdbFemenino
             // 
             this.rdbFemenino.AutoSize = true;
-            this.rdbFemenino.Location = new System.Drawing.Point(143, 105);
+            this.rdbFemenino.Location = new System.Drawing.Point(137, 112);
             this.rdbFemenino.Margin = new System.Windows.Forms.Padding(2);
             this.rdbFemenino.Name = "rdbFemenino";
             this.rdbFemenino.Size = new System.Drawing.Size(71, 17);
@@ -277,7 +297,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 109);
+            this.label1.Location = new System.Drawing.Point(32, 114);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
@@ -286,13 +306,14 @@
             // 
             // btnAnnadirTelefono
             // 
-            this.btnAnnadirTelefono.Location = new System.Drawing.Point(718, 135);
+            this.btnAnnadirTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnnadirTelefono.Location = new System.Drawing.Point(718, 152);
             this.btnAnnadirTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnAnnadirTelefono.Name = "btnAnnadirTelefono";
             this.btnAnnadirTelefono.Size = new System.Drawing.Size(56, 31);
             this.btnAnnadirTelefono.TabIndex = 62;
             this.btnAnnadirTelefono.Text = "Añadir";
-            this.btnAnnadirTelefono.UseVisualStyleBackColor = true;
+            this.btnAnnadirTelefono.UseVisualStyleBackColor = false;
             this.btnAnnadirTelefono.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // txtNombre
@@ -305,13 +326,14 @@
             // 
             // btnBuscar
             // 
+            this.btnBuscar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnBuscar.Location = new System.Drawing.Point(312, 68);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(56, 22);
             this.btnBuscar.TabIndex = 60;
             this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.UseVisualStyleBackColor = false;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // label2
@@ -336,6 +358,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.gbEstado);
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.txtContrasegna);
+            this.panel1.Controls.Add(this.lblContrasegna);
             this.panel1.Controls.Add(this.lstTelefonos);
             this.panel1.Controls.Add(this.btnEditarTelefono);
             this.panel1.Controls.Add(this.btnEliminarTelefono);
@@ -365,26 +391,99 @@
             this.panel1.Size = new System.Drawing.Size(852, 297);
             this.panel1.TabIndex = 76;
             // 
+            // gbEstado
+            // 
+            this.gbEstado.Controls.Add(this.rdbNoActivo);
+            this.gbEstado.Controls.Add(this.rdbActivo);
+            this.gbEstado.Location = new System.Drawing.Point(512, 102);
+            this.gbEstado.Name = "gbEstado";
+            this.gbEstado.Size = new System.Drawing.Size(187, 48);
+            this.gbEstado.TabIndex = 102;
+            this.gbEstado.TabStop = false;
+            // 
+            // rdbNoActivo
+            // 
+            this.rdbNoActivo.AutoSize = true;
+            this.rdbNoActivo.Checked = true;
+            this.rdbNoActivo.Location = new System.Drawing.Point(98, 19);
+            this.rdbNoActivo.Name = "rdbNoActivo";
+            this.rdbNoActivo.Size = new System.Drawing.Size(71, 17);
+            this.rdbNoActivo.TabIndex = 100;
+            this.rdbNoActivo.TabStop = true;
+            this.rdbNoActivo.Text = "No activo";
+            this.rdbNoActivo.UseVisualStyleBackColor = true;
+            // 
+            // rdbActivo
+            // 
+            this.rdbActivo.AutoSize = true;
+            this.rdbActivo.Location = new System.Drawing.Point(22, 19);
+            this.rdbActivo.Name = "rdbActivo";
+            this.rdbActivo.Size = new System.Drawing.Size(55, 17);
+            this.rdbActivo.TabIndex = 101;
+            this.rdbActivo.Text = "Activo";
+            this.rdbActivo.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(411, 116);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 13);
+            this.label7.TabIndex = 99;
+            this.label7.Text = "Estado";
+            // 
+            // txtContrasegna
+            // 
+            this.txtContrasegna.Location = new System.Drawing.Point(512, 73);
+            this.txtContrasegna.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContrasegna.Name = "txtContrasegna";
+            this.txtContrasegna.Size = new System.Drawing.Size(160, 20);
+            this.txtContrasegna.TabIndex = 84;
+            // 
+            // lblContrasegna
+            // 
+            this.lblContrasegna.AutoSize = true;
+            this.lblContrasegna.Location = new System.Drawing.Point(411, 73);
+            this.lblContrasegna.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblContrasegna.Name = "lblContrasegna";
+            this.lblContrasegna.Size = new System.Drawing.Size(64, 13);
+            this.lblContrasegna.TabIndex = 83;
+            this.lblContrasegna.Text = "Contraseña:";
+            // 
+            // lstTelefonos
+            // 
+            this.lstTelefonos.HideSelection = false;
+            this.lstTelefonos.Location = new System.Drawing.Point(512, 186);
+            this.lstTelefonos.Margin = new System.Windows.Forms.Padding(10);
+            this.lstTelefonos.Name = "lstTelefonos";
+            this.lstTelefonos.Size = new System.Drawing.Size(185, 97);
+            this.lstTelefonos.TabIndex = 82;
+            this.lstTelefonos.UseCompatibleStateImageBehavior = false;
+            this.lstTelefonos.SelectedIndexChanged += new System.EventHandler(this.lstTelefonos_SelectedIndexChanged_1);
+            // 
             // btnEditarTelefono
             // 
-            this.btnEditarTelefono.Location = new System.Drawing.Point(718, 189);
+            this.btnEditarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEditarTelefono.Location = new System.Drawing.Point(718, 206);
             this.btnEditarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditarTelefono.Name = "btnEditarTelefono";
             this.btnEditarTelefono.Size = new System.Drawing.Size(56, 31);
             this.btnEditarTelefono.TabIndex = 81;
             this.btnEditarTelefono.Text = "Editar";
-            this.btnEditarTelefono.UseVisualStyleBackColor = true;
+            this.btnEditarTelefono.UseVisualStyleBackColor = false;
             this.btnEditarTelefono.Click += new System.EventHandler(this.btnEditarTelefono_Click);
             // 
             // btnEliminarTelefono
             // 
-            this.btnEliminarTelefono.Location = new System.Drawing.Point(718, 235);
+            this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarTelefono.Location = new System.Drawing.Point(718, 252);
             this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarTelefono.Name = "btnEliminarTelefono";
             this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
             this.btnEliminarTelefono.TabIndex = 80;
             this.btnEliminarTelefono.Text = "Eliminar";
-            this.btnEliminarTelefono.UseVisualStyleBackColor = true;
+            this.btnEliminarTelefono.UseVisualStyleBackColor = false;
             this.btnEliminarTelefono.Click += new System.EventHandler(this.btnEliminarTelefono_Click);
             // 
             // lblTipoIdentificacion
@@ -401,6 +500,7 @@
             // 
             // cmbTipo
             // 
+            this.cmbTipo.BackColor = System.Drawing.Color.Wheat;
             this.cmbTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(137, 22);
@@ -412,7 +512,7 @@
             // lblTelefonos
             // 
             this.lblTelefonos.AutoSize = true;
-            this.lblTelefonos.Location = new System.Drawing.Point(411, 141);
+            this.lblTelefonos.Location = new System.Drawing.Point(411, 158);
             this.lblTelefonos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTelefonos.Name = "lblTelefonos";
             this.lblTelefonos.Size = new System.Drawing.Size(54, 13);
@@ -421,7 +521,7 @@
             // 
             // txtNumeroTelefonico
             // 
-            this.txtNumeroTelefonico.Location = new System.Drawing.Point(512, 138);
+            this.txtNumeroTelefonico.Location = new System.Drawing.Point(512, 155);
             this.txtNumeroTelefonico.Margin = new System.Windows.Forms.Padding(2);
             this.txtNumeroTelefonico.Name = "txtNumeroTelefonico";
             this.txtNumeroTelefonico.Size = new System.Drawing.Size(185, 20);
@@ -437,25 +537,17 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(203, 11);
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.Location = new System.Drawing.Point(293, 11);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(66, 28);
+            this.btnCancelar.Size = new System.Drawing.Size(93, 41);
             this.btnCancelar.TabIndex = 77;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // lstTelefonos
-            // 
-            this.lstTelefonos.HideSelection = false;
-            this.lstTelefonos.Location = new System.Drawing.Point(512, 169);
-            this.lstTelefonos.Margin = new System.Windows.Forms.Padding(10);
-            this.lstTelefonos.Name = "lstTelefonos";
-            this.lstTelefonos.Size = new System.Drawing.Size(185, 97);
-            this.lstTelefonos.TabIndex = 82;
-            this.lstTelefonos.UseCompatibleStateImageBehavior = false;
-            this.lstTelefonos.SelectedIndexChanged += new System.EventHandler(this.lstTelefonos_SelectedIndexChanged_1);
             // 
             // lblCliente
             // 
@@ -473,6 +565,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Linen;
             this.ClientSize = new System.Drawing.Size(896, 643);
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.btnCancelar);
@@ -481,14 +574,18 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvDatos);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimizeBox = false;
             this.Name = "MantenimientoClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MantenimientoClientes";
+            this.Text = "Mantenimiento de Clientes";
             this.Load += new System.EventHandler(this.MantenimientoClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.gbEstado.ResumeLayout(false);
+            this.gbEstado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -533,5 +630,11 @@
         private System.Windows.Forms.Button btnEliminarTelefono;
         private System.Windows.Forms.ListView lstTelefonos;
         private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.TextBox txtContrasegna;
+        private System.Windows.Forms.Label lblContrasegna;
+        private System.Windows.Forms.RadioButton rdbNoActivo;
+        private System.Windows.Forms.RadioButton rdbActivo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox gbEstado;
     }
 }

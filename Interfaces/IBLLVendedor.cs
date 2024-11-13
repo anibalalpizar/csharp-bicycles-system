@@ -10,7 +10,7 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IBLLVendedor
     {
-        Vendedor Login(string codigoVendedor, string contrasegna);
+        VendedorClienteDTO Login(string codigoVendedor, string contrasegna);
         Vendedor GuardarVendedor(Vendedor vendedor);
         IEnumerable<VendedorDTO> ObtenerVendedores();
         Task<bool> EliminarVendedor(string codigoVendedor);

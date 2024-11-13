@@ -33,6 +33,7 @@ namespace ProyectoProgramadolll.BLL
                 Log.LogException(new Exception(mensaje));
                 return null;
             }
+            cliente.Contrasegna = Cryptography.EncrypthAES(cliente.Contrasegna);
 
             if (clientePorId == null)
                 oCliente = clienteDAL.GuardarCliente(cliente, direccion, telefonos);
@@ -42,6 +43,12 @@ namespace ProyectoProgramadolll.BLL
         }
         public bool ValidarCliente(ClienteDTO cliente, ref string mensaje)
         {
+
+            if (cliente.Contrasegna.Length < 8)
+            {
+                mensaje = "La contraseña debe tener al menos 8 caracteres";
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(cliente.Identificacion))
             {
                 mensaje = "Debe ingresar una identificación.";
@@ -79,6 +86,10 @@ namespace ProyectoProgramadolll.BLL
             return dalClientes.ObtenerClientes();
         }
 
-        
+        public bool ValidarCliente(string idCliente)
+        {
+            IDALClientes clienteDAL = new DALClientes();
+            return clienteDAL.ValidarCliente(idCliente);
+        }
     }
 }

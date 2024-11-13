@@ -13,5 +13,7 @@ namespace ProyectoProgramadolll.Interfaces
         List<ClienteDTO> ObtenerClientes();
         ClienteDTO GuardarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos);
         Task<bool> EliminarCliente(string identificacion);
+
+        bool ValidarCliente(string idCliente);
     }
 }

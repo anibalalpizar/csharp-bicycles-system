@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.Entities.DTO
 {
@@ -21,6 +22,11 @@ namespace ProyectoProgramadolll.Entities.DTO
         public string Telefonos { get; set; }
         public List<Telefono> ListaTelefonos { get; set; }
         public Direccion Direccion { get; set; }
+        public string Contrasegna { get; set; }
+
+        public int IdRol { get; set; }
+        public bool Estado { get; set; }
+        public string EstadoDescripcion { get; set; }
         public override string ToString() => $"{Nombre} - {Identificacion}";
     }
 }

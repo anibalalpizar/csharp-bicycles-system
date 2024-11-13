@@ -1,4 +1,5 @@
 ﻿using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections;
@@ -17,9 +18,9 @@ namespace ProyectoProgramadolll.UI
 {
     public partial class MainForm : Form
     {
-        private Vendedor vendedor;
+        private VendedorClienteDTO vendedor;
 
-        public MainForm(Vendedor oVendedor)
+        public MainForm(VendedorClienteDTO oVendedor)
         {
             InitializeComponent();
             this.vendedor = oVendedor;
@@ -27,7 +28,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoClienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1")
+            if (vendedor.IdRol == 1)
             {
                 MantenimientoClientes MantenimientoCliente = new MantenimientoClientes();
                 MantenimientoCliente.ShowDialog();
@@ -40,7 +41,7 @@ namespace ProyectoProgramadolll.UI
 
         private void orderDeTrabajoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2" || vendedor.IdRol == "3")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 2 || vendedor.IdRol == 3)
             {
                 ProcesoOrdenTrabajo ProcesoOrdenTrabajo = new ProcesoOrdenTrabajo();
                 ProcesoOrdenTrabajo.ShowDialog();
@@ -53,7 +54,7 @@ namespace ProyectoProgramadolll.UI
 
         private void facturacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 2)
             {
                 ProcesoFacturacion ProcesoFacturacion = new ProcesoFacturacion();
                 ProcesoFacturacion.ShowDialog();
@@ -66,7 +67,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoProductoServicioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 2)
             {
                 MantenimientoProductoServicios MantenimientoProductoServicios = new MantenimientoProductoServicios();
                 MantenimientoProductoServicios.ShowDialog();
@@ -79,7 +80,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoVendedorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 2)
             {
                 MantenimientoVendedor MantenimientoVendedor = new MantenimientoVendedor();
                 MantenimientoVendedor.ShowDialog();
@@ -93,7 +94,7 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoBicicletaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2" || vendedor.IdRol == "3")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 2 || vendedor.IdRol == 3)
             {
                 MantenimientoBicicleta MantenimientoBicicleta = new MantenimientoBicicleta(vendedor);
                 MantenimientoBicicleta.ShowDialog();
@@ -107,20 +108,37 @@ namespace ProyectoProgramadolll.UI
 
         private void mantenimientoTiendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (vendedor.IdRol == "1" || vendedor.IdRol == "2")
+            if (vendedor.IdRol == 1 || vendedor.IdRol == 1)
             {
                 MantenimientoTienda MantenimientoTienda = new MantenimientoTienda();
                 MantenimientoTienda.ShowDialog();
             }
             else
             {
+               
                 MessageBox.Show("No tiene permisos para acceder a Mantenimiento de Tienda", "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (vendedor.IdRol == 2)
+            {
+                this.mantenimientoClienteToolStripMenuItem.Visible = false;
+            }
 
+            if (vendedor.IdRol == 3)
+            {
+                this.mantenimientoBicicletaToolStripMenuItem.Text = "Mis Bicicletas";
+                this.mantenimientoClienteToolStripMenuItem.Visible = false;
+                this.mantenimientoProductoServicioToolStripMenuItem.Visible = false;
+                this.mantenimientoTiendaToolStripMenuItem.Visible = false;
+                this.mantenimientoVendedorToolStripMenuItem.Visible = false;
+                this.facturacionToolStripMenuItem.Visible = false;
+
+
+                
+            }
         }
     }
 }

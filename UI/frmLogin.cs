@@ -1,5 +1,6 @@
 ﻿using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using ProyectoProgramadolll.Properties;
 using System;
@@ -26,7 +27,7 @@ namespace ProyectoProgramadolll.UI
         {
             IBLLVendedor bLLVendedor = new BLLVendedor();
             epError.Clear();
-            Vendedor oVendedor = null;
+            VendedorClienteDTO oVendedor = null;
 
             try
             {
@@ -78,6 +79,16 @@ namespace ProyectoProgramadolll.UI
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

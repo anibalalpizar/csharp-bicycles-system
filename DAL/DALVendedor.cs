@@ -123,36 +123,52 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
-        public Vendedor Login(string codigoVendedor, string contrasegna)
+        public VendedorClienteDTO Login(string codigoVendedor, string contrasegna)
         {
-            StringBuilder conexion = new StringBuilder();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandText = "sp_LoginVendedor";
-            cmd.CommandType = CommandType.StoredProcedure;
-            IDataReader reader = null;
-            Vendedor vendedor = null;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "sp_LoginVendedor",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@codigoVendedor", codigoVendedor);
+            cmd.Parameters.AddWithValue("@contrasegna", contrasegna);
+
+            VendedorClienteDTO vendedorCliente = null;
 
             try
             {
-                cmd.Parameters.AddWithValue("@codigoVendedor", codigoVendedor);
-                cmd.Parameters.AddWithValue("@contrasegna", contrasegna);
-
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                using (IDataReader reader = db.ExecuteReader(cmd))
                 {
-                    reader = db.ExecuteReader(cmd);
-
-                    while (reader.Read())
+                    if (reader.Read())
                     {
-                        vendedor = new Vendedor();
-                        vendedor.IdVendedor = reader.GetInt32(reader.GetOrdinal("IdVendedor"));
-                        vendedor.CodigoVendedor = reader.GetString(reader.GetOrdinal("CodigoVendedor"));
-                        vendedor.Contrasegna = reader.GetString(reader.GetOrdinal("Contrasegna"));
-                        vendedor.IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")).ToString();
-                        vendedor.Estado = reader.GetInt32(reader.GetOrdinal("Estado")) == 1;
-                    }
-                }
-                return vendedor;
+                        vendedorCliente = new VendedorClienteDTO();
 
+                        
+                        if (ColumnExists(reader, "IdVendedor"))
+                        {
+                           
+                            vendedorCliente.IdVendedor = reader.GetInt32(reader.GetOrdinal("IdVendedor"));
+                            vendedorCliente.CodigoVendedor = reader.GetString(reader.GetOrdinal("CodigoVendedor"));
+                            vendedorCliente.Contrasegna = reader.GetString(reader.GetOrdinal("Contrasegna"));
+                            vendedorCliente.IdRol = reader.GetInt32(reader.GetOrdinal("IdRol"));
+                            vendedorCliente.Estado = reader.GetInt32(reader.GetOrdinal("Estado")) == 1;
+                            
+                        }
+                        else
+                        {
+                            vendedorCliente.IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente"));
+                            vendedorCliente.Identificacion = reader.GetString(reader.GetOrdinal("Identificacion"));
+                            vendedorCliente.Contrasegna = reader.GetString(reader.GetOrdinal("Contrasegna"));
+                            vendedorCliente.IdRol = reader.GetInt32(reader.GetOrdinal("IdRol"));
+                            vendedorCliente.Estado = reader.GetInt32(reader.GetOrdinal("Estado")) == 1;
+
+                        }
+                    }
+                    return vendedorCliente;
+                }
+               
             }
             catch (Exception ex)
             {
@@ -160,7 +176,17 @@ namespace ProyectoProgramadolll.DAL
                 throw;
             }
         }
-
+        private bool ColumnExists(IDataReader reader, string columnName)
+        {
+            try
+            {
+                return reader.GetOrdinal(columnName) >= 0;
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+        }
         public IEnumerable<VendedorDTO> ObtenerVendedores()
         {
             

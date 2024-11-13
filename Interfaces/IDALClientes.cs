@@ -16,6 +16,8 @@ namespace ProyectoProgramadolll.Interfaces
         ClienteDTO ActualizarCliente(ClienteDTO cliente, Direccion direccion, List<Telefono> telefonos);
 
         Task<bool> EliminarCliente(string identificacion);
+
+        bool ValidarCliente(string idCliente);
         List<ClienteDTO> ObtenerClientes();
     }
 }

@@ -53,7 +53,7 @@ namespace ProyectoProgramadolll.BLL
             return true;
         }
 
-        public Vendedor Login(string codigoVendedor, string contrasegna)
+        public VendedorClienteDTO Login(string codigoVendedor, string contrasegna)
         {
             IDALVendedor vendedorDAL = new DALVendedor();
             string contrasegnaEncriptada = Cryptography.EncrypthAES(contrasegna);
