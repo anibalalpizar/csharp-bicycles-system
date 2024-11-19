@@ -43,7 +43,7 @@ namespace ProyectoProgramadolll.UI
         {
             if (vendedor.IdRol == 1 || vendedor.IdRol == 2 || vendedor.IdRol == 3)
             {
-                ProcesoOrdenTrabajo ProcesoOrdenTrabajo = new ProcesoOrdenTrabajo();
+                ProcesoOrdenTrabajo ProcesoOrdenTrabajo = new ProcesoOrdenTrabajo(vendedor);
                 ProcesoOrdenTrabajo.ShowDialog();
             }
             else

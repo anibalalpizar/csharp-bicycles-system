@@ -172,3 +172,4 @@ D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.csproj.CoreCompileInputs.cache
 D:\Bicycle 2.0\obj\Debug\Proyecto.422C1932.Up2Date
 D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.exe
 D:\Bicycle 2.0\obj\Debug\ProyectoProgramadolll.pdb
+D:\Bicycle 2.0\bin\Debug\QRCoder.dll

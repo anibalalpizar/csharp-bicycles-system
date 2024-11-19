@@ -192,11 +192,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                if (!txtNombre.Text.All(c => Char.IsLetter(c)))
-                {
-                    MessageBox.Show("El nombre solo pueden contener letras y espacios", "Atención");
-                    return;
-                }
+               
 
 
                 ClienteDTO oCliente = new ClienteDTO();
@@ -464,7 +460,7 @@ namespace ProyectoProgramadolll.UI
                     {
                         if (bllCliente.ValidarCliente(oCliente.IdCliente.ToString()))
                         {
-                            MessageBox.Show("No se pudo eliminar el cliente, debido a que tiene bicicletas asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            MessageBox.Show("No se pudo eliminar el cliente, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
                             return;
                         }
                         else

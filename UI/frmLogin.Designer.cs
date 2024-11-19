@@ -87,7 +87,7 @@
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(128, 20);
             this.txtLogin.TabIndex = 2;
-            this.txtLogin.Text = "278360178";
+            this.txtLogin.Text = "1234";
             // 
             // txtPassword
             // 
@@ -96,7 +96,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(128, 20);
             this.txtPassword.TabIndex = 3;
-            this.txtPassword.Text = "123456";
+            this.txtPassword.Text = "12345678";
             // 
             // btnSalir
             // 

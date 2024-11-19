@@ -1,41 +1,43 @@
-﻿using System;
+﻿using ProyectoProgramadolll.Util;
+using QRCoder;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 
-public  class QuickResponse
+public class QuickResponse
 {
-    /// <summary>
-    /// Método que devuelve un la imagen generada
-    /// El primer parámetro es la palabra(s) a convertir
-    /// y el segundo parámetro es el nivel. Este parámetro  es muy importante
-    /// </summary>
-    /// <param name="input"></param>
-    /// <param name="qrlevel"></param>
-    /// <returns></returns>
-    public static Image QuickResponseGenerador(string input, int qrlevel)
+    public byte[] GenerarQRCode(int numeroOrden)
     {
+        try
+        {
 
-        string toenc = input;
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
 
-        //MessagingToolkit.QRCode.Codec.QRCodeEncoder qe = new MessagingToolkit.QRCode.Codec.QRCodeEncoder();
 
-        //qe.QRCodeEncodeMode = QRCodeEncoder.ENCODE_MODE.BYTE;
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(numeroOrden.ToString(), QRCodeGenerator.ECCLevel.Q);
 
-        //qe.QRCodeErrorCorrect = QRCodeEncoder.ERROR_CORRECTION.L; // - Using LOW for more storage
 
-        //qe.QRCodeVersion = qrlevel;
+            using (QRCode qrCode = new QRCode(qrCodeData))
+            using (Bitmap qrBitmap = qrCode.GetGraphic(20))
+            {
 
-        //System.Drawing.Bitmap bm = qe.Encode(toenc);
-
-        //return bm;
-        return null;
-
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    qrBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    return ms.ToArray();
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.LogException(ex);
+            throw new ApplicationException("Error generating QR code.", ex);
+        }
     }
-
-
 }
 

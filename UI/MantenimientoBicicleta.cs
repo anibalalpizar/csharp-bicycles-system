@@ -1,4 +1,5 @@
 ﻿using ProyectoProgramadolll.BLL;
+using ProyectoProgramadolll.DAL;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
@@ -212,7 +213,7 @@ namespace ProyectoProgramadolll.UI
         }
 
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private async void btnEliminar_Click(object sender, EventArgs e)
         {
             IBLLBicicleta bllBicicleta = new BLLBicicleta();
 
@@ -220,21 +221,26 @@ namespace ProyectoProgramadolll.UI
             {
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
-                    
+
                     this.cambiarEstado(EstadoMantenimiento.Borrar);
 
                     BicicletaDTO oBicicleta = this.dgvDatos.SelectedRows[0].DataBoundItem as BicicletaDTO;
                     if (MessageBox.Show($"¿Está seguro de eliminar la bicicleta con número de serie {oBicicleta.NumeroSerie}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        bllBicicleta.EliminarBicicleta(oBicicleta.IdBicicleta.ToString());
-                        MessageBox.Show("Bicicleta eliminada correctamente!", "Exito", MessageBoxButtons.OK);
-                        this.CargarDatos(vendedor);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Seleccione el registro !", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
 
+                        bool eliminado = await bllBicicleta.EliminarBicicleta(oBicicleta.IdBicicleta.ToString());
+                        if (eliminado)
+                        {
+                            MessageBox.Show("Bicicleta eliminada correctamente!", "Exito", MessageBoxButtons.OK);
+                            this.CargarDatos(vendedor);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar la bicicleta, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)

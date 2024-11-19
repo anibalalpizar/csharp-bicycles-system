@@ -207,20 +207,28 @@ namespace ProyectoProgramadolll.UI
             this.cambiarEstado(EstadoMantenimiento.Ninguno);
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private async void btnEliminar_Click(object sender, EventArgs e)
         {
             IBLLProductoServicio bllProductoServicio = new BLLProductoServicio();
             try
             {
                 this.cambiarEstado(EstadoMantenimiento.Borrar);
+
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
                     ProductoServicioDTO oProductoServicio = (ProductoServicioDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as ProductoServicioDTO;
                     if (MessageBox.Show($"¿Está seguro que desea eliminar el producto/servicio {oProductoServicio.CodigoProductoServicio}?", "Eliminar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        bllProductoServicio.EliminarProductoServicio(oProductoServicio.CodigoProductoServicio);
-                        MessageBox.Show("Producto/servicio eliminado correctamente", "Exito", MessageBoxButtons.OK);
-                        this.CargarDatos();
+                        bool eliminado = await bllProductoServicio.EliminarProductoServicio(oProductoServicio.CodigoProductoServicio);
+                        if (eliminado)
+                        {
+                            MessageBox.Show("Producto/servicio eliminado correctamente", "Exito", MessageBoxButtons.OK);
+                            this.CargarDatos();
+                        } else
+                        {
+                            MessageBox.Show("No se pudo eliminar el producto/servicio, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        }
                     }
                 }
                 else
@@ -228,7 +236,6 @@ namespace ProyectoProgramadolll.UI
                     MessageBox.Show("Debe seleccionar un vendedor para eliminar", "Atención");
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar el producto/servicio", ex.Message);

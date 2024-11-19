@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ProyectoProgramadolll.Entities
+{
+    public class DetalleOrdenTrabajo
+    {
+        public int IdDetalleOrdenTrabajo { get; set; }
+        public int IdOrdenTrabajo { get; set; }
+        public string NumeroSerie { get; set; }
+        public int IdProductoServicio { get; set; }
+        public string Descripcion { get; set; }
+    }
+}

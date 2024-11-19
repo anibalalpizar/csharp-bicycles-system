@@ -14,5 +14,6 @@ namespace ProyectoProgramadolll.Interfaces
         Tienda ObtenerTiendaPorId(string idTienda);
         Task<Tienda> ActualizarTienda(Tienda tienda);
         Task<bool> EliminarTienda(string idTienda);
+        bool ValidarTienda(string idTienda);
     }
 }

@@ -19,6 +19,12 @@ namespace ProyectoProgramadolll.BLL
 
         }
 
+        public bool ValidarTienda(string idTienda)
+        {
+            IDALTienda tiendaDAL = new DALTienda();
+            return tiendaDAL.ValidarTienda(idTienda);
+        }
+
         public Task<Tienda> GuardarTienda(Tienda tienda)
         {
             IDALTienda tiendaDAL = new DALTienda();

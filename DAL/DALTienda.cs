@@ -1,5 +1,6 @@
 ﻿using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Interfaces;
+using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -125,7 +126,7 @@ namespace ProyectoProgramadolll.DAL
                     {
 
                         oTienda = new Tienda();
-                        oTienda.CedulaJuridica = int.Parse(dr["CedulaJuridica"].ToString());
+                        oTienda.CedulaJuridica = dr["CedulaJuridica"].ToString();
                         oTienda.Nombre = dr["Nombre"].ToString();
                         oTienda.Telefono = int.Parse(dr["Telefono"].ToString());
                         oTienda.Direccion = dr["Direccion"].ToString();
@@ -158,7 +159,7 @@ namespace ProyectoProgramadolll.DAL
                     {
                         Tienda oTienda = new Tienda();
                         oTienda.IdTienda = int.Parse(dr["IdTienda"].ToString());
-                        oTienda.CedulaJuridica = int.Parse(dr["CedulaJuridica"].ToString());
+                        oTienda.CedulaJuridica = dr["CedulaJuridica"].ToString();
                         oTienda.Nombre = dr["Nombre"].ToString();
                         oTienda.Telefono = int.Parse(dr["Telefono"].ToString());
                         oTienda.Direccion = dr["Direccion"].ToString();
@@ -172,6 +173,38 @@ namespace ProyectoProgramadolll.DAL
             catch (Exception ex)
             {
                 throw new Exception("Error al guardar la tienda", ex);
+            }
+        }
+
+        public bool ValidarTienda(string idTienda)
+        {
+            IDataReader reader = null;
+            bool eliminado = false;
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "sp_ValidarTiendasRelaciones";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idTienda", idTienda);
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    reader = db.ExecuteReader(cmd);
+
+                    while (reader.Read())
+                    {
+
+                        eliminado = reader.GetBoolean(reader.GetOrdinal("existe"));
+
+                    }
+                }
+                return eliminado;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw;
             }
         }
     }

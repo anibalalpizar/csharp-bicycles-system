@@ -86,21 +86,15 @@ namespace ProyectoProgramadolll.UI
                     MessageBox.Show("Ningún campo debe exceder los 50 caracteres", "Atención!");
                     return;
                 }
-                if (!txtNombre.Text.All(c => Char.IsLetter(c)))
-                {
-                    MessageBox.Show("El nombre solamente pueden contener letras y espacios", "Atención");
-                    return;
-                }
 
-
-
-                oTienda.CedulaJuridica = int.Parse(txtCedulaJuridica.Text);
+                oTienda.CedulaJuridica = txtCedulaJuridica.Text;
                 oTienda.Nombre = txtNombre.Text;
                 oTienda.Telefono = int.Parse(txtNumeroTelefonico.Text);
                 oTienda.Direccion = txtDireccion.Text;
                 oTienda.ImpuestoVenta = decimal.Parse(txtImpuestoVenta.Text);
 
                 oTienda = await bllTienda.GuardarTienda(oTienda);
+                MessageBox.Show("Datos de la tienda guardados correctamente!", "Exito", MessageBoxButtons.OK);
                 this.cambiarEstado(EstadoMantenimiento.Ninguno);
                 this.CargarDatos();
             }
@@ -215,21 +209,29 @@ namespace ProyectoProgramadolll.UI
             IBLLTienda tiendaBLL = new BLLTienda();
             try
             {
+                    this.cambiarEstado(EstadoMantenimiento.Borrar);
 
                 if (this.dgvDatos.SelectedRows.Count > 0)
                 {
-                    this.cambiarEstado(EstadoMantenimiento.Borrar);
                     Tienda oTienda = this.dgvDatos.SelectedRows[0].DataBoundItem as Tienda;
                     if (MessageBox.Show($"Desea eliminar la tienda con la cedula juridica {oTienda.CedulaJuridica}?", "Eliminar", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                        if(tiendaBLL.ValidarTienda(oTienda.IdTienda.ToString()))
+                        {
+                            MessageBox.Show("No se pudo eliminar la tienda, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        } else
+                        {
 
                         tiendaBLL.EliminarTienda(oTienda.CedulaJuridica.ToString());
+                            MessageBox.Show("Tienda eliminada correctamente!", "Exito", MessageBoxButtons.OK);
+                        }
                         this.CargarDatos();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Debe seleccionar una fila");
+                    MessageBox.Show("Debe seleccionar una tienda para eliminar", "Atención");
                 }
 
             }

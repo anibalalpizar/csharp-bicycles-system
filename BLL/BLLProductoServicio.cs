@@ -23,8 +23,6 @@ namespace ProyectoProgramadolll.BLL
             IDALProductoServicio productoServicioDAL = new DALProductoServicio();
             ProductoServicio oProductoServicio = null;
 
-            //faltan validaciones
-
             if(productoServicioDAL.ObtenerProductoServicioPorId(productoServicio.CodigoProductoServicio) == null)
                 oProductoServicio = productoServicioDAL.GuardarProductoServicio(productoServicio);
             else

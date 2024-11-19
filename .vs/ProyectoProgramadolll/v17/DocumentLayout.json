@@ -11,16 +11,24 @@
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientotienda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\ui\\mantenimientovendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientovendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientoproductoservicios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\ui\\mantenimientovendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\mantenimientovendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\entities\\productoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:entities\\productoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\dal\\dalvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\bll\\bllvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\dal\\daltienda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\daltienda.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +38,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MantenimientoTienda.cs",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
+              "RelativeDocumentMoniker": "UI\\MantenimientoTienda.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
+              "RelativeToolTip": "UI\\MantenimientoTienda.cs",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowGAAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T04:32:35.365Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MantenimientoTienda.cs [Design]",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
+              "RelativeDocumentMoniker": "UI\\MantenimientoTienda.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs [Design]",
+              "RelativeToolTip": "UI\\MantenimientoTienda.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T04:32:34.038Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MantenimientoVendedor.cs",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoVendedor.cs",
+              "RelativeDocumentMoniker": "UI\\MantenimientoVendedor.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoVendedor.cs",
+              "RelativeToolTip": "UI\\MantenimientoVendedor.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAowHYAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T04:31:02.663Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -95,65 +141,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MantenimientoProductoServicios.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoProductoServicios.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeToolTip": "UI\\MantenimientoProductoServicios.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAADwvxsAAAAMAAAAAAAAAA==",
+              "Title": "MantenimientoVendedor.cs [Design]",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoVendedor.cs",
+              "RelativeDocumentMoniker": "UI\\MantenimientoVendedor.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoVendedor.cs [Design]",
+              "RelativeToolTip": "UI\\MantenimientoVendedor.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T03:41:11.402Z",
+              "WhenOpened": "2024-11-19T04:32:19.898Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BLLVendedor.cs",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\BLL\\BLLVendedor.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLVendedor.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\BLL\\BLLVendedor.cs",
+              "RelativeToolTip": "BLL\\BLLVendedor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-19T04:29:58.481Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MantenimientoProductoServicios.cs [Design]",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoProductoServicios.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoProductoServicios.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoProductoServicios.cs [Design]",
-              "RelativeToolTip": "UI\\MantenimientoProductoServicios.cs [Design]",
+              "DocumentIndex": 6,
+              "Title": "DALTienda.cs",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\DAL\\DALTienda.cs",
+              "RelativeDocumentMoniker": "DAL\\DALTienda.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\DAL\\DALTienda.cs",
+              "RelativeToolTip": "DAL\\DALTienda.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAgwDkAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T03:41:10.167Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-19T04:26:28.135Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ProductoServicio.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\Entities\\ProductoServicio.cs",
-              "RelativeDocumentMoniker": "Entities\\ProductoServicio.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\Entities\\ProductoServicio.cs",
-              "RelativeToolTip": "Entities\\ProductoServicio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "DALVendedor.cs",
+              "DocumentMoniker": "D:\\Bicycle 2.0\\DAL\\DALVendedor.cs",
+              "RelativeDocumentMoniker": "DAL\\DALVendedor.cs",
+              "ToolTip": "D:\\Bicycle 2.0\\DAL\\DALVendedor.cs",
+              "RelativeToolTip": "DAL\\DALVendedor.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAUwFIAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T03:41:07.437Z",
+              "WhenOpened": "2024-11-19T03:56:24.234Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MantenimientoTienda.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoTienda.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
-              "RelativeToolTip": "UI\\MantenimientoTienda.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAkwKIAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T03:40:40.602Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MantenimientoTienda.cs [Design]",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs",
-              "RelativeDocumentMoniker": "UI\\MantenimientoTienda.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\UI\\MantenimientoTienda.cs [Design]",
-              "RelativeToolTip": "UI\\MantenimientoTienda.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T03:40:29.996Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },

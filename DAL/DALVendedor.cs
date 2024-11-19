@@ -78,7 +78,7 @@ namespace ProyectoProgramadolll.DAL
             catch (Exception ex)
             {
                 Log.LogException(ex);
-                throw;
+                return false;
             }
         }
 

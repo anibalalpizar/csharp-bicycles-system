@@ -18,5 +18,10 @@ namespace ProyectoProgramadolll.Entities.DTO
         public decimal Venta { get; set; }
         public bool Estado { get; set; }
         public string DescripcionEstado { get; set; }
+
+        public override string ToString()
+        {
+            return $"{IdProductoServicio} -  {Descripcion} ";
+        }
     }
 }

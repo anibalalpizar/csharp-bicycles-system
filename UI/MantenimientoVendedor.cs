@@ -96,6 +96,11 @@ namespace ProyectoProgramadolll.UI
                   
                 }
 
+                if (dtpFechaNacimiento.Value > DateTime.Now)
+                {
+                    MessageBox.Show("La fecha de nacimiento no puede ser mayor a la fecha actual", "Atención");
+                    return;
+                }
 
 
                 Vendedor vendedor = new Vendedor();
@@ -191,7 +196,6 @@ namespace ProyectoProgramadolll.UI
 
             if (opt.ShowDialog(this) == DialogResult.OK)
             {
-                // Validar la extensión del archivo
                 string extension = Path.GetExtension(opt.FileName).ToLower();
                 if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
                 {
@@ -200,7 +204,6 @@ namespace ProyectoProgramadolll.UI
 
                     byte[] cadenaBytes = File.ReadAllBytes(opt.FileName);
 
-                    // Guarda la imagen en bytes en el Tag de la imagen.
                     ptbFotoVendedor.Tag = cadenaBytes;
                 }
                 else
@@ -287,6 +290,7 @@ namespace ProyectoProgramadolll.UI
                 this.rdbNoActivo.Checked = oVendedor.EstadoDescripcion != "Activo";
                 this.ptbFotoVendedor.Image = Image.FromStream(new MemoryStream(oVendedor.Fotografia));
                 this.ptbFotoVendedor.Tag = oVendedor.Fotografia;
+                this.ptbFotoVendedor.SizeMode = PictureBoxSizeMode.CenterImage;
             }
             else
             {
@@ -295,12 +299,12 @@ namespace ProyectoProgramadolll.UI
 
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private  void btnCancelar_Click(object sender, EventArgs e)
         {
             this.cambiarEstado(EstadoMantenimiento.Ninguno);
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
+        private async void btnEliminar_Click(object sender, EventArgs e)
         {
             IBLLVendedor bllVendedor = new BLLVendedor();
             try
@@ -310,9 +314,17 @@ namespace ProyectoProgramadolll.UI
                     VendedorDTO oVendedor = (VendedorDTO)this.dgvDatos.SelectedRows[0].DataBoundItem as VendedorDTO;
                     if (MessageBox.Show("¿Está seguro de eliminar el vendedor?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        bllVendedor.EliminarVendedor(oVendedor.CodigoVendedor.ToString());
+                        bool eliminado = await bllVendedor.EliminarVendedor(oVendedor.CodigoVendedor.ToString());
+                        if (eliminado) {
+
                         MessageBox.Show("Vendedor eliminado correctamente!", "Exito", MessageBoxButtons.OK);
                         this.CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo eliminar el vendedor, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        }
                     }
 
                 }
@@ -338,6 +350,11 @@ namespace ProyectoProgramadolll.UI
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
