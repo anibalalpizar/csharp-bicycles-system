@@ -13,21 +13,21 @@ namespace ProyectoProgramadolll.BLL
 {
     public class BLLOrdenTrabajo : IBLLOrdenTrabajo
     {
-        public Task<bool> EliminarOrdenTrabajo(string idOrdenTrabajo)
+        public Task<bool> EliminarOrdenTrabajo(int idOrdenTrabajo)
         {
-            throw new NotImplementedException();
+            IDALOrdenTrabajo ordenDAL = new DALOrdenTrabajo();
+            return ordenDAL.EliminarOrdenTrabajo(idOrdenTrabajo);
         }
 
-        public OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden)
+        public OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden, List<FotografiaOrden> fotografias)
         {
             IDALOrdenTrabajo ordenDAL = new DALOrdenTrabajo();
             OrdenTrabajoDTO oOrden = null;
-            OrdenTrabajoDTO ordenPorId = ordenDAL.ObtenerOrdenPorId(orden.IdOrdenTrabajo.ToString());
 
-            if (ordenPorId == null)
+            if (ordenDAL.VerificarOrdenPorId(orden.IdOrdenTrabajo.ToString()) == null)
                 oOrden = ordenDAL.GuardarOrdenTrabajo(orden);
             else
-                oOrden = ordenDAL.ActualizarOrdenTrabajo(orden);
+                oOrden = ordenDAL.ActualizarOrdenTrabajo(orden, fotografias);
             return oOrden;
         }
 

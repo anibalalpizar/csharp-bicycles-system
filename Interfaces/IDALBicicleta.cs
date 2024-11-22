@@ -16,5 +16,6 @@ namespace ProyectoProgramadolll.Interfaces
         Bicicleta ObtenerBicicletaPorSerie(string numeroSerie);
         Task<Bicicleta> ActualizarBicicleta(Bicicleta bicicleta);
         Task<IEnumerable<BicicletaDTO>> ObtenerBicicletasPorVendedor(int idVendedor);
+
     }
 }

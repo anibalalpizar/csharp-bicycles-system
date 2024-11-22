@@ -43,5 +43,7 @@ namespace ProyectoProgramadolll.BLL
             return dalBicicleta.ObtenerBicicletasPorVendedor(idVendedor);
 
         }
+
+        
     }
 }

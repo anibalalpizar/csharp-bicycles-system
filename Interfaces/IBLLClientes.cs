@@ -15,5 +15,7 @@ namespace ProyectoProgramadolll.Interfaces
         Task<bool> EliminarCliente(string identificacion);
 
         bool ValidarCliente(string idCliente);
+
+        Task<List<ClienteDTO>> ObtenerClientesConBicicletas();
     }
 }

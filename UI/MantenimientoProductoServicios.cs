@@ -144,7 +144,7 @@ namespace ProyectoProgramadolll.UI
                 }
 
                 if (txtCodigoProductoServicio.Text.Length > 50 ||
-                    txtDescripcion.Text.Length > 50 ||
+                    txtDescripcion.Text.Length > 200 ||
                     txtCantidadInventario.Text.Length > 50 ||
                     txtPrecioColones.Text.Length > 50)
                 {

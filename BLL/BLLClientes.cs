@@ -91,5 +91,12 @@ namespace ProyectoProgramadolll.BLL
             IDALClientes clienteDAL = new DALClientes();
             return clienteDAL.ValidarCliente(idCliente);
         }
+
+
+        public Task<List<ClienteDTO>> ObtenerClientesConBicicletas()
+        {
+            IDALClientes dalClientes = new DALClientes();
+            return dalClientes.ObtenerClientesConBicicletas();
+        }
     }
 }

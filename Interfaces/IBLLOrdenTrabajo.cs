@@ -10,9 +10,9 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IBLLOrdenTrabajo
     {
-        OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden);
+        OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden, List<FotografiaOrden> fotografias);
     
-        Task<bool> EliminarOrdenTrabajo(string idOrdenTrabajo);
+        Task<bool> EliminarOrdenTrabajo(int idOrdenTrabajo);
 
         List<OrdenTrabajoDTO> ObtenerOrdenesTrabajo();
         OrdenTrabajoDTO ObtenerOrdenPorId(string idOrdenTrabajo);

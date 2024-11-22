@@ -103,7 +103,6 @@ namespace ProyectoProgramadolll.DAL
             cmd.CommandText = "sp_GuardarCliente";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            // Convertir los teléfonos a JSON
             string jsonTelefonos = JsonConvert.SerializeObject(telefonos.Select(t => t.NumeroTelefonico).ToList());
 
             try
@@ -148,7 +147,7 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
-
+  
 
         public ClienteDTO ObtenerClientePorId(string idCliente)
         {
@@ -180,7 +179,7 @@ namespace ProyectoProgramadolll.DAL
                     oCliente.CorreoElectronico = row["CorreoElectronico"].ToString();
                     oCliente.IdDireccion = Convert.ToInt32(row["IdDireccion"]);
                     oCliente.Estado = Convert.ToBoolean(row["Estado"]);
-                    //row["Estado"] != DBNull.Value && (row["Estado"].ToString() == "1" || row["Estado"].ToString().ToLower() == "true");
+                    
 
                     if (row["descripcionProvincia"] != DBNull.Value)
                     {
@@ -262,9 +261,11 @@ namespace ProyectoProgramadolll.DAL
             }
             catch (Exception ex)
             {
-                throw ex;
+                Log.LogException(ex);
+                throw;
             }
         }
+
 
         public bool ValidarCliente(string idCliente)
         {
@@ -297,5 +298,40 @@ namespace ProyectoProgramadolll.DAL
                 throw;
             }
         }
+
+        public async Task<List<ClienteDTO>> ObtenerClientesConBicicletas()
+        {
+            IDataReader reader = null;
+            List<ClienteDTO> listaClientes = new List<ClienteDTO>();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "sp_ObtenerClientesConBicicletas";
+            command.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    reader = await db.ExecuteReaderAsync(command);
+
+                    while (reader.Read())
+                    {
+                        ClienteDTO clienteDto = new ClienteDTO();
+                        clienteDto.IdCliente = reader.GetInt32(reader.GetOrdinal("IdCliente"));
+                        clienteDto.Identificacion = reader.GetString(reader.GetOrdinal("Identificacion"));
+                        clienteDto.Nombre = reader.GetString(reader.GetOrdinal("Nombre"));
+
+                        listaClientes.Add(clienteDto);
+
+                    }
+                }
+                return listaClientes;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw;
+            }
+        }
     }
 }
+

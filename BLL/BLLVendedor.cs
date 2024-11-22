@@ -26,7 +26,7 @@ namespace ProyectoProgramadolll.BLL
             
             vendedor.Contrasegna = Cryptography.EncrypthAES(vendedor.Contrasegna);
 
-            if ( vendedorDAL.ObtenerVendedorPorId(vendedor.CodigoVendedor.ToString()) == null)
+            if (vendedorDAL.ObtenerVendedorPorId(vendedor.CodigoVendedor.ToString()) == null)
                 oVendedor =  vendedorDAL.GuardarVendedor(vendedor);
             else
                 oVendedor =  vendedorDAL.ActualizarVendedor(vendedor);

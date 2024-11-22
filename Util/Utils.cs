@@ -2,6 +2,7 @@
 using ProyectoProgramadolll.Entities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -146,6 +147,16 @@ public static class Utils
         catch (Exception ex)
         {
             return 0m;
+        }
+    }
+
+
+    public static byte[] ImageToByteArray(Image image)
+    {
+        using (MemoryStream ms = new MemoryStream())
+        {
+            image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            return ms.ToArray();
         }
     }
 

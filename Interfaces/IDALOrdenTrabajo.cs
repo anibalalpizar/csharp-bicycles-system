@@ -13,10 +13,11 @@ namespace ProyectoProgramadolll.Interfaces
         OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden);
         OrdenTrabajoDTO ObtenerOrdenPorId(string idOrdenTrabajo);
 
-        OrdenTrabajoDTO ActualizarOrdenTrabajo(OrdenTrabajoDTO orden);
+        OrdenTrabajoDTO ActualizarOrdenTrabajo(OrdenTrabajoDTO orden, List<FotografiaOrden> fotografias);
 
-        Task<bool> EliminarOrdenTrabajo(string idOrdenTrabajo);
+        Task<bool> EliminarOrdenTrabajo(int idOrdenTrabajo);
 
         List<OrdenTrabajoDTO> ObtenerOrdenesTrabajo();
+        OrdenTrabajoDTO VerificarOrdenPorId(string idOrdenTrabajo);
     }
 }

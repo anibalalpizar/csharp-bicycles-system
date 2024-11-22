@@ -71,16 +71,15 @@ namespace ProyectoProgramadolll.UI
 
         }
 
-        private void CargarComboClientes()
+        private async void CargarComboClientes()
         {
             try
             {
                 IBLLClientes bLLClientes = new BLLClientes();
                 List<ClienteDTO> lista = null;
-
                 this.cmbClientes.Items.Clear();
 
-                lista = bLLClientes.ObtenerClientes();
+                lista = await bLLClientes.ObtenerClientesConBicicletas();
 
                 foreach (ClienteDTO cliente in lista)
                 {
@@ -560,19 +559,29 @@ namespace ProyectoProgramadolll.UI
                     }
 
                 }
-                foreach (string nombreFoto in lstFotografias.Items)
+              
+                List<FotografiaOrden> listaFotografias = new List<FotografiaOrden>();
+
+                foreach (var item in lstFotografias.Items)
                 {
+             
+                    string nombreFoto = item.ToString();
                     if (fotos.ContainsKey(nombreFoto))
                     {
-                        FotografiaOrden fotografia = new FotografiaOrden();
-                        fotografia.Fotografia = ImageToByteArray(fotos[nombreFoto]);
-                        orden.ListaFotografias.Add(fotografia);
+                        var foto = new FotografiaOrden
+                        {
+                            Fotografia = ImageToByteArray(fotos[nombreFoto])  
+                        };
+
+                        listaFotografias.Add(foto);
                     }
                 }
 
+                orden.ListaFotografias = listaFotografias;
+
 
                 IBLLOrdenTrabajo bLLOrdenTrabajo = new BLLOrdenTrabajo();
-                OrdenTrabajoDTO ordenGuardada = bLLOrdenTrabajo.GuardarOrdenTrabajo(orden);
+                OrdenTrabajoDTO ordenGuardada = bLLOrdenTrabajo.GuardarOrdenTrabajo(orden, listaFotografias);
 
                
                     MessageBox.Show("Orden de trabajo creada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -617,7 +626,7 @@ namespace ProyectoProgramadolll.UI
                     foreach (DetalleOrdenTrabajo detalle in ordenDto.ListaDetalles)
                     {
                         //hacer inner DescripcionServicio y annadir
-                        this.lstDetalles.Items.Add($"{detalle.NumeroSerie} - {detalle.IdProductoServicio}  - {detalle.Descripcion}");
+                        this.lstDetalles.Items.Add($"{detalle.NumeroSerie} - {detalle.IdProductoServicio} - {detalle.NombreProducto} - {detalle.Descripcion}");
                     }
 
                     this.lstFotografias.Items.Clear();
@@ -640,15 +649,46 @@ namespace ProyectoProgramadolll.UI
                     this.pnlFirma.Refresh();
 
 
+                    //if (ordenDto.ListaFotografias != null && ordenDto.ListaFotografias.Count > 0)
+                    //{
+                    //    foreach (FotografiaOrden fotografia in ordenDto.ListaFotografias)
+                    //    {
+                    //        using (MemoryStream ms = new MemoryStream(fotografia.Fotografia))
+                    //        {
+                    //            Image img = Image.FromStream(ms);
+                    //            this.fotos["fotografía"] = img;
+                    //            this.lstFotografias.Items.Add("fotografía");
+                    //        }
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    this.fotos.Clear();
+                    //    this.lstFotografias.Items.Clear();
+                    //}
                     if (ordenDto.ListaFotografias != null && ordenDto.ListaFotografias.Count > 0)
                     {
                         foreach (FotografiaOrden fotografia in ordenDto.ListaFotografias)
                         {
-                            using (MemoryStream ms = new MemoryStream(fotografia.Fotografia))
+                            if (fotografia.Fotografia != null && fotografia.Fotografia.Length > 0)
                             {
-                                Image img = Image.FromStream(ms);
-                                this.fotos["Fotografía"] = img;
-                                this.lstFotografias.Items.Add("Fotografía");
+                                try
+                                {
+                                    using (MemoryStream ms = new MemoryStream(fotografia.Fotografia))
+                                    {
+                                        Image img = Image.FromStream(ms);
+                                        this.fotos["fotografía"] = img;
+                                        this.lstFotografias.Items.Add("fotografía");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Error al cargar la fotografía: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fotografía vacía o nula en la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                         }
                     }
@@ -657,7 +697,6 @@ namespace ProyectoProgramadolll.UI
                         this.fotos.Clear();
                         this.lstFotografias.Items.Clear();
                     }
-
 
                 }
                 else
@@ -674,6 +713,43 @@ namespace ProyectoProgramadolll.UI
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.cambiarEstado(EstadoMantenimiento.Ninguno); ;
+        }
+
+        private async void btnEliminar_Click(object sender, EventArgs e)
+        {
+            IBLLOrdenTrabajo bLLOrdenTrabajo = new BLLOrdenTrabajo();
+            try
+            {
+                if (this.dgvDatos.SelectedRows.Count > 0)
+                {
+                    OrdenTrabajoDTO oOrdenDto = (OrdenTrabajoDTO)dgvDatos.SelectedRows[0].DataBoundItem as OrdenTrabajoDTO;
+
+                    if (MessageBox.Show("¿Está seguro de eliminar la orden de trabajo?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        bool eliminado = await bLLOrdenTrabajo.EliminarOrdenTrabajo(oOrdenDto.IdOrdenTrabajo);
+                        if (eliminado)
+                        {
+                           
+                            MessageBox.Show("Orden de trabajo eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.CargarDatos();
+                        } else
+                        {
+
+                            MessageBox.Show("No se pudo eliminar la orden de trabajo, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
+                            return;
+                        }
+                       
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecciona una orden de trabajo para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar la orden", "Atencion");
+            }
         }
     }
 }

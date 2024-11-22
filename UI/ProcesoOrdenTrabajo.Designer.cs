@@ -68,6 +68,7 @@
             this.btnAgregarListaFotos = new System.Windows.Forms.Button();
             this.btnEliminarFirma = new System.Windows.Forms.Button();
             this.lblOrden = new System.Windows.Forms.Label();
+            this.lblIdFotografia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).BeginInit();
@@ -254,6 +255,7 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnCrear
             // 
@@ -496,12 +498,24 @@
             this.lblOrden.Text = "-";
             this.lblOrden.Visible = false;
             // 
+            // lblIdFotografia
+            // 
+            this.lblIdFotografia.AutoSize = true;
+            this.lblIdFotografia.Enabled = false;
+            this.lblIdFotografia.Location = new System.Drawing.Point(1239, 9);
+            this.lblIdFotografia.Name = "lblIdFotografia";
+            this.lblIdFotografia.Size = new System.Drawing.Size(10, 13);
+            this.lblIdFotografia.TabIndex = 105;
+            this.lblIdFotografia.Text = "-";
+            this.lblIdFotografia.Visible = false;
+            // 
             // ProcesoOrdenTrabajo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1411, 651);
+            this.Controls.Add(this.lblIdFotografia);
             this.Controls.Add(this.lblOrden);
             this.Controls.Add(this.btnEliminarFirma);
             this.Controls.Add(this.btnAgregarListaFotos);
@@ -572,5 +586,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaFinalizacion;
         private System.Windows.Forms.DataGridViewImageColumn QR;
         private System.Windows.Forms.Label lblOrden;
+        private System.Windows.Forms.Label lblIdFotografia;
     }
 }

@@ -29,5 +29,7 @@ namespace ProyectoProgramadolll.Entities.DTO
         public string Descripcion { get; set; } = string.Empty;
         public int IdFotografia { get; set; }
         public byte[] Fotografia { get; set; } = Array.Empty<byte>();
+
+        public string NombreProducto { get; set; } = string.Empty;
     }
 }

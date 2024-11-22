@@ -11,13 +11,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.DirectoryServices;
+using System.IO;
+using System.Drawing;
 
 namespace ProyectoProgramadolll.DAL
 {
     public class DALOrdenTrabajo : IDALOrdenTrabajo
     {
 
-        public OrdenTrabajoDTO ActualizarOrdenTrabajo(OrdenTrabajoDTO orden)
+        public OrdenTrabajoDTO ActualizarOrdenTrabajo(OrdenTrabajoDTO orden, List<FotografiaOrden> fotografias)
         {
             try
             {
@@ -25,10 +27,35 @@ namespace ProyectoProgramadolll.DAL
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandText = "sp_ActualizarOrdenTrabajo";
                 cmd.CommandType = CommandType.StoredProcedure;
-                int filas = 0;
+                double filas = 0;
 
                 string detallesJson = JsonConvert.SerializeObject(orden.ListaDetalles).Trim();
-                string fotografiasJson = JsonConvert.SerializeObject(orden.ListaFotografias);
+
+                List<byte[]> fotografiasBytes = fotografias.Select(f =>
+                {
+                    // Verificar que la imagen esté en formato adecuado y no nula
+                    if (f.Fotografia != null && f.Fotografia.Length > 0)
+                    {
+                        using (var ms = new MemoryStream(f.Fotografia))
+                        {
+                            try
+                            {
+                                Image img = Image.FromStream(ms);
+                                return Utils.ImageToByteArray(img);  // Conversión a byte[] si la imagen es válida
+                            }
+                            catch (Exception ex)
+                            {
+                                // Log or handle invalid image formats
+                                Log.LogException(ex);
+                                return null;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return null;  // Manejar caso cuando no hay fotografía
+                    }
+                }).Where(b => b != null).ToList();
 
 
                 cmd.Parameters.AddWithValue("@idOrdenTrabajo", orden.IdOrdenTrabajo);
@@ -38,15 +65,15 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@fechaFinalizacion", orden.FechaFinalizacion);
                 cmd.Parameters.AddWithValue("@firma", orden.Firma);
                 cmd.Parameters.AddWithValue("@detalles", detallesJson);
-                cmd.Parameters.AddWithValue("@fotografias", fotografiasJson);
+                cmd.Parameters.AddWithValue("@fotografias", fotografiasBytes.SelectMany(f => f).ToArray());
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
-                    filas = (int)db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
+                    filas = db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
                 }
 
                 if (filas > 0)
-                    oOrden = this.ObtenerOrdenPorId(orden.IdOrdenTrabajo.ToString());
+                    oOrden = this.VerificarOrdenPorId(orden.IdOrdenTrabajo.ToString());
 
                 return oOrden;
 
@@ -58,9 +85,37 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
-        public Task<bool> EliminarOrdenTrabajo(string idOrdenTrabajo)
+
+        public async Task<bool> EliminarOrdenTrabajo(int idOrdenTrabajo)
         {
-            throw new NotImplementedException();
+            bool eliminado = false;
+            double filas = 0d;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = "sp_EliminarOrdenTrabajo";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idOrdenTrabajo", idOrdenTrabajo);
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    filas = await db.ExecuteNonQueryAsync(cmd, IsolationLevel.ReadCommitted);
+                }
+
+                if (filas > 0)
+                    eliminado = true;
+
+                return eliminado;
+
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                return false;
+
+            }
         }
 
         public OrdenTrabajoDTO GuardarOrdenTrabajo(OrdenTrabajoDTO orden)
@@ -207,11 +262,10 @@ namespace ProyectoProgramadolll.DAL
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    // Inicializar OrdenTrabajoDTO
                     orden = new OrdenTrabajoDTO();
                     DataRow dr = ds.Tables[0].Rows[0];
 
-                    // Asignar datos principales de la orden
+
                     orden.IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]);
                     orden.IdCliente = Convert.ToInt32(dr["idCliente"]);
                     orden.IdVendedor = Convert.ToInt32(dr["idVendedor"]);
@@ -221,26 +275,38 @@ namespace ProyectoProgramadolll.DAL
                     orden.ImagenQROrden = dr["imagenQROrden"] as byte[];
 
 
-                    orden.ListaDetalles = ds.Tables[0].AsEnumerable()
-                        .Where(row => row["idDetalleOrdenTrabajo"] != DBNull.Value)
-                        .Select(row => new DetalleOrdenTrabajo
-                        {
-                            IdDetalleOrdenTrabajo = Convert.ToInt32(row["idDetalleOrdenTrabajo"]),
-                            IdOrdenTrabajo = Convert.ToInt32(row["idOrdenTrabajo"]),
-                            NumeroSerie = Convert.ToString(row["numeroSerie"]),
-                            IdProductoServicio = Convert.ToInt32(row["idProductoServicio"]),
-                            Descripcion = Convert.ToString(row["descripcion"])
-                        }).ToList();
+                    orden.ListaDetalles = new List<DetalleOrdenTrabajo>();
 
 
-                    orden.ListaFotografias = ds.Tables[0].AsEnumerable()
-                        .Where(row => row["idFotografia"] != DBNull.Value)
-                        .Select(row => new FotografiaOrden
+                    if (dr["idDetalleOrdenTrabajo"] != DBNull.Value)
+                    {
+                        var detalle = new DetalleOrdenTrabajo
                         {
-                            IdFotografiaOrden = Convert.ToInt32(row["idFotografia"]),
-                            IdOrdenTrabajo = Convert.ToInt32(row["idOrdenTrabajo"]),
-                            Fotografia = row["fotografia"] as byte[]
-                        }).ToList();
+                            IdDetalleOrdenTrabajo = Convert.ToInt32(dr["idDetalleOrdenTrabajo"]),
+                            IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]),
+                            NumeroSerie = Convert.ToString(dr["numeroSerie"]),
+                            IdProductoServicio = Convert.ToInt32(dr["idProductoServicio"]),
+                            Descripcion = Convert.ToString(dr["descripcion"])
+                        };
+                        orden.ListaDetalles.Add(detalle);
+                    }
+
+
+                    orden.ListaFotografias = new List<FotografiaOrden>();
+
+                    if (dr["idFotografia"] != DBNull.Value)
+                    {
+                        foreach (DataRow fotoRow in ds.Tables[0].Rows)
+                        {
+                            var fotos = new FotografiaOrden
+                            {
+                                IdFotografiaOrden = Convert.ToInt32(fotoRow["idFotografia"]),
+                                Fotografia = fotoRow["fotografia"] as byte[]
+                            };
+                            orden.ListaFotografias.Add(fotos);
+                        }
+                    }
+
                 }
 
                 return orden;
@@ -251,6 +317,48 @@ namespace ProyectoProgramadolll.DAL
                 throw new Exception("Error al obtener la orden de trabajo", ex);
             }
         }
+
+        public OrdenTrabajoDTO VerificarOrdenPorId(string idOrdenTrabajo)
+        {
+            DataSet ds = null;
+            OrdenTrabajoDTO orden = null;
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "sp_verificarExistenciaOrden",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@idOrdenTrabajo", idOrdenTrabajo);
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    ds = db.ExecuteReader(cmd, "T");
+                }
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    orden = new OrdenTrabajoDTO();
+                    DataRow dr = ds.Tables[0].Rows[0];
+
+
+                    orden.IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]);
+
+                }
+
+
+                return orden;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw new Exception("Error al obtener la orden de trabajo", ex);
+            }
+        }
+
+
+
 
     }
 }

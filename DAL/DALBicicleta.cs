@@ -188,6 +188,8 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
+        
+
         public async Task<IEnumerable<BicicletaDTO>> ObtenerBicicletasPorVendedor(int idVendedor)
         {
             List<BicicletaDTO> lista = new List<BicicletaDTO>();
@@ -225,5 +227,8 @@ namespace ProyectoProgramadolll.DAL
                 throw;
             }
         }
+
+       
+        
     }
 }

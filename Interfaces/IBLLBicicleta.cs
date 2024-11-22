@@ -14,5 +14,6 @@ namespace ProyectoProgramadolll.Interfaces
         Task<IEnumerable<BicicletaDTO>> ObtenerBicicletas();
         Task<bool> EliminarBicicleta(string idBicicleta);
         Task<IEnumerable<BicicletaDTO>> ObtenerBicicletasPorVendedor(int idVendedor);
+
     }
 }

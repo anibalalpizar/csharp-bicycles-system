@@ -13,5 +13,6 @@ namespace ProyectoProgramadolll.Entities
         public string NumeroSerie { get; set; }
         public int IdProductoServicio { get; set; }
         public string Descripcion { get; set; }
+        public string NombreProducto { get; set; }
     }
 }
