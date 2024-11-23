@@ -570,20 +570,25 @@ namespace ProyectoProgramadolll.UI
 
                 foreach (var item in lstFotografias.Items)
                 {
-
                     string nombreFoto = item.ToString();
-                    if (fotos.ContainsKey(nombreFoto))
+                    if (fotos.ContainsKey(nombreFoto)) // Verifica si la foto existe en el diccionario
                     {
                         var foto = new FotografiaOrden
                         {
-                            Fotografia = Utils.ImageToByteArray(fotos[nombreFoto])
+                            Fotografia = Utils.ImageToByteArray(fotos[nombreFoto]) // Convierte la imagen a un byte array
                         };
 
                         listaFotografias.Add(foto);
                     }
                 }
 
+
+                // mostrar un message box con la cantidad de fotografías que se van a guardar
+
                 orden.ListaFotografias = listaFotografias;
+
+
+
 
 
                 IBLLOrdenTrabajo bLLOrdenTrabajo = new BLLOrdenTrabajo();
@@ -646,24 +651,6 @@ namespace ProyectoProgramadolll.UI
                     this.pnlFirma.Invalidate();
                     this.pnlFirma.Refresh();
 
-
-                    //if (ordenDto.ListaFotografias != null && ordenDto.ListaFotografias.Count > 0)
-                    //{
-                    //    foreach (FotografiaOrden fotografia in ordenDto.ListaFotografias)
-                    //    {
-                    //        using (MemoryStream ms = new MemoryStream(fotografia.Fotografia))
-                    //        {
-                    //            Image img = Image.FromStream(ms);
-                    //            this.fotos["fotografía"] = img;
-                    //            this.lstFotografias.Items.Add("fotografía");
-                    //        }
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    this.fotos.Clear();
-                    //    this.lstFotografias.Items.Clear();
-                    //}
                     if (ordenDto.ListaFotografias != null && ordenDto.ListaFotografias.Count > 0)
                     {
                         foreach (FotografiaOrden fotografia in ordenDto.ListaFotografias)

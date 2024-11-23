@@ -35,7 +35,7 @@ namespace ProyectoProgramadolll.DAL
                 {
                     if (f.Fotografia != null && f.Fotografia.Length > 0)
                     {
-                        return f.Fotografia; 
+                        return f.Fotografia;
                     }
                     else
                     {
@@ -51,6 +51,7 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@firma", orden.Firma);
                 cmd.Parameters.AddWithValue("@detalles", detallesJson);
                 cmd.Parameters.AddWithValue("@fotografias", fotografiasBytes.SelectMany(f => f).ToArray());
+
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {

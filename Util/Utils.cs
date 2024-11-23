@@ -125,7 +125,7 @@ public static class Utils
         }
         catch (Exception ex)
         {
-            
+
             return null;
         }
     }
@@ -140,7 +140,8 @@ public static class Utils
             string responseBody = await response.Content.ReadAsStringAsync();
             var tipoCambio = JsonConvert.DeserializeObject<ProductoServicio>(responseBody);
             return tipoCambio?.Venta ?? 0m;
-        }catch (HttpRequestException ex)
+        }
+        catch (HttpRequestException ex)
         {
             return 0m;
         }
@@ -159,6 +160,7 @@ public static class Utils
             return ms.ToArray();
         }
     }
+
 
 }
 
