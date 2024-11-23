@@ -161,6 +161,21 @@ public static class Utils
         }
     }
 
+    public static Image ByteArrayToImage(byte[] byteArray)
+    {
+        try
+        {
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al convertir byte array a imagen: {ex.Message}");
+            return null;
+        }
+    }
 
 }
 

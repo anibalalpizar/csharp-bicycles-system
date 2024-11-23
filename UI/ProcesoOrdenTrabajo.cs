@@ -86,15 +86,13 @@ namespace ProyectoProgramadolll.UI
                 List<ClienteDTO> lista = null;
                 this.cmbClientes.Items.Clear();
 
+
                 lista = await bLLClientes.ObtenerClientesConBicicletas();
 
-                foreach (ClienteDTO cliente in lista)
-                {
-                    this.cmbClientes.Items.Add(cliente);
-                }
-
+                this.cmbClientes.DataSource = lista;
+                this.cmbClientes.DisplayMember = "Nombre";
+                this.cmbClientes.ValueMember = "idCliente";
                 this.cmbClientes.SelectedIndex = 0;
-
 
                 IBLLProductoServicio bLLProductoServicio = new BLLProductoServicio();
                 foreach (ProductoServicioDTO productoServicio in bLLProductoServicio.ObtenerProductoServicios())
@@ -102,13 +100,14 @@ namespace ProyectoProgramadolll.UI
                     this.cmbServicio.Items.Add(productoServicio);
                 }
                 this.cmbServicio.SelectedIndex = 0;
+
+                this.cmbServicio.DisplayMember = "Descripcion";
+                this.cmbServicio.ValueMember = "idProductoServicio";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
-
         }
 
         private void CargarDatos()
@@ -133,47 +132,6 @@ namespace ProyectoProgramadolll.UI
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
-        private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
-        {
-            this.btnCancelar.Enabled = false;
-
-            switch (estadoMantenimiento)
-            {
-                case EstadoMantenimiento.Nuevo:
-                    this.btnCrear.Enabled = true;
-                    this.btnEliminar.Enabled = false;
-                    this.btnCancelar.Enabled = true;
-                    break;
-                case EstadoMantenimiento.Editar:
-                    this.cmbClientes.Enabled = true;
-                    this.btnCrear.Enabled = true;
-                    this.btnEliminar.Enabled = false;
-                    this.btnCancelar.Enabled = true;
-                    this.lstFotografias.Items.Clear();
-                    this.lstDetalles.Items.Clear();
-                    this.ptbFotoBici.Tag = null;
-                    this.ptbFotoBici.Image = null;
-                    break;
-                case EstadoMantenimiento.Borrar:
-                    break;
-                case EstadoMantenimiento.Ninguno:
-                    this.btnEliminar.Enabled = true;
-                    this.cmbBicicletas.SelectedIndex = 0;
-                    this.cmbClientes.SelectedIndex = 0;
-                    this.cmbServicio.SelectedIndex = 0;
-                    this.ptbFotoBici.Tag = null;
-                    this.ptbFotoBici.Image = null;
-                    this.dtpFinalizacion.Value = DateTime.Now;
-                    this.txaDescripcion.Clear();
-                    this.lstFotografias.Items.Clear();
-                    this.lstDetalles.Items.Clear();
-                    limpiarFirma();
-                    break;
-            }
-        }
-
 
         private void ProcesoOrdenTrabajo_Load(object sender, EventArgs e)
         {
@@ -200,7 +158,6 @@ namespace ProyectoProgramadolll.UI
                 this.cmbBicicletas.ValueMember = "NumeroSerie";
                 this.cmbBicicletas.Enabled = true;
                 this.cmbBicicletas.SelectedIndex = 0;
-
             }
             catch (Exception ex)
             {
@@ -220,13 +177,13 @@ namespace ProyectoProgramadolll.UI
 
                     string[] parts = selectedText.Split(new[] { " - " }, StringSplitOptions.None);
 
-                    if (parts.Length == 4)
+                    if (parts.Length == 3)
                     {
                         string bicicleta = parts[0];
 
-                        string servicio = parts[1] + " - " + parts[2];
+                        string servicio = parts[1];
 
-                        string descripcion = parts[3];
+                        string descripcion = parts[2];
 
 
                         for (int i = 0; i < cmbBicicletas.Items.Count; i++)
@@ -529,6 +486,13 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
+
+                if (dtpFinalizacion.Value < DateTime.Now)
+                {
+                    MessageBox.Show("La fecha de finalización no puede ser menor a la fecha actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 OrdenTrabajoDTO orden = new OrdenTrabajoDTO();
                 orden.IdCliente = ((ClienteDTO)cmbClientes.SelectedItem).IdCliente;
                 orden.IdVendedor = vendedor.IdVendedor;
@@ -554,12 +518,12 @@ namespace ProyectoProgramadolll.UI
                 {
 
                     string[] parts = detalle.Split(new[] { " - " }, StringSplitOptions.None);
-                    if (parts.Length == 4)
+                    if (parts.Length == 3)
                     {
                         DetalleOrdenTrabajo detalleOrden = new DetalleOrdenTrabajo();
                         detalleOrden.NumeroSerie = parts[0];
                         detalleOrden.IdProductoServicio = int.Parse(idProductoServicio);
-                        detalleOrden.Descripcion = parts[3];
+                        detalleOrden.Descripcion = parts[2];
                         orden.ListaDetalles.Add(detalleOrden);
 
                     }
@@ -628,8 +592,7 @@ namespace ProyectoProgramadolll.UI
                     this.lstDetalles.Items.Clear();
                     foreach (DetalleOrdenTrabajo detalle in ordenDto.ListaDetalles)
                     {
-                        //hacer inner DescripcionServicio y annadir
-                        this.lstDetalles.Items.Add($"{detalle.NumeroSerie} - {detalle.IdProductoServicio} - {detalle.NombreProducto} - {detalle.Descripcion}");
+                        this.lstDetalles.Items.Add($"{detalle.NumeroSerie} - {ordenDto.NombreProducto} - {detalle.Descripcion}");
                     }
 
                     this.lstFotografias.Items.Clear();
@@ -653,27 +616,31 @@ namespace ProyectoProgramadolll.UI
 
                     if (ordenDto.ListaFotografias != null && ordenDto.ListaFotografias.Count > 0)
                     {
-                        foreach (FotografiaOrden fotografia in ordenDto.ListaFotografias)
+                        List<FotografiaOrden> listaFotografias = ordenDto.ListaFotografias;
+                        this.fotos.Clear();
+                        this.lstFotografias.Items.Clear();
+
+                        foreach (FotografiaOrden fotografia in listaFotografias)
                         {
-                            if (fotografia.Fotografia != null && fotografia.Fotografia.Length > 0)
+                            try
                             {
-                                try
+                                // Convertir el byte array en imagen
+                                Image imagen = Utils.ByteArrayToImage(fotografia.Fotografia);
+
+                                if (imagen != null)
                                 {
-                                    using (MemoryStream ms = new MemoryStream(fotografia.Fotografia))
-                                    {
-                                        Image img = Image.FromStream(ms);
-                                        this.fotos["fotografía"] = img;
-                                        this.lstFotografias.Items.Add("fotografía");
-                                    }
+                                    string nombreFoto = $"Foto {fotos.Count + 1}";
+                                    lstFotografias.Items.Add(nombreFoto);
+                                    fotos[nombreFoto] = imagen;
                                 }
-                                catch (Exception ex)
+                                else
                                 {
-                                    MessageBox.Show($"Error al cargar la fotografía: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Console.WriteLine("Fotografía inválida o corrupta.");
                                 }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                MessageBox.Show("Fotografía vacía o nula en la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                Console.WriteLine($"Error al procesar la fotografía: {ex.Message}");
                             }
                         }
                     }
@@ -684,6 +651,8 @@ namespace ProyectoProgramadolll.UI
                     }
 
                 }
+
+
                 else
                 {
                     MessageBox.Show("Por favor, selecciona una orden de trabajo para modificar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -817,7 +786,7 @@ namespace ProyectoProgramadolll.UI
                         foreach (var detalle in orden.ListaDetalles)
                         {
                             table.AddCell(detalle.NumeroSerie);
-                            table.AddCell(detalle.NombreProducto);
+                            table.AddCell(orden.NombreProducto);
                             table.AddCell(detalle.Descripcion);
                         }
 
@@ -848,11 +817,108 @@ namespace ProyectoProgramadolll.UI
 
                 MessageBox.Show("Archivo guardado en el escritorio y se enviará por correo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                this.cambiarEstado(EstadoMantenimiento.Correo);
                 EnviarPdfPorCorreo(path, orden);
+                this.cambiarEstado(EstadoMantenimiento.Nuevo);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
+        {
+            this.btnCancelar.Enabled = false;
+
+            switch (estadoMantenimiento)
+            {
+                case EstadoMantenimiento.Nuevo:
+                    this.btnCrear.Enabled = true;
+                    this.btnEliminar.Enabled = false;
+                    this.btnCancelar.Enabled = true;
+                    this.cmbClientes.Enabled = true;
+                    this.cmbBicicletas.Enabled = true;
+                    this.cmbServicio.Enabled = true;
+                    this.txaDescripcion.Enabled = true;
+                    this.dtpFinalizacion.Enabled = true;
+                    this.btnAgregarDetalle.Enabled = true;
+                    this.lstDetalles.Enabled = true;
+                    this.btnEliminarFirma.Enabled = true;
+                    this.pnlFirma.Enabled = true;
+                    this.ptbFotoBici.Enabled = true;
+                    this.btnFoto.Enabled = true;
+                    this.btnAgregarListaFotos.Enabled = true;
+                    this.btnEditarTelefono.Enabled = true;
+                    this.btnExportarYEnviar.Enabled = true;
+                    this.btnModificar.Enabled = true;
+                    this.btnEliminarFoto.Enabled = true;
+                    this.btnEditarTelefono.Enabled = true;
+                    this.btnEliminarTelefono.Enabled = true;
+                    this.lstFotografias.Enabled = true;
+                    this.lstDetalles.Items.Clear();
+                    this.ptbFotoBici.Tag = null;
+                    this.ptbFotoBici.Image = null;
+                    this.fotos.Clear();
+                    this.txaDescripcion.Clear();
+                    limpiarFirma();
+                    this.lstFotografias.Items.Clear();
+                    this.dtpFinalizacion.Value = DateTime.Now;
+                    break;
+                case EstadoMantenimiento.Editar:
+                    this.cmbClientes.Enabled = true;
+                    this.btnCrear.Enabled = true;
+                    this.btnEliminar.Enabled = false;
+                    this.btnCancelar.Enabled = true;
+                    this.lstFotografias.Items.Clear();
+                    this.lstDetalles.Items.Clear();
+                    this.ptbFotoBici.Tag = null;
+                    this.ptbFotoBici.Image = null;
+                    this.fotos.Clear();
+                    this.txaDescripcion.Clear();
+                    break;
+                case EstadoMantenimiento.Borrar:
+                    break;
+                case EstadoMantenimiento.Ninguno:
+                    this.btnEliminar.Enabled = true;
+                    this.cmbBicicletas.SelectedIndex = 0;
+                    this.cmbClientes.SelectedIndex = 0;
+                    this.cmbServicio.SelectedIndex = 0;
+                    this.ptbFotoBici.Tag = null;
+                    this.ptbFotoBici.Image = null;
+                    this.dtpFinalizacion.Value = DateTime.Now;
+                    this.txaDescripcion.Clear();
+                    this.lstFotografias.Items.Clear();
+                    this.lstDetalles.Items.Clear();
+                    this.fotos.Clear();
+                    limpiarFirma();
+                    break;
+                case EstadoMantenimiento.Correo:
+                    this.cmbClientes.Enabled = false;
+                    this.cmbBicicletas.Enabled = false;
+                    this.cmbServicio.Enabled = false;
+                    this.txaDescripcion.Enabled = false;
+                    this.dtpFinalizacion.Enabled = false;
+                    this.btnAgregarDetalle.Enabled = false;
+                    this.lstDetalles.Enabled = false;
+                    this.btnEliminarFirma.Enabled = false;
+                    this.pnlFirma.Enabled = false;
+                    this.ptbFotoBici.Enabled = false;
+                    this.btnExportarYEnviar.Enabled = false;
+                    this.btnEliminarFoto.Enabled = false;
+                    this.btnFoto.Enabled = false;
+                    this.btnAgregarListaFotos.Enabled = false;
+                    this.btnCrear.Enabled = false;
+                    this.btnEliminar.Enabled = false;
+                    this.btnCancelar.Enabled = false;
+                    this.btnEditarTelefono.Enabled = false;
+                    this.dtpFinalizacion.Enabled = false;
+                    this.btnModificar.Enabled = false;
+                    this.btnEditarTelefono.Enabled = false;
+                    this.btnEliminarTelefono.Enabled = false;
+                    this.lstFotografias.Enabled = false;
+                    break;
             }
         }
 
@@ -869,7 +935,7 @@ namespace ProyectoProgramadolll.UI
 
                 System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
                 mail.From = new System.Net.Mail.MailAddress("nikiarias40@gmail.com");
-                mail.To.Add(orden.NombreCliente);
+                mail.To.Add("anibal.alpizar14@gmail.com");
                 mail.Subject = $"Orden de trabajo {orden.IdOrdenTrabajo}";
                 mail.Body = $"Se adjunta la orden de trabajo {orden.NombreCliente}.";
 

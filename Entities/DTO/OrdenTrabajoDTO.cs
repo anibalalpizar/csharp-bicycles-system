@@ -13,6 +13,7 @@ namespace ProyectoProgramadolll.Entities.DTO
         public string NombreCliente { get; set; } = string.Empty;
         public int IdVendedor { get; set; }
         public string NombreVendedor { get; set; } = string.Empty;
+        public string CorreoCliente { get; set; } 
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinalizacion { get; set; }
         public byte[] Firma { get; set; } = Array.Empty<byte>();

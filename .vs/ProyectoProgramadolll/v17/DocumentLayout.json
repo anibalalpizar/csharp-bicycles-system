@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|C:\\Users\\anibal\\dev\\csharp-bicycles-system\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|C:\\Users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\bll\\bllordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -30,36 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProcesoOrdenTrabajo.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs",
-              "ViewState": "AgIAAF8DAAAAAAAAAAAwwH8DAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T06:26:53.324Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DALOrdenTrabajo.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "DAL\\DALOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
-              "RelativeToolTip": "DAL\\DALOrdenTrabajo.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAgwH8AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T06:26:53.317Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -115,44 +66,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Utils.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Util\\Utils.cs",
-              "RelativeDocumentMoniker": "Util\\Utils.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Util\\Utils.cs",
-              "RelativeToolTip": "Util\\Utils.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAA4wJ4AAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T03:24:41.585Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BLLOrdenTrabajo.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\BLL\\BLLOrdenTrabajo.cs",
-              "RelativeToolTip": "BLL\\BLLOrdenTrabajo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T03:10:26.613Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProcesoOrdenTrabajo.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs [Design]",
-              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-22T06:44:58.313Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },

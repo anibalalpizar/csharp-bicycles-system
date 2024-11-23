@@ -29,40 +29,35 @@ namespace ProyectoProgramadolll.DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 double filas = 0;
 
+                // Serializar detalles a JSON
                 string detallesJson = JsonConvert.SerializeObject(orden.ListaDetalles).Trim();
 
-                List<byte[]> fotografiasBytes = fotografias.Select(f =>
-                {
-                    if (f.Fotografia != null && f.Fotografia.Length > 0)
-                    {
-                        return f.Fotografia;
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }).Where(b => b != null).ToList();
+                // Convertir fotografías a Base64 y serializar como JSON
+                string fotografiasJson = JsonConvert.SerializeObject(fotografias
+                    .Where(f => f.Fotografia != null && f.Fotografia.Length > 0) // Filtrar fotografías válidas
+                    .Select(f => Convert.ToBase64String(f.Fotografia))); // Convertir a Base64
 
+                // Configurar parámetros del procedimiento almacenado
                 cmd.Parameters.AddWithValue("@idOrdenTrabajo", orden.IdOrdenTrabajo);
                 cmd.Parameters.AddWithValue("@idCliente", orden.IdCliente);
                 cmd.Parameters.AddWithValue("@idVendedor", orden.IdVendedor);
                 cmd.Parameters.AddWithValue("@fechaInicio", orden.FechaInicio);
                 cmd.Parameters.AddWithValue("@fechaFinalizacion", orden.FechaFinalizacion);
-                cmd.Parameters.AddWithValue("@firma", orden.Firma);
+                cmd.Parameters.AddWithValue("@firma", orden.Firma ?? (object)DBNull.Value); // Firma opcional
                 cmd.Parameters.AddWithValue("@detalles", detallesJson);
-                cmd.Parameters.AddWithValue("@fotografias", fotografiasBytes.SelectMany(f => f).ToArray());
+                cmd.Parameters.AddWithValue("@fotografias", string.IsNullOrEmpty(fotografiasJson) ? (object)DBNull.Value : fotografiasJson);
 
-
+                // Ejecutar la consulta
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
                     filas = db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
                 }
 
+                // Verificar y devolver la orden actualizada
                 if (filas > 0)
                     oOrden = this.VerificarOrdenPorId(orden.IdOrdenTrabajo.ToString());
 
                 return oOrden;
-
             }
             catch (Exception ex)
             {
@@ -70,6 +65,7 @@ namespace ProyectoProgramadolll.DAL
                 throw ex;
             }
         }
+
 
 
         public async Task<bool> EliminarOrdenTrabajo(int idOrdenTrabajo)
@@ -251,7 +247,6 @@ namespace ProyectoProgramadolll.DAL
                     orden = new OrdenTrabajoDTO();
                     DataRow dr = ds.Tables[0].Rows[0];
 
-
                     orden.IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]);
                     orden.IdCliente = Convert.ToInt32(dr["idCliente"]);
                     orden.IdVendedor = Convert.ToInt32(dr["idVendedor"]);
@@ -259,6 +254,10 @@ namespace ProyectoProgramadolll.DAL
                     orden.FechaFinalizacion = Convert.ToDateTime(dr["fechaFinalizacion"]);
                     orden.Firma = dr["firma"] as byte[];
                     orden.ImagenQROrden = dr["imagenQROrden"] as byte[];
+                    orden.NombreCliente = dr["nombreCliente"] as string;
+                    orden.NombreVendedor = dr["nombreVendedor"] as string;
+                    orden.CorreoCliente = dr["correoCliente"] as string;
+                    orden.NombreProducto = dr["nombreProducto"] as string;
 
 
                     orden.ListaDetalles = new List<DetalleOrdenTrabajo>();

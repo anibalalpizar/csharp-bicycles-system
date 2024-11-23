@@ -71,6 +71,7 @@
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.pnlFirma.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).BeginInit();
             this.panel1.SuspendLayout();
@@ -162,6 +163,7 @@
             // 
             // pnlFirma
             // 
+            this.pnlFirma.Controls.Add(this.btnEliminarFirma);
             this.pnlFirma.Location = new System.Drawing.Point(22, 18);
             this.pnlFirma.Name = "pnlFirma";
             this.pnlFirma.Size = new System.Drawing.Size(337, 199);
@@ -241,7 +243,7 @@
             // btnEditarTelefono
             // 
             this.btnEditarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarTelefono.Location = new System.Drawing.Point(837, 75);
+            this.btnEditarTelefono.Location = new System.Drawing.Point(840, 212);
             this.btnEditarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditarTelefono.Name = "btnEditarTelefono";
             this.btnEditarTelefono.Size = new System.Drawing.Size(56, 31);
@@ -253,7 +255,7 @@
             // btnEliminarTelefono
             // 
             this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarTelefono.Location = new System.Drawing.Point(837, 121);
+            this.btnEliminarTelefono.Location = new System.Drawing.Point(780, 212);
             this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarTelefono.Name = "btnEliminarTelefono";
             this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
@@ -277,7 +279,7 @@
             this.lstDetalles.FormattingEnabled = true;
             this.lstDetalles.Location = new System.Drawing.Point(676, 37);
             this.lstDetalles.Name = "lstDetalles";
-            this.lstDetalles.Size = new System.Drawing.Size(142, 160);
+            this.lstDetalles.Size = new System.Drawing.Size(220, 160);
             this.lstDetalles.TabIndex = 97;
             this.lstDetalles.SelectedIndexChanged += new System.EventHandler(this.lstDetalles_SelectedIndexChanged);
             // 
@@ -398,10 +400,10 @@
             // btnEliminarFoto
             // 
             this.btnEliminarFoto.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarFoto.Location = new System.Drawing.Point(1242, 301);
+            this.btnEliminarFoto.Location = new System.Drawing.Point(1225, 301);
             this.btnEliminarFoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarFoto.Name = "btnEliminarFoto";
-            this.btnEliminarFoto.Size = new System.Drawing.Size(112, 32);
+            this.btnEliminarFoto.Size = new System.Drawing.Size(112, 49);
             this.btnEliminarFoto.TabIndex = 101;
             this.btnEliminarFoto.Text = "Eliminar Fotografia";
             this.btnEliminarFoto.UseVisualStyleBackColor = false;
@@ -422,10 +424,10 @@
             // btnEliminarFirma
             // 
             this.btnEliminarFirma.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarFirma.Location = new System.Drawing.Point(861, 609);
+            this.btnEliminarFirma.Location = new System.Drawing.Point(277, 166);
             this.btnEliminarFirma.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarFirma.Name = "btnEliminarFirma";
-            this.btnEliminarFirma.Size = new System.Drawing.Size(56, 31);
+            this.btnEliminarFirma.Size = new System.Drawing.Size(58, 31);
             this.btnEliminarFirma.TabIndex = 103;
             this.btnEliminarFirma.Text = "Eliminar Firma";
             this.btnEliminarFirma.UseVisualStyleBackColor = false;
@@ -529,11 +531,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1662, 651);
+            this.ClientSize = new System.Drawing.Size(1413, 651);
             this.Controls.Add(this.btnExportarYEnviar);
             this.Controls.Add(this.lblIdFotografia);
             this.Controls.Add(this.lblOrden);
-            this.Controls.Add(this.btnEliminarFirma);
             this.Controls.Add(this.btnAgregarListaFotos);
             this.Controls.Add(this.btnEliminarFoto);
             this.Controls.Add(this.lstFotografias);
@@ -552,6 +553,7 @@
             this.Text = "ProcesoOrdenTrabajo";
             this.Load += new System.EventHandler(this.ProcesoOrdenTrabajo_Load);
             this.groupBox1.ResumeLayout(false);
+            this.pnlFirma.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).EndInit();
             this.panel1.ResumeLayout(false);
