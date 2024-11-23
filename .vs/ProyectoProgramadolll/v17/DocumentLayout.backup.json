@@ -1,26 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Bicycle 2.0\\",
+  "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|C:\\Users\\anibal\\dev\\csharp-bicycles-system\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\bll\\bllordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\dal\\dalclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalclientes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\bicycle 2.0\\bll\\bllvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllvendedor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|C:\\Users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,8 +22,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": 16,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProcesoOrdenTrabajo.cs",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs*",
+              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs*",
+              "ViewState": "AgIAAFIDAAAAAAAAAAAiwHcDAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:26:53.324Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DALOrdenTrabajo.cs",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "DAL\\DALOrdenTrabajo.cs",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
+              "RelativeToolTip": "DAL\\DALOrdenTrabajo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T06:26:53.317Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -66,10 +86,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
@@ -89,56 +105,19 @@
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "BLLOrdenTrabajo.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\BLL\\BLLOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLOrdenTrabajo.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\BLL\\BLLOrdenTrabajo.cs",
-              "RelativeToolTip": "BLL\\BLLOrdenTrabajo.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAADgvysAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T23:54:48.261Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DALOrdenTrabajo.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\DAL\\DALOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "DAL\\DALOrdenTrabajo.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\DAL\\DALOrdenTrabajo.cs",
-              "RelativeToolTip": "DAL\\DALOrdenTrabajo.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAADkAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T23:42:42.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProcesoOrdenTrabajo.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\UI\\ProcesoOrdenTrabajo.cs",
+              "Title": "ProcesoOrdenTrabajo.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
               "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs",
-              "ViewState": "AgIAAJwCAAAAAAAAAAAhwLoCAAAVAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs [Design]",
+              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-19T23:02:14.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BLLVendedor.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\BLL\\BLLVendedor.cs",
-              "RelativeDocumentMoniker": "BLL\\BLLVendedor.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\BLL\\BLLVendedor.cs",
-              "RelativeToolTip": "BLL\\BLLVendedor.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T00:11:51.64Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-22T06:44:58.313Z"
             }
           ]
         },
@@ -153,40 +132,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "f71393c4-9269-4252-8cf3-c0434381c026",
-        "Display": 1,
-        "X": 601,
-        "Y": 140,
-        "Width": 774,
-        "Height": 702,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DALClientes.cs",
-              "DocumentMoniker": "D:\\Bicycle 2.0\\DAL\\DALClientes.cs",
-              "RelativeDocumentMoniker": "DAL\\DALClientes.cs",
-              "ToolTip": "D:\\Bicycle 2.0\\DAL\\DALClientes.cs",
-              "RelativeToolTip": "DAL\\DALClientes.cs",
-              "ViewState": "AgIAALkAAAAAAAAAAAAIwMQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T01:57:17.205Z",
-              "EditorCaption": ""
             }
           ]
         }

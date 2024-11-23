@@ -43,17 +43,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ptbFotoBici = new System.Windows.Forms.PictureBox();
             this.ofdDialogo = new System.Windows.Forms.OpenFileDialog();
-            this.btnAgregarDetalle = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnCrear = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEditarTelefono = new System.Windows.Forms.Button();
             this.btnEliminarTelefono = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lstDetalles = new System.Windows.Forms.ListBox();
             this.txaDescripcion = new System.Windows.Forms.TextBox();
+            this.btnAgregarDetalle = new System.Windows.Forms.Button();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +65,11 @@
             this.btnEliminarFirma = new System.Windows.Forms.Button();
             this.lblOrden = new System.Windows.Forms.Label();
             this.lblIdFotografia = new System.Windows.Forms.Label();
+            this.btnExportarYEnviar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnCrear = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).BeginInit();
@@ -215,77 +216,6 @@
             // 
             this.ofdDialogo.FileName = "openFileDialog1";
             // 
-            // btnAgregarDetalle
-            // 
-            this.btnAgregarDetalle.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarDetalle.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarDetalle.Image")));
-            this.btnAgregarDetalle.Location = new System.Drawing.Point(519, 165);
-            this.btnAgregarDetalle.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregarDetalle.Name = "btnAgregarDetalle";
-            this.btnAgregarDetalle.Size = new System.Drawing.Size(109, 32);
-            this.btnAgregarDetalle.TabIndex = 73;
-            this.btnAgregarDetalle.Text = "Agregar Servicio";
-            this.btnAgregarDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAgregarDetalle.UseVisualStyleBackColor = false;
-            this.btnAgregarDetalle.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(306, 21);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(94, 45);
-            this.btnCancelar.TabIndex = 93;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(213, 21);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(89, 45);
-            this.btnEliminar.TabIndex = 91;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnCrear
-            // 
-            this.btnCrear.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
-            this.btnCrear.Location = new System.Drawing.Point(24, 21);
-            this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(92, 45);
-            this.btnCrear.TabIndex = 90;
-            this.btnCrear.Text = "Guardar";
-            this.btnCrear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCrear.UseVisualStyleBackColor = false;
-            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
-            this.btnModificar.Location = new System.Drawing.Point(120, 21);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(89, 45);
-            this.btnModificar.TabIndex = 92;
-            this.btnModificar.Text = "Editar";
-            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModificar.UseVisualStyleBackColor = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnEditarTelefono);
@@ -358,6 +288,20 @@
             this.txaDescripcion.Name = "txaDescripcion";
             this.txaDescripcion.Size = new System.Drawing.Size(339, 86);
             this.txaDescripcion.TabIndex = 74;
+            // 
+            // btnAgregarDetalle
+            // 
+            this.btnAgregarDetalle.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAgregarDetalle.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarDetalle.Image")));
+            this.btnAgregarDetalle.Location = new System.Drawing.Point(519, 165);
+            this.btnAgregarDetalle.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAgregarDetalle.Name = "btnAgregarDetalle";
+            this.btnAgregarDetalle.Size = new System.Drawing.Size(109, 32);
+            this.btnAgregarDetalle.TabIndex = 73;
+            this.btnAgregarDetalle.Text = "Agregar Servicio";
+            this.btnAgregarDetalle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAgregarDetalle.UseVisualStyleBackColor = false;
+            this.btnAgregarDetalle.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // dgvDatos
             // 
@@ -509,12 +453,84 @@
             this.lblIdFotografia.Text = "-";
             this.lblIdFotografia.Visible = false;
             // 
+            // btnExportarYEnviar
+            // 
+            this.btnExportarYEnviar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnExportarYEnviar.Image = global::ProyectoProgramadolll.Properties.Resources.pdfforge;
+            this.btnExportarYEnviar.Location = new System.Drawing.Point(1277, 14);
+            this.btnExportarYEnviar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportarYEnviar.Name = "btnExportarYEnviar";
+            this.btnExportarYEnviar.Size = new System.Drawing.Size(108, 58);
+            this.btnExportarYEnviar.TabIndex = 106;
+            this.btnExportarYEnviar.Text = "Generar y Enviar ";
+            this.btnExportarYEnviar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExportarYEnviar.UseVisualStyleBackColor = false;
+            this.btnExportarYEnviar.Click += new System.EventHandler(this.btnExportarYEnviar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.Location = new System.Drawing.Point(306, 21);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(94, 45);
+            this.btnCancelar.TabIndex = 93;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
+            this.btnEliminar.Location = new System.Drawing.Point(213, 21);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(89, 45);
+            this.btnEliminar.TabIndex = 91;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnCrear
+            // 
+            this.btnCrear.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCrear.Image = ((System.Drawing.Image)(resources.GetObject("btnCrear.Image")));
+            this.btnCrear.Location = new System.Drawing.Point(24, 21);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.Size = new System.Drawing.Size(92, 45);
+            this.btnCrear.TabIndex = 90;
+            this.btnCrear.Text = "Guardar";
+            this.btnCrear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCrear.UseVisualStyleBackColor = false;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
+            this.btnModificar.Location = new System.Drawing.Point(120, 21);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(89, 45);
+            this.btnModificar.TabIndex = 92;
+            this.btnModificar.Text = "Editar";
+            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // ProcesoOrdenTrabajo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1411, 651);
+            this.ClientSize = new System.Drawing.Size(1662, 651);
+            this.Controls.Add(this.btnExportarYEnviar);
             this.Controls.Add(this.lblIdFotografia);
             this.Controls.Add(this.lblOrden);
             this.Controls.Add(this.btnEliminarFirma);
@@ -587,5 +603,6 @@
         private System.Windows.Forms.DataGridViewImageColumn QR;
         private System.Windows.Forms.Label lblOrden;
         private System.Windows.Forms.Label lblIdFotografia;
+        private System.Windows.Forms.Button btnExportarYEnviar;
     }
 }

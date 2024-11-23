@@ -33,30 +33,15 @@ namespace ProyectoProgramadolll.DAL
 
                 List<byte[]> fotografiasBytes = fotografias.Select(f =>
                 {
-                    // Verificar que la imagen esté en formato adecuado y no nula
                     if (f.Fotografia != null && f.Fotografia.Length > 0)
                     {
-                        using (var ms = new MemoryStream(f.Fotografia))
-                        {
-                            try
-                            {
-                                Image img = Image.FromStream(ms);
-                                return Utils.ImageToByteArray(img);  // Conversión a byte[] si la imagen es válida
-                            }
-                            catch (Exception ex)
-                            {
-                                // Log or handle invalid image formats
-                                Log.LogException(ex);
-                                return null;
-                            }
-                        }
+                        return f.Fotografia; 
                     }
                     else
                     {
-                        return null;  // Manejar caso cuando no hay fotografía
+                        return null;
                     }
                 }).Where(b => b != null).ToList();
-
 
                 cmd.Parameters.AddWithValue("@idOrdenTrabajo", orden.IdOrdenTrabajo);
                 cmd.Parameters.AddWithValue("@idCliente", orden.IdCliente);

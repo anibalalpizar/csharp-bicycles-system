@@ -1,17 +1,24 @@
-﻿using ProyectoProgramadolll.BLL;
+﻿using iTextSharp.text.pdf;
+using Microsoft.Reporting.WebForms;
+using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.DAL;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
+using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.UI
@@ -117,7 +124,7 @@ namespace ProyectoProgramadolll.UI
                 this.dgvDatos.DataSource = ordenBLL.ObtenerOrdenesTrabajo();
 
                 this.ptbFotoBici.SizeMode = PictureBoxSizeMode.CenterImage;
-              
+
                 ((DataGridViewImageColumn)dgvDatos.Columns["QR"]).ImageLayout = DataGridViewImageCellLayout.Zoom;
 
             }
@@ -485,14 +492,14 @@ namespace ProyectoProgramadolll.UI
         }
         private bool IsBitmapBlank(Bitmap bitmap)
         {
-            Color backgroundColor = bitmap.GetPixel(0, 0); 
+            Color backgroundColor = bitmap.GetPixel(0, 0);
             for (int x = 0; x < bitmap.Width; x++)
             {
                 for (int y = 0; y < bitmap.Height; y++)
                 {
                     if (bitmap.GetPixel(x, y) != backgroundColor)
                     {
-                        return false; 
+                        return false;
                     }
                 }
             }
@@ -503,7 +510,6 @@ namespace ProyectoProgramadolll.UI
         {
             try
             {
-                //validaciones
                 int idOrdenTrabajo;
                 if (lstDetalles.Items.Count == 0)
                 {
@@ -528,7 +534,7 @@ namespace ProyectoProgramadolll.UI
                 orden.IdVendedor = vendedor.IdVendedor;
                 orden.FechaInicio = DateTime.Now;
                 orden.FechaFinalizacion = dtpFinalizacion.Value;
-                orden.Firma = ImageToByteArray(firmaBitmap);
+                orden.Firma = Utils.ImageToByteArray(firmaBitmap);
                 orden.ImagenQROrden = null;
 
                 if (int.TryParse(lblOrden.Text, out idOrdenTrabajo))
@@ -559,18 +565,18 @@ namespace ProyectoProgramadolll.UI
                     }
 
                 }
-              
+
                 List<FotografiaOrden> listaFotografias = new List<FotografiaOrden>();
 
                 foreach (var item in lstFotografias.Items)
                 {
-             
+
                     string nombreFoto = item.ToString();
                     if (fotos.ContainsKey(nombreFoto))
                     {
                         var foto = new FotografiaOrden
                         {
-                            Fotografia = ImageToByteArray(fotos[nombreFoto])  
+                            Fotografia = Utils.ImageToByteArray(fotos[nombreFoto])
                         };
 
                         listaFotografias.Add(foto);
@@ -583,24 +589,16 @@ namespace ProyectoProgramadolll.UI
                 IBLLOrdenTrabajo bLLOrdenTrabajo = new BLLOrdenTrabajo();
                 OrdenTrabajoDTO ordenGuardada = bLLOrdenTrabajo.GuardarOrdenTrabajo(orden, listaFotografias);
 
-               
-                    MessageBox.Show("Orden de trabajo creada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Orden de trabajo creada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.cambiarEstado(EstadoMantenimiento.Ninguno);
-                    this.CargarDatos();
-                
+                this.CargarDatos();
+
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-        private byte[] ImageToByteArray(Image image)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.ToArray();
             }
         }
 
@@ -630,7 +628,7 @@ namespace ProyectoProgramadolll.UI
                     }
 
                     this.lstFotografias.Items.Clear();
-                  
+
                     if (ordenDto.Firma != null && ordenDto.Firma.Length > 0)
                     {
                         using (MemoryStream ms = new MemoryStream(ordenDto.Firma))
@@ -729,16 +727,17 @@ namespace ProyectoProgramadolll.UI
                         bool eliminado = await bLLOrdenTrabajo.EliminarOrdenTrabajo(oOrdenDto.IdOrdenTrabajo);
                         if (eliminado)
                         {
-                           
+
                             MessageBox.Show("Orden de trabajo eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.CargarDatos();
-                        } else
+                        }
+                        else
                         {
 
                             MessageBox.Show("No se pudo eliminar la orden de trabajo, debido a que tiene otras relaciones asociadas.", "Advertencia", MessageBoxButtons.OK);
                             return;
                         }
-                       
+
                     }
                 }
                 else
@@ -749,6 +748,161 @@ namespace ProyectoProgramadolll.UI
             catch (Exception ex)
             {
                 MessageBox.Show("Error al eliminar la orden", "Atencion");
+            }
+        }
+
+        private void btnExportarYEnviar_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                OrdenTrabajoDTO ordenDto = null;
+
+                if (dgvDatos.SelectedRows.Count > 0)
+                {
+                    OrdenTrabajoDTO orden = (OrdenTrabajoDTO)dgvDatos.SelectedRows[0].DataBoundItem;
+                    IBLLOrdenTrabajo oOrden = new BLLOrdenTrabajo();
+                    ordenDto = oOrden.ObtenerOrdenPorId(orden.IdOrdenTrabajo.ToString());
+
+                    GenerarYProcesarOrdenPdf(ordenDto);
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, selecciona una orden de trabajo para exportar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+        }
+
+        private void GenerarYProcesarOrdenPdf(OrdenTrabajoDTO orden)
+        {
+            try
+            {
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "OrdenTrabajo.pdf");
+
+                using (System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Create))
+                {
+                    using (iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 25, 25, 30, 30))
+                    {
+                        iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, fs);
+                        doc.Open();
+
+                        iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph(
+                            "Orden de Trabajo",
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 20, iTextSharp.text.BaseColor.BLACK)
+                        );
+                        p.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
+                        doc.Add(p);
+
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Fecha de inicio: " + orden.FechaInicio.ToString("dd/MM/yyyy"),
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
+                        ));
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Fecha de finalización: " + orden.FechaFinalizacion.ToString("dd/MM/yyyy"),
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
+                        ));
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Cliente: " + orden.NombreCliente,
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
+                        ));
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Vendedor: " + orden.NombreVendedor,
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
+                        ));
+
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Detalles",
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
+                        ));
+
+                        iTextSharp.text.pdf.PdfPTable table = new iTextSharp.text.pdf.PdfPTable(3);
+                        table.AddCell("Bicicleta");
+                        table.AddCell("Servicio");
+                        table.AddCell("Descripción");
+
+                        foreach (var detalle in orden.ListaDetalles)
+                        {
+                            table.AddCell(detalle.NumeroSerie);
+                            table.AddCell(detalle.NombreProducto);
+                            table.AddCell(detalle.Descripcion);
+                        }
+
+                        doc.Add(table);
+
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Fotografías",
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
+                        ));
+
+                        foreach (var fotografia in orden.ListaFotografias)
+                        {
+                            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(fotografia.Fotografia);
+                            doc.Add(img);
+                        }
+
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Firma",
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
+                        ));
+
+                        iTextSharp.text.Image firma = iTextSharp.text.Image.GetInstance(orden.Firma);
+                        doc.Add(firma);
+
+                        doc.Close();
+                    }
+                }
+
+                MessageBox.Show("Archivo guardado en el escritorio y se enviará por correo.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                EnviarPdfPorCorreo(path, orden);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private void EnviarPdfPorCorreo(string filePath, OrdenTrabajoDTO orden)
+        {
+            try
+            {
+                if (!System.IO.File.Exists(filePath))
+                {
+                    MessageBox.Show("No se encontró el archivo para enviar por correo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                mail.From = new System.Net.Mail.MailAddress("nikiarias40@gmail.com");
+                mail.To.Add(orden.NombreCliente);
+                mail.Subject = $"Orden de trabajo {orden.IdOrdenTrabajo}";
+                mail.Body = $"Se adjunta la orden de trabajo {orden.NombreCliente}.";
+
+                System.Net.Mail.Attachment attachment = new System.Net.Mail.Attachment(filePath);
+                mail.Attachments.Add(attachment);
+
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new System.Net.NetworkCredential("nikiarias40@gmail.com", "nmxwrlpkdsrhrjcw"),
+                    EnableSsl = true
+                };
+
+
+                smtp.Send(mail);
+
+                MessageBox.Show("Correo enviado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al enviar el correo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
