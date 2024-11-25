@@ -37,6 +37,7 @@
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnEliminarFirma = new System.Windows.Forms.Button();
             this.pnlFirma = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbServicio = new System.Windows.Forms.ComboBox();
@@ -62,7 +63,6 @@
             this.lstFotografias = new System.Windows.Forms.ListBox();
             this.btnEliminarFoto = new System.Windows.Forms.Button();
             this.btnAgregarListaFotos = new System.Windows.Forms.Button();
-            this.btnEliminarFirma = new System.Windows.Forms.Button();
             this.lblOrden = new System.Windows.Forms.Label();
             this.lblIdFotografia = new System.Windows.Forms.Label();
             this.btnExportarYEnviar = new System.Windows.Forms.Button();
@@ -71,7 +71,6 @@
             this.btnCrear = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            this.pnlFirma.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).BeginInit();
             this.panel1.SuspendLayout();
@@ -151,6 +150,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnEliminarFirma);
             this.groupBox1.Controls.Add(this.pnlFirma);
             this.groupBox1.Location = new System.Drawing.Point(700, 370);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -161,12 +161,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Firma del Cliente";
             // 
+            // btnEliminarFirma
+            // 
+            this.btnEliminarFirma.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarFirma.Location = new System.Drawing.Point(259, 187);
+            this.btnEliminarFirma.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarFirma.Name = "btnEliminarFirma";
+            this.btnEliminarFirma.Size = new System.Drawing.Size(99, 27);
+            this.btnEliminarFirma.TabIndex = 103;
+            this.btnEliminarFirma.Text = "Eliminar Firma";
+            this.btnEliminarFirma.UseVisualStyleBackColor = false;
+            this.btnEliminarFirma.Click += new System.EventHandler(this.btnEliminarFirma_Click);
+            // 
             // pnlFirma
             // 
-            this.pnlFirma.Controls.Add(this.btnEliminarFirma);
-            this.pnlFirma.Location = new System.Drawing.Point(22, 18);
+            this.pnlFirma.Location = new System.Drawing.Point(18, 30);
             this.pnlFirma.Name = "pnlFirma";
-            this.pnlFirma.Size = new System.Drawing.Size(337, 199);
+            this.pnlFirma.Size = new System.Drawing.Size(340, 152);
             this.pnlFirma.TabIndex = 96;
             this.pnlFirma.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFirma_Paint);
             this.pnlFirma.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlFirma_MouseDown);
@@ -237,13 +248,13 @@
             this.panel1.Controls.Add(this.dtpFinalizacion);
             this.panel1.Location = new System.Drawing.Point(24, 98);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(952, 252);
+            this.panel1.Size = new System.Drawing.Size(989, 252);
             this.panel1.TabIndex = 94;
             // 
             // btnEditarTelefono
             // 
             this.btnEditarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEditarTelefono.Location = new System.Drawing.Point(840, 212);
+            this.btnEditarTelefono.Location = new System.Drawing.Point(915, 84);
             this.btnEditarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEditarTelefono.Name = "btnEditarTelefono";
             this.btnEditarTelefono.Size = new System.Drawing.Size(56, 31);
@@ -255,7 +266,7 @@
             // btnEliminarTelefono
             // 
             this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarTelefono.Location = new System.Drawing.Point(780, 212);
+            this.btnEliminarTelefono.Location = new System.Drawing.Point(915, 119);
             this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarTelefono.Name = "btnEliminarTelefono";
             this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
@@ -319,9 +330,11 @@
             this.QR});
             this.dgvDatos.Location = new System.Drawing.Point(24, 370);
             this.dgvDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(645, 234);
             this.dgvDatos.TabIndex = 95;
             this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
@@ -379,7 +392,7 @@
             // btnFoto
             // 
             this.btnFoto.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnFoto.Location = new System.Drawing.Point(1029, 301);
+            this.btnFoto.Location = new System.Drawing.Point(1046, 301);
             this.btnFoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnFoto.Name = "btnFoto";
             this.btnFoto.Size = new System.Drawing.Size(94, 49);
@@ -393,14 +406,14 @@
             this.lstFotografias.FormattingEnabled = true;
             this.lstFotografias.Location = new System.Drawing.Point(1105, 375);
             this.lstFotografias.Name = "lstFotografias";
-            this.lstFotografias.Size = new System.Drawing.Size(240, 212);
+            this.lstFotografias.Size = new System.Drawing.Size(240, 225);
             this.lstFotografias.TabIndex = 97;
             this.lstFotografias.SelectedIndexChanged += new System.EventHandler(this.lstFotografias_SelectedIndexChanged);
             // 
             // btnEliminarFoto
             // 
             this.btnEliminarFoto.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarFoto.Location = new System.Drawing.Point(1225, 301);
+            this.btnEliminarFoto.Location = new System.Drawing.Point(1242, 301);
             this.btnEliminarFoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarFoto.Name = "btnEliminarFoto";
             this.btnEliminarFoto.Size = new System.Drawing.Size(112, 49);
@@ -412,7 +425,7 @@
             // btnAgregarListaFotos
             // 
             this.btnAgregarListaFotos.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarListaFotos.Location = new System.Drawing.Point(1127, 301);
+            this.btnAgregarListaFotos.Location = new System.Drawing.Point(1144, 301);
             this.btnAgregarListaFotos.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregarListaFotos.Name = "btnAgregarListaFotos";
             this.btnAgregarListaFotos.Size = new System.Drawing.Size(94, 49);
@@ -420,18 +433,6 @@
             this.btnAgregarListaFotos.Text = "Agregar Foto a la Lista";
             this.btnAgregarListaFotos.UseVisualStyleBackColor = false;
             this.btnAgregarListaFotos.Click += new System.EventHandler(this.btnAgregarListaFotos_Click);
-            // 
-            // btnEliminarFirma
-            // 
-            this.btnEliminarFirma.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarFirma.Location = new System.Drawing.Point(277, 166);
-            this.btnEliminarFirma.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEliminarFirma.Name = "btnEliminarFirma";
-            this.btnEliminarFirma.Size = new System.Drawing.Size(58, 31);
-            this.btnEliminarFirma.TabIndex = 103;
-            this.btnEliminarFirma.Text = "Eliminar Firma";
-            this.btnEliminarFirma.UseVisualStyleBackColor = false;
-            this.btnEliminarFirma.Click += new System.EventHandler(this.btnEliminarFirma_Click);
             // 
             // lblOrden
             // 
@@ -553,7 +554,6 @@
             this.Text = "ProcesoOrdenTrabajo";
             this.Load += new System.EventHandler(this.ProcesoOrdenTrabajo_Load);
             this.groupBox1.ResumeLayout(false);
-            this.pnlFirma.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ptbFotoBici)).EndInit();
             this.panel1.ResumeLayout(false);

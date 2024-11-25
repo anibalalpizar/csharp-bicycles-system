@@ -1,22 +1,38 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
+  "WorkspaceRootPath": "D:\\Proyecto Bicycle\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|c:\\users\\anibal\\dev\\csharp-bicycles-system\\util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:bll\\bllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\dal\\dalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\interfaces\\idalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:interfaces\\idalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\interfaces\\ibllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:interfaces\\ibllfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,6 +78,10 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
@@ -81,58 +101,101 @@
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "DALOrdenTrabajo.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\DAL\\DALOrdenTrabajo.cs",
               "RelativeDocumentMoniker": "DAL\\DALOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\DAL\\DALOrdenTrabajo.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\DAL\\DALOrdenTrabajo.cs",
               "RelativeToolTip": "DAL\\DALOrdenTrabajo.cs",
-              "ViewState": "AgIAANQAAAAAAAAAAAAQwO4AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAIBAAAAAAAAAAAQwC8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T05:18:34.082Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Utils.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Util\\Utils.cs",
-              "RelativeDocumentMoniker": "Util\\Utils.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\Util\\Utils.cs",
-              "RelativeToolTip": "Util\\Utils.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAAKYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T05:04:49.838Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProcesoOrdenTrabajo.cs",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
-              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs",
-              "ViewState": "AgIAAF4CAAAAAAAAAAAgwHMCAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T04:33:55.817Z",
+              "WhenOpened": "2024-11-25T02:24:26.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProcesoOrdenTrabajo.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs",
+              "Title": "ProcesoOrdenTrabajo.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
               "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
-              "ToolTip": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\UI\\ProcesoOrdenTrabajo.cs [Design]",
+              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs",
+              "ViewState": "AgIAACwCAAAAAAAAAAAawEoCAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:18:25.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BLLFactura.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\BLL\\BLLFactura.cs",
+              "RelativeDocumentMoniker": "BLL\\BLLFactura.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\BLL\\BLLFactura.cs",
+              "RelativeToolTip": "BLL\\BLLFactura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:17:43.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DALFactura.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\DAL\\DALFactura.cs",
+              "RelativeDocumentMoniker": "DAL\\DALFactura.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\DAL\\DALFactura.cs",
+              "RelativeToolTip": "DAL\\DALFactura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:17:18.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProcesoOrdenTrabajo.cs [Design]",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs [Design]",
               "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-23T04:33:53.872Z",
+              "WhenOpened": "2024-11-25T01:08:18.157Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IBLLFactura.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\Interfaces\\IBLLFactura.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IBLLFactura.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\Interfaces\\IBLLFactura.cs",
+              "RelativeToolTip": "Interfaces\\IBLLFactura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:06:43.45Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IDALFactura.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\Interfaces\\IDALFactura.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IDALFactura.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\Interfaces\\IDALFactura.cs",
+              "RelativeToolTip": "Interfaces\\IDALFactura.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:04:32.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProcesoFacturacion.cs [Design]",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs",
+              "RelativeDocumentMoniker": "UI\\ProcesoFacturacion.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs [Design]",
+              "RelativeToolTip": "UI\\ProcesoFacturacion.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T00:22:30.224Z",
               "EditorCaption": " [Design]"
             }
           ]

@@ -61,11 +61,19 @@ namespace ProyectoProgramadolll.UI
         {
             try
             {
+                
                 string bicicletaSeleccionada = this.cmbBicicletas.Text;
                 string servicioSeleccionado = this.cmbServicio.Text;
                 string descripcion = this.txaDescripcion.Text;
 
+                if (string.IsNullOrWhiteSpace(descripcion))
+                {
+                    MessageBox.Show("Por favor, ingrese una descripción antes de agregar el detalle.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; 
+                }
+
                 this.lstDetalles.Items.Add($"{bicicletaSeleccionada} - {servicioSeleccionado} - {descripcion}");
+                this.txaDescripcion.Clear();
             }
             catch (Exception ex)
             {
@@ -535,11 +543,11 @@ namespace ProyectoProgramadolll.UI
                 foreach (var item in lstFotografias.Items)
                 {
                     string nombreFoto = item.ToString();
-                    if (fotos.ContainsKey(nombreFoto)) // Verifica si la foto existe en el diccionario
+                    if (fotos.ContainsKey(nombreFoto)) 
                     {
                         var foto = new FotografiaOrden
                         {
-                            Fotografia = Utils.ImageToByteArray(fotos[nombreFoto]) // Convierte la imagen a un byte array
+                            Fotografia = Utils.ImageToByteArray(fotos[nombreFoto]) 
                         };
 
                         listaFotografias.Add(foto);
@@ -547,13 +555,8 @@ namespace ProyectoProgramadolll.UI
                 }
 
 
-                // mostrar un message box con la cantidad de fotografías que se van a guardar
 
                 orden.ListaFotografias = listaFotografias;
-
-
-
-
 
                 IBLLOrdenTrabajo bLLOrdenTrabajo = new BLLOrdenTrabajo();
                 OrdenTrabajoDTO ordenGuardada = bLLOrdenTrabajo.GuardarOrdenTrabajo(orden, listaFotografias);
@@ -624,7 +627,7 @@ namespace ProyectoProgramadolll.UI
                         {
                             try
                             {
-                                // Convertir el byte array en imagen
+                                
                                 Image imagen = Utils.ByteArrayToImage(fotografia.Fotografia);
 
                                 if (imagen != null)
@@ -749,67 +752,150 @@ namespace ProyectoProgramadolll.UI
                         iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(doc, fs);
                         doc.Open();
 
-                        iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph(
-                            "Orden de Trabajo",
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 20, iTextSharp.text.BaseColor.BLACK)
+                        
+                        iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph(
+                            "Orden de Trabajo #" + orden.IdOrdenTrabajo,
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 20, iTextSharp.text.BaseColor.BLUE)
                         );
-                        p.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
-                        doc.Add(p);
+                        title.Alignment = iTextSharp.text.Element.ALIGN_CENTER;
+                        doc.Add(title);
+                        doc.Add(new iTextSharp.text.Paragraph(" "));
 
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Fecha de inicio: " + orden.FechaInicio.ToString("dd/MM/yyyy"),
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
-                        ));
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Fecha de finalización: " + orden.FechaFinalizacion.ToString("dd/MM/yyyy"),
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
-                        ));
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Cliente: " + orden.NombreCliente,
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
-                        ));
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Vendedor: " + orden.NombreVendedor,
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK)
-                        ));
+                        iTextSharp.text.pdf.PdfPTable infoTable = new iTextSharp.text.pdf.PdfPTable(2);
+                        infoTable.WidthPercentage = 100;
+                        infoTable.SetWidths(new float[] { 1, 3 });
 
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Detalles",
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
-                        ));
+                        AddCellToTable(infoTable, "Fecha de Inicio:", true);
+                        AddCellToTable(infoTable, orden.FechaInicio.ToString("dd/MM/yyyy"), false);
+                        AddCellToTable(infoTable, "Fecha de Finalización:", true);
+                        AddCellToTable(infoTable, orden.FechaFinalizacion.ToString("dd/MM/yyyy"), false);
+                        AddCellToTable(infoTable, "Cliente:", true);
+                        AddCellToTable(infoTable, orden.NombreCliente, false);
+                        AddCellToTable(infoTable, "Vendedor:", true);
+                        AddCellToTable(infoTable, orden.NombreVendedor, false);
 
-                        iTextSharp.text.pdf.PdfPTable table = new iTextSharp.text.pdf.PdfPTable(3);
-                        table.AddCell("Bicicleta");
-                        table.AddCell("Servicio");
-                        table.AddCell("Descripción");
+                        doc.Add(infoTable);
+                        doc.Add(new iTextSharp.text.Paragraph(" ")); // Espaciado
+
+                      
+                        doc.Add(new iTextSharp.text.Paragraph(
+                            "Detalles de Servicio",
+                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 16, iTextSharp.text.BaseColor.BLACK)
+                        ));
+                        doc.Add(new iTextSharp.text.Paragraph(" ")); 
+
+                        iTextSharp.text.pdf.PdfPTable detailTable = new iTextSharp.text.pdf.PdfPTable(3);
+                        detailTable.WidthPercentage = 100;
+                        detailTable.SetWidths(new float[] { 2, 2, 3 });
+
+                        AddCellToTable(detailTable, "Bicicleta", true, true);
+                        AddCellToTable(detailTable, "Servicio", true, true);
+                        AddCellToTable(detailTable, "Descripción", true, true);
 
                         foreach (var detalle in orden.ListaDetalles)
                         {
-                            table.AddCell(detalle.NumeroSerie);
-                            table.AddCell(orden.NombreProducto);
-                            table.AddCell(detalle.Descripcion);
+                            AddCellToTable(detailTable, detalle.NumeroSerie, false, true);
+                            AddCellToTable(detailTable, orden.NombreProducto, false, true);
+                            AddCellToTable(detailTable, detalle.Descripcion, false, true);
                         }
 
-                        doc.Add(table);
+                        doc.Add(detailTable);
+                        doc.Add(new iTextSharp.text.Paragraph(" ")); 
 
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Fotografías",
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
-                        ));
-
-                        foreach (var fotografia in orden.ListaFotografias)
+                       
+                        if (orden.ListaFotografias != null && orden.ListaFotografias.Any())
                         {
-                            iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(fotografia.Fotografia);
-                            doc.Add(img);
+                            doc.Add(new iTextSharp.text.Paragraph(
+                                "Fotografías",
+                                iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 16, iTextSharp.text.BaseColor.BLACK)
+                            ));
+                            doc.Add(new iTextSharp.text.Paragraph(" ")); 
+
+                         
+                            iTextSharp.text.pdf.PdfPTable fotoTable = new iTextSharp.text.pdf.PdfPTable(3); 
+                            fotoTable.WidthPercentage = 100; 
+                            fotoTable.SpacingBefore = 10; 
+
+                            int fotoCount = 0;
+                            foreach (var foto in orden.ListaFotografias.GroupBy(f => f.IdFotografiaOrden).Select(g => g.First())) 
+                                using (MemoryStream ms = new MemoryStream())
+                                {
+                                   
+                                    using (System.Drawing.Image image = System.Drawing.Image.FromStream(new MemoryStream(foto.Fotografia)))
+                                    {
+                                        var qualityParam = new System.Drawing.Imaging.EncoderParameters(1);
+                                        qualityParam.Param[0] = new System.Drawing.Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 50L);
+
+                                        
+                                        var jpegCodec = System.Drawing.Imaging.ImageCodecInfo.GetImageDecoders()
+                                            .FirstOrDefault(codec => codec.FormatID == System.Drawing.Imaging.ImageFormat.Jpeg.Guid);
+
+                                        if (jpegCodec != null)
+                                        {
+                                            image.Save(ms, jpegCodec, qualityParam);
+                                        }
+
+                                        byte[] compressedImage = ms.ToArray();
+
+                                        iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(compressedImage);
+                                        float cellWidth = fotoTable.TotalWidth / 3;
+                                        float cellHeight = 100f;
+                                        imagen.ScaleToFit(cellWidth, cellHeight);
+                                        
+
+                                        
+                                        fotoTable.AddCell(imagen);
+                                        fotoCount++;
+
+                                        if (fotoCount % 3 == 0)
+                                        {
+                                            fotoTable.CompleteRow();  
+                                        }
+                                    }
+
+                                }
+
+
+                            int remainingCells = 3 - (fotoCount % 3);  
+                            if (remainingCells < 3)
+                            {
+                                for (int i = 0; i < remainingCells; i++)
+                                {
+                                    fotoTable.AddCell("");  
+                                }
+                                fotoTable.CompleteRow();  
+                            }
+
+                            
+                            doc.Add(fotoTable);
+                        } else
+                        {
+                            doc.Add(new iTextSharp.text.Paragraph("La orden no incluye fotografías adjuntadas."));
                         }
 
-                        doc.Add(new iTextSharp.text.Paragraph(
-                            "Firma",
-                            iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 16, iTextSharp.text.BaseColor.BLACK)
-                        ));
+                        if (orden.Firma != null)
+                        {
+                            
+                            doc.Add(new iTextSharp.text.Paragraph(
+                                "Firma",
+                                iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 16, iTextSharp.text.BaseColor.BLACK)
+                            ));
+                            doc.Add(new iTextSharp.text.Paragraph(" ")); 
 
-                        iTextSharp.text.Image firma = iTextSharp.text.Image.GetInstance(orden.Firma);
-                        doc.Add(firma);
+                            iTextSharp.text.Image firma = iTextSharp.text.Image.GetInstance(orden.Firma);
+
+                            
+                            firma.ScaleToFit(100, 50); 
+
+                            firma.Alignment = iTextSharp.text.Element.ALIGN_LEFT;
+
+                            firma.Border = iTextSharp.text.Rectangle.BOX;
+                            firma.BorderWidth = 1;
+                            firma.BorderColor = new iTextSharp.text.BaseColor(200, 200, 200); 
+
+                            doc.Add(firma);
+                            doc.Add(new iTextSharp.text.Paragraph(" ")); 
+                        }
 
                         doc.Close();
                     }
@@ -827,6 +913,23 @@ namespace ProyectoProgramadolll.UI
             }
         }
 
+        private void AddCellToTable(iTextSharp.text.pdf.PdfPTable table, string text, bool isHeader, bool alignCenter = false)
+        {
+            var font = isHeader
+                ? iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 12, iTextSharp.text.BaseColor.WHITE)
+                : iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12, iTextSharp.text.BaseColor.BLACK);
+
+            var backgroundColor = isHeader ? iTextSharp.text.BaseColor.DARK_GRAY : iTextSharp.text.BaseColor.WHITE;
+
+            var cell = new iTextSharp.text.pdf.PdfPCell(new iTextSharp.text.Phrase(text, font))
+            {
+                BackgroundColor = backgroundColor,
+                Padding = 5,
+                HorizontalAlignment = alignCenter ? iTextSharp.text.Element.ALIGN_CENTER : iTextSharp.text.Element.ALIGN_LEFT
+            };
+
+            table.AddCell(cell);
+        }
 
         private void cambiarEstado(EstadoMantenimiento estadoMantenimiento)
         {
@@ -935,7 +1038,7 @@ namespace ProyectoProgramadolll.UI
 
                 System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
                 mail.From = new System.Net.Mail.MailAddress("nikiarias40@gmail.com");
-                mail.To.Add("anibal.alpizar14@gmail.com");
+                mail.To.Add("pruebasunifio@gmail.com");
                 mail.Subject = $"Orden de trabajo {orden.IdOrdenTrabajo}";
                 mail.Body = $"Se adjunta la orden de trabajo {orden.NombreCliente}.";
 

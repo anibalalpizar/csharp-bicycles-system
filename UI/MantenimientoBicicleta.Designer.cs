@@ -69,6 +69,7 @@
             this.Color});
             this.dgvDatos.Location = new System.Drawing.Point(42, 247);
             this.dgvDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -80,6 +81,7 @@
             this.dgvDatos.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(682, 292);
             this.dgvDatos.TabIndex = 33;
             // 

@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="BLL\BLLBicicleta.cs" />
     <Compile Include="BLL\BLLClientes.cs" />
+    <Compile Include="BLL\BLLFactura.cs" />
     <Compile Include="BLL\BLLOrdenTrabajo.cs" />
     <Compile Include="BLL\BLLPadron.cs" />
     <Compile Include="BLL\BLLProductoServicio.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="BLL\ProvinciaBLL.cs" />
     <Compile Include="DAL\DALBicicleta.cs" />
     <Compile Include="DAL\DALClientes.cs" />
+    <Compile Include="DAL\DALFactura.cs" />
     <Compile Include="DAL\DALOrdenTrabajo.cs" />
     <Compile Include="DAL\DALProductoServicio.cs" />
     <Compile Include="DAL\DALRol.cs" />
@@ -124,10 +126,12 @@
     <Compile Include="DAL\ProvinciaDAL.cs" />
     <Compile Include="Entities\Bicicleta.cs" />
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\DetalleFacturas.cs" />
     <Compile Include="Entities\DetalleOrdenTrabajo.cs" />
     <Compile Include="Entities\Direccion.cs" />
     <Compile Include="Entities\DTO\BicicletaDTO.cs" />
     <Compile Include="Entities\DTO\ClienteDTO.cs" />
+    <Compile Include="Entities\DTO\FacturaDTO.cs" />
     <Compile Include="Entities\DTO\OrdenTrabajoDTO.cs" />
     <Compile Include="Entities\DTO\PadronDTO.cs" />
     <Compile Include="Entities\Canton.cs" />
@@ -135,8 +139,11 @@
     <Compile Include="Entities\DTO\ProductoServicioDTO.cs" />
     <Compile Include="Entities\DTO\VendedorClienteDTO.cs" />
     <Compile Include="Entities\DTO\VendedorDTO.cs" />
+    <Compile Include="Entities\Factura.cs" />
+    <Compile Include="Entities\FacturasXML.cs" />
     <Compile Include="Entities\FotografiaOrden.cs" />
     <Compile Include="Entities\OrdenTrabajo.cs" />
+    <Compile Include="Entities\Pagos.cs" />
     <Compile Include="Entities\ProductoServicio.cs" />
     <Compile Include="Entities\Provincia.cs" />
     <Compile Include="Entities\QuickResponse.cs" />
@@ -155,6 +162,7 @@
     </Compile>
     <Compile Include="Interfaces\IBLLBicicleta.cs" />
     <Compile Include="Interfaces\IBLLClientes.cs" />
+    <Compile Include="Interfaces\IBLLFactura.cs" />
     <Compile Include="Interfaces\IBLLOrdenTrabajo.cs" />
     <Compile Include="Interfaces\IBLLPadron.cs" />
     <Compile Include="Interfaces\IBLLProductoServicio.cs" />
@@ -165,6 +173,7 @@
     <Compile Include="Interfaces\IDALBicicleta.cs" />
     <Compile Include="Interfaces\IDALClientes.cs" />
     <Compile Include="Interfaces\IDALDireccion.cs" />
+    <Compile Include="Interfaces\IDALFactura.cs" />
     <Compile Include="Interfaces\IDALOrdenTrabajo.cs" />
     <Compile Include="Interfaces\IDALProductoServicio.cs" />
     <Compile Include="Interfaces\IDALRol.cs" />

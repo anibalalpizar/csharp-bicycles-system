@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\anibal\\dev\\csharp-bicycles-system\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Proyecto Bicycle\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesoordentrabajo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 231,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -45,6 +58,10 @@
             },
             {
               "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
@@ -65,7 +82,45 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DALOrdenTrabajo.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\DAL\\DALOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "DAL\\DALOrdenTrabajo.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\DAL\\DALOrdenTrabajo.cs",
+              "RelativeToolTip": "DAL\\DALOrdenTrabajo.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAqwPYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T02:24:26.467Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProcesoOrdenTrabajo.cs",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs",
+              "ViewState": "AgIAACUCAAAAAAAAAAAAwEACAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:18:25.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProcesoOrdenTrabajo.cs [Design]",
+              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs",
+              "RelativeDocumentMoniker": "UI\\ProcesoOrdenTrabajo.cs",
+              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoOrdenTrabajo.cs [Design]",
+              "RelativeToolTip": "UI\\ProcesoOrdenTrabajo.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T01:08:18.157Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },

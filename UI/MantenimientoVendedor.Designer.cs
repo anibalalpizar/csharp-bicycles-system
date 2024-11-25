@@ -357,8 +357,10 @@
             this.Column8,
             this.EstadoDescripcion});
             this.dgvDatos.Location = new System.Drawing.Point(9, 319);
+            this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.ReadOnly = true;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(943, 315);
             this.dgvDatos.TabIndex = 89;
             // 

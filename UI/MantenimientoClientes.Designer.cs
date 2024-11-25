@@ -92,9 +92,11 @@
             this.Telefonos});
             this.dgvDatos.Location = new System.Drawing.Point(18, 371);
             this.dgvDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvDatos.MultiSelect = false;
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.RowHeadersWidth = 51;
             this.dgvDatos.RowTemplate.Height = 24;
+            this.dgvDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDatos.Size = new System.Drawing.Size(852, 256);
             this.dgvDatos.TabIndex = 18;
             // 

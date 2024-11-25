@@ -265,5 +265,10 @@ namespace ProyectoProgramadolll.UI
                 MessageBox.Show("Debe seleccionar un producto/servicio para editar", "Atencion");
             }
         }
+
+        private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

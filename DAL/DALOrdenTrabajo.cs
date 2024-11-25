@@ -29,31 +29,31 @@ namespace ProyectoProgramadolll.DAL
                 cmd.CommandType = CommandType.StoredProcedure;
                 double filas = 0;
 
-                // Serializar detalles a JSON
+
                 string detallesJson = JsonConvert.SerializeObject(orden.ListaDetalles).Trim();
 
-                // Convertir fotografías a Base64 y serializar como JSON
-                string fotografiasJson = JsonConvert.SerializeObject(fotografias
-                    .Where(f => f.Fotografia != null && f.Fotografia.Length > 0) // Filtrar fotografías válidas
-                    .Select(f => Convert.ToBase64String(f.Fotografia))); // Convertir a Base64
 
-                // Configurar parámetros del procedimiento almacenado
+                string fotografiasJson = JsonConvert.SerializeObject(fotografias
+                    .Where(f => f.Fotografia != null && f.Fotografia.Length > 0)
+                    .Select(f => Convert.ToBase64String(f.Fotografia)));
+
+
                 cmd.Parameters.AddWithValue("@idOrdenTrabajo", orden.IdOrdenTrabajo);
                 cmd.Parameters.AddWithValue("@idCliente", orden.IdCliente);
                 cmd.Parameters.AddWithValue("@idVendedor", orden.IdVendedor);
                 cmd.Parameters.AddWithValue("@fechaInicio", orden.FechaInicio);
                 cmd.Parameters.AddWithValue("@fechaFinalizacion", orden.FechaFinalizacion);
-                cmd.Parameters.AddWithValue("@firma", orden.Firma ?? (object)DBNull.Value); // Firma opcional
+                cmd.Parameters.AddWithValue("@firma", orden.Firma ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@detalles", detallesJson);
                 cmd.Parameters.AddWithValue("@fotografias", string.IsNullOrEmpty(fotografiasJson) ? (object)DBNull.Value : fotografiasJson);
 
-                // Ejecutar la consulta
+
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
                     filas = db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
                 }
 
-                // Verificar y devolver la orden actualizada
+
                 if (filas > 0)
                     oOrden = this.VerificarOrdenPorId(orden.IdOrdenTrabajo.ToString());
 
@@ -260,38 +260,52 @@ namespace ProyectoProgramadolll.DAL
                     orden.NombreProducto = dr["nombreProducto"] as string;
 
 
+
                     orden.ListaDetalles = new List<DetalleOrdenTrabajo>();
+                    HashSet<int> idsDetalles = new HashSet<int>();
 
-
-                    if (dr["idDetalleOrdenTrabajo"] != DBNull.Value)
+                    foreach (DataRow detalleRow in ds.Tables[0].Rows)
                     {
-                        var detalle = new DetalleOrdenTrabajo
+                        if (detalleRow["idDetalleOrdenTrabajo"] != DBNull.Value)
                         {
-                            IdDetalleOrdenTrabajo = Convert.ToInt32(dr["idDetalleOrdenTrabajo"]),
-                            IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]),
-                            NumeroSerie = Convert.ToString(dr["numeroSerie"]),
-                            IdProductoServicio = Convert.ToInt32(dr["idProductoServicio"]),
-                            Descripcion = Convert.ToString(dr["descripcion"])
-                        };
-                        orden.ListaDetalles.Add(detalle);
+                            var idDetalle = Convert.ToInt32(detalleRow["idDetalleOrdenTrabajo"]);
+                            if (!idsDetalles.Contains(idDetalle))
+                            {
+                                var detalle = new DetalleOrdenTrabajo
+                                {
+                                    IdDetalleOrdenTrabajo = idDetalle,
+                                    IdOrdenTrabajo = Convert.ToInt32(detalleRow["idOrdenTrabajo"]),
+                                    NumeroSerie = Convert.ToString(detalleRow["NumeroSerie"]),
+                                    IdProductoServicio = Convert.ToInt32(detalleRow["idProductoServicio"]),
+                                    Descripcion = Convert.ToString(detalleRow["descripcion"])
+                                };
+                                orden.ListaDetalles.Add(detalle);
+                                idsDetalles.Add(idDetalle);
+                            }
+                        }
                     }
 
 
                     orden.ListaFotografias = new List<FotografiaOrden>();
+                    HashSet<int> idsFotografias = new HashSet<int>();
 
-                    if (dr["idFotografia"] != DBNull.Value)
+                    foreach (DataRow fotoRow in ds.Tables[0].Rows)
                     {
-                        foreach (DataRow fotoRow in ds.Tables[0].Rows)
+                        if (fotoRow["idFotografia"] != DBNull.Value)
                         {
-                            var fotos = new FotografiaOrden
+                            var idFotografia = Convert.ToInt32(fotoRow["idFotografia"]);
+                            if (!idsFotografias.Contains(idFotografia))
                             {
-                                IdFotografiaOrden = Convert.ToInt32(fotoRow["idFotografia"]),
-                                Fotografia = fotoRow["fotografia"] as byte[]
-                            };
-                            orden.ListaFotografias.Add(fotos);
+                                var fotos = new FotografiaOrden
+                                {
+                                    IdFotografiaOrden = idFotografia,
+                                    Fotografia = fotoRow["fotografia"] as byte[]
+                                };
+                                orden.ListaFotografias.Add(fotos);
+                                idsFotografias.Add(idFotografia);
+                            }
                         }
                     }
-
                 }
 
                 return orden;
