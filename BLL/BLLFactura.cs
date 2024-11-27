@@ -1,4 +1,6 @@
-﻿using ProyectoProgramadolll.Entities.DTO;
+﻿using ProyectoProgramadolll.DAL;
+using ProyectoProgramadolll.Entities;
+using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,21 @@ namespace ProyectoProgramadolll.BLL
 {
     public class BLLFactura : IBLLFactura
     {
-        public Task<bool> EliminarFactura(int idFactura)
+     
+        public FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD)
         {
-            throw new NotImplementedException();
+            IDALFactura facturaDAL = new DALFactura();
+
+             return facturaDAL.GuardarFactura(factura, montoIndividualC, montoIndividualD);
+        
+
+
         }
 
-        public FacturaDTO GuardarFactura(FacturaDTO factura)
+        public FacturaDTO ObtenerFacturaPorId(int idFactura)
         {
-            throw new NotImplementedException();
-        }
-
-        public FacturaDTO ObtenerFacturaPorId(string idFactura)
-        {
-            throw new NotImplementedException();
+            IDALFactura facturaDAL = new DALFactura();
+            return facturaDAL.ObtenerFacturaPorId(idFactura);
         }
 
         public List<FacturaDTO> ObtenerFacturas()

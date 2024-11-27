@@ -10,14 +10,10 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IDALFactura
     {
-        FacturaDTO GuardarFactura(FacturaDTO factura);
-        FacturaDTO ObtenerFacturaPorId(string idFactura);
-
-        FacturaDTO ActualizarFactura(FacturaDTO factura);
-
-        Task<bool> EliminarFactura(int factura);
+        FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD);
+        FacturaDTO ObtenerFacturaPorId(int idFactura);
 
         List<FacturaDTO> ObtenerFacturas();
-        FacturaDTO VerificarFacturaPorId(string idFactura);
+        
     }
 }

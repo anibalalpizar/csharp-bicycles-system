@@ -42,5 +42,17 @@ namespace ProyectoProgramadolll.BLL
             IDALOrdenTrabajo oOrdenDAL = new DALOrdenTrabajo();
             return oOrdenDAL.ObtenerOrdenPorId(idOrdenTrabajo);
         }
+
+        public Task<IEnumerable<OrdenTrabajoDTO>> ObtenerOrdenPorIdCliente(string idCliente)
+        {
+            IDALOrdenTrabajo oOrdenDAL = new DALOrdenTrabajo();
+            return oOrdenDAL.ObtenerOrdenPorIdCliente(idCliente);
+        }
+
+        public Task<IEnumerable<OrdenTrabajoDTO>> ObtenerPrecioProductoPorIdOrden(string idOrdenTrabajo)
+        {
+            IDALOrdenTrabajo oOrdenDAL = new DALOrdenTrabajo();
+            return oOrdenDAL.ObtenerPrecioProductoPorIdOrden(idOrdenTrabajo);
+        }
     }
 }

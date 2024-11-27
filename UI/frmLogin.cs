@@ -67,6 +67,7 @@ namespace ProyectoProgramadolll.UI
 
                     MainForm oMainForm = new MainForm(oVendedor);
                     oMainForm.Show();
+                    this.Hide();
 
                 }
 

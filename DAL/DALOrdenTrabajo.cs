@@ -244,7 +244,7 @@ namespace ProyectoProgramadolll.DAL
 
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    orden = new OrdenTrabajoDTO();
+                    orden = new OrdenTrabajoDTO(); ;
                     DataRow dr = ds.Tables[0].Rows[0];
 
                     orden.IdOrdenTrabajo = Convert.ToInt32(dr["idOrdenTrabajo"]);
@@ -356,8 +356,81 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
+        public async Task<IEnumerable<OrdenTrabajoDTO>> ObtenerOrdenPorIdCliente(string idCliente)
+        {
+            List<OrdenTrabajoDTO> lista = new List<OrdenTrabajoDTO>();
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "sp_ObtenerOrdenPorIdCliente",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@idCliente", idCliente);
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    DataTable dt = await db.ExecuteReaderAsync(cmd, "T");
 
 
+                    foreach (DataRow reader in dt.Rows)
+                    {
+                        OrdenTrabajoDTO orden = new OrdenTrabajoDTO(); ;
 
+                        orden.IdOrdenTrabajo = Convert.ToInt32(reader["idOrdenTrabajo"]);
+                        orden.IdCliente = Convert.ToInt32(reader["idCliente"]);
+
+                        lista.Add(orden);
+
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw new Exception("Error al obtener la orden de trabajo", ex);
+            }
+        }
+
+        public async Task<IEnumerable<OrdenTrabajoDTO>> ObtenerPrecioProductoPorIdOrden(string idOrdenTrabajo)
+        {
+            List<OrdenTrabajoDTO> lista = new List<OrdenTrabajoDTO>();
+            SqlCommand cmd = new SqlCommand
+            {
+                CommandText = "sp_ObtenerPrecioProductoPorIdOrden",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            cmd.Parameters.AddWithValue("@idOrdenTrabajo", Convert.ToInt32(idOrdenTrabajo));
+
+            try
+            {
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    DataTable dt = await db.ExecuteReaderAsync(cmd, "T");
+
+
+                    foreach (DataRow reader in dt.Rows)
+                    {
+                        OrdenTrabajoDTO orden = new OrdenTrabajoDTO(); ;
+
+                        orden.TotalColones = Convert.ToInt32(reader["TotalColones"]);
+
+                        lista.Add(orden);
+
+                    }
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw new Exception("Error al obtener la orden de trabajo", ex);
+            }
+        }
     }
 }

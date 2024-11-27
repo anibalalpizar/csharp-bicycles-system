@@ -16,6 +16,8 @@ namespace ProyectoProgramadolll.Interfaces
 
         List<OrdenTrabajoDTO> ObtenerOrdenesTrabajo();
         OrdenTrabajoDTO ObtenerOrdenPorId(string idOrdenTrabajo);
+        Task<IEnumerable<OrdenTrabajoDTO>> ObtenerOrdenPorIdCliente(string idCliente);
+        Task<IEnumerable<OrdenTrabajoDTO>> ObtenerPrecioProductoPorIdOrden(string idOrdenTrabajo);
 
     }
 }

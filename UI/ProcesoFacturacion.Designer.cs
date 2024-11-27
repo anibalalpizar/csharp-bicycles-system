@@ -32,8 +32,6 @@
             this.cmbClientes = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ptbQR = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtNumeroTarjeta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,23 +39,19 @@
             this.cmbTipoTarjeta = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCalcularFactura = new System.Windows.Forms.Button();
+            this.btnAnnadirOrden = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtPrecioDolares = new System.Windows.Forms.TextBox();
             this.txtPrecioColones = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnCalcularPrecioDolar = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbOrdenTrabajo = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
             this.lstDetallesFactura = new System.Windows.Forms.ListBox();
-            this.btnAgregarOrden = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbQR)).BeginInit();
+            this.btnEliminarTelefono = new System.Windows.Forms.Button();
+            this.btnCobrar = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -65,12 +59,14 @@
             // 
             // cmbClientes
             // 
+            this.cmbClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbClientes.FormattingEnabled = true;
             this.cmbClientes.Location = new System.Drawing.Point(14, 31);
             this.cmbClientes.Margin = new System.Windows.Forms.Padding(2);
             this.cmbClientes.Name = "cmbClientes";
             this.cmbClientes.Size = new System.Drawing.Size(175, 21);
             this.cmbClientes.TabIndex = 14;
+            this.cmbClientes.SelectedIndexChanged += new System.EventHandler(this.cmbClientes_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -84,7 +80,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(699, 423);
+            this.button1.Location = new System.Drawing.Point(490, 347);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(137, 41);
@@ -92,34 +88,13 @@
             this.button1.Text = "Enviar Factura Y XML";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ptbQR);
-            this.groupBox1.Location = new System.Drawing.Point(500, 255);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(170, 163);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "QR";
-            // 
-            // ptbQR
-            // 
-            this.ptbQR.Location = new System.Drawing.Point(9, 17);
-            this.ptbQR.Margin = new System.Windows.Forms.Padding(2);
-            this.ptbQR.Name = "ptbQR";
-            this.ptbQR.Size = new System.Drawing.Size(148, 131);
-            this.ptbQR.TabIndex = 0;
-            this.ptbQR.TabStop = false;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtNumeroTarjeta);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.cmbTipoTarjeta);
-            this.groupBox2.Location = new System.Drawing.Point(500, 73);
+            this.groupBox2.Location = new System.Drawing.Point(12, 287);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -158,6 +133,7 @@
             // 
             // cmbTipoTarjeta
             // 
+            this.cmbTipoTarjeta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoTarjeta.FormattingEnabled = true;
             this.cmbTipoTarjeta.Location = new System.Drawing.Point(14, 54);
             this.cmbTipoTarjeta.Margin = new System.Windows.Forms.Padding(2);
@@ -167,7 +143,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(699, 377);
+            this.button2.Location = new System.Drawing.Point(490, 301);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(137, 41);
@@ -178,28 +154,30 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnAgregarOrden);
-            this.panel1.Controls.Add(this.btnCalcularFactura);
-            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this.btnCobrar);
+            this.panel1.Controls.Add(this.btnEliminarTelefono);
+            this.panel1.Controls.Add(this.btnAnnadirOrden);
+            this.panel1.Controls.Add(this.lstDetallesFactura);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.cmbOrdenTrabajo);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.cmbClientes);
             this.panel1.Location = new System.Drawing.Point(12, 73);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 190);
+            this.panel1.Size = new System.Drawing.Size(572, 190);
             this.panel1.TabIndex = 24;
             // 
-            // btnCalcularFactura
+            // btnAnnadirOrden
             // 
-            this.btnCalcularFactura.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCalcularFactura.Location = new System.Drawing.Point(15, 141);
-            this.btnCalcularFactura.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCalcularFactura.Name = "btnCalcularFactura";
-            this.btnCalcularFactura.Size = new System.Drawing.Size(102, 34);
-            this.btnCalcularFactura.TabIndex = 99;
-            this.btnCalcularFactura.Text = "Calcular Factura";
-            this.btnCalcularFactura.UseVisualStyleBackColor = false;
+            this.btnAnnadirOrden.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnAnnadirOrden.Location = new System.Drawing.Point(15, 144);
+            this.btnAnnadirOrden.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAnnadirOrden.Name = "btnAnnadirOrden";
+            this.btnAnnadirOrden.Size = new System.Drawing.Size(102, 34);
+            this.btnAnnadirOrden.TabIndex = 99;
+            this.btnAnnadirOrden.Text = "Agregar Orden";
+            this.btnAnnadirOrden.UseVisualStyleBackColor = false;
+            this.btnAnnadirOrden.Click += new System.EventHandler(this.btnAnnadirOrden_Click);
             // 
             // groupBox4
             // 
@@ -207,12 +185,11 @@
             this.groupBox4.Controls.Add(this.txtPrecioColones);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.btnCalcularPrecioDolar);
-            this.groupBox4.Location = new System.Drawing.Point(234, 12);
+            this.groupBox4.Location = new System.Drawing.Point(253, 287);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(216, 132);
+            this.groupBox4.Size = new System.Drawing.Size(216, 159);
             this.groupBox4.TabIndex = 98;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Precio";
@@ -220,50 +197,42 @@
             // txtPrecioDolares
             // 
             this.txtPrecioDolares.Enabled = false;
-            this.txtPrecioDolares.Location = new System.Drawing.Point(64, 50);
+            this.txtPrecioDolares.Location = new System.Drawing.Point(106, 81);
             this.txtPrecioDolares.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrecioDolares.Name = "txtPrecioDolares";
             this.txtPrecioDolares.Size = new System.Drawing.Size(102, 20);
             this.txtPrecioDolares.TabIndex = 22;
+            this.txtPrecioDolares.Text = "0";
             // 
             // txtPrecioColones
             // 
-            this.txtPrecioColones.Location = new System.Drawing.Point(64, 23);
+            this.txtPrecioColones.Location = new System.Drawing.Point(106, 55);
             this.txtPrecioColones.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrecioColones.Name = "txtPrecioColones";
             this.txtPrecioColones.Size = new System.Drawing.Size(102, 20);
             this.txtPrecioColones.TabIndex = 21;
+            this.txtPrecioColones.Text = "0";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 50);
+            this.label7.Location = new System.Drawing.Point(12, 88);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 13);
+            this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 20;
-            this.label7.Text = "Dolares";
+            this.label7.Text = "Total en Dolares:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 28);
+            this.label8.Location = new System.Drawing.Point(12, 58);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 13);
+            this.label8.Size = new System.Drawing.Size(90, 13);
             this.label8.TabIndex = 19;
-            this.label8.Text = "Colones";
-            // 
-            // btnCalcularPrecioDolar
-            // 
-            this.btnCalcularPrecioDolar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCalcularPrecioDolar.Location = new System.Drawing.Point(64, 83);
-            this.btnCalcularPrecioDolar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCalcularPrecioDolar.Name = "btnCalcularPrecioDolar";
-            this.btnCalcularPrecioDolar.Size = new System.Drawing.Size(102, 34);
-            this.btnCalcularPrecioDolar.TabIndex = 93;
-            this.btnCalcularPrecioDolar.Text = "Calcular precio del dolar";
-            this.btnCalcularPrecioDolar.UseVisualStyleBackColor = false;
+            this.label8.Text = "Total en Colones:";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label5
             // 
@@ -277,6 +246,7 @@
             // 
             // cmbOrdenTrabajo
             // 
+            this.cmbOrdenTrabajo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrdenTrabajo.FormattingEnabled = true;
             this.cmbOrdenTrabajo.Location = new System.Drawing.Point(14, 102);
             this.cmbOrdenTrabajo.Margin = new System.Windows.Forms.Padding(2);
@@ -288,7 +258,7 @@
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
-            this.btnCancelar.Location = new System.Drawing.Point(293, 11);
+            this.btnCancelar.Location = new System.Drawing.Point(117, 11);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(94, 45);
@@ -296,19 +266,7 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancelar.UseVisualStyleBackColor = false;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(200, 11);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(89, 45);
-            this.btnEliminar.TabIndex = 95;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnCrear
             // 
@@ -322,63 +280,61 @@
             this.btnCrear.Text = "Guardar";
             this.btnCrear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCrear.UseVisualStyleBackColor = false;
-            // 
-            // btnModificar
-            // 
-            this.btnModificar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
-            this.btnModificar.Location = new System.Drawing.Point(107, 11);
-            this.btnModificar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(89, 45);
-            this.btnModificar.TabIndex = 96;
-            this.btnModificar.Text = "Editar";
-            this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // lstDetallesFactura
             // 
             this.lstDetallesFactura.FormattingEnabled = true;
-            this.lstDetallesFactura.Location = new System.Drawing.Point(12, 286);
+            this.lstDetallesFactura.Location = new System.Drawing.Point(237, 18);
             this.lstDetallesFactura.Name = "lstDetallesFactura";
             this.lstDetallesFactura.Size = new System.Drawing.Size(220, 160);
             this.lstDetallesFactura.TabIndex = 98;
+            this.lstDetallesFactura.SelectedIndexChanged += new System.EventHandler(this.lstDetallesFactura_SelectedIndexChanged);
             // 
-            // btnAgregarOrden
+            // btnEliminarTelefono
             // 
-            this.btnAgregarOrden.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnAgregarOrden.Location = new System.Drawing.Point(128, 141);
-            this.btnAgregarOrden.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAgregarOrden.Name = "btnAgregarOrden";
-            this.btnAgregarOrden.Size = new System.Drawing.Size(102, 34);
-            this.btnAgregarOrden.TabIndex = 100;
-            this.btnAgregarOrden.Text = "Agregar Orden";
-            this.btnAgregarOrden.UseVisualStyleBackColor = false;
+            this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarTelefono.Location = new System.Drawing.Point(488, 69);
+            this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarTelefono.Name = "btnEliminarTelefono";
+            this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
+            this.btnEliminarTelefono.TabIndex = 101;
+            this.btnEliminarTelefono.Text = "Eliminar";
+            this.btnEliminarTelefono.UseVisualStyleBackColor = false;
+            this.btnEliminarTelefono.Click += new System.EventHandler(this.btnEliminarTelefono_Click);
+            // 
+            // btnCobrar
+            // 
+            this.btnCobrar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCobrar.Location = new System.Drawing.Point(488, 113);
+            this.btnCobrar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCobrar.Name = "btnCobrar";
+            this.btnCobrar.Size = new System.Drawing.Size(56, 31);
+            this.btnCobrar.TabIndex = 102;
+            this.btnCobrar.Text = "Cobrar";
+            this.btnCobrar.UseVisualStyleBackColor = false;
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
             // 
             // ProcesoFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(874, 474);
-            this.Controls.Add(this.lstDetallesFactura);
+            this.ClientSize = new System.Drawing.Size(720, 587);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCrear);
-            this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "ProcesoFacturacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proceso de Facturacion";
             this.Load += new System.EventHandler(this.ProcesoFacturacion_Load);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbQR)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -394,11 +350,9 @@
         private System.Windows.Forms.ComboBox cmbClientes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox ptbQR;
         private System.Windows.Forms.ComboBox cmbTipoTarjeta;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
@@ -406,17 +360,15 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbOrdenTrabajo;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnCrear;
-        private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtPrecioDolares;
         private System.Windows.Forms.TextBox txtPrecioColones;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnCalcularPrecioDolar;
-        private System.Windows.Forms.Button btnCalcularFactura;
+        private System.Windows.Forms.Button btnAnnadirOrden;
         private System.Windows.Forms.ListBox lstDetallesFactura;
-        private System.Windows.Forms.Button btnAgregarOrden;
+        private System.Windows.Forms.Button btnEliminarTelefono;
+        private System.Windows.Forms.Button btnCobrar;
     }
 }

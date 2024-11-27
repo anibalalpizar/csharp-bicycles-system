@@ -15,7 +15,9 @@ namespace ProyectoProgramadolll.Entities.DTO
         public string NombreVendedor { get; set; } = string.Empty;
         public string CorreoCliente { get; set; } 
         public DateTime FechaInicio { get; set; }
+        public bool IsCobrada { get; set; }
         public DateTime FechaFinalizacion { get; set; }
+        public decimal TotalColones { get; set; }
         public byte[] Firma { get; set; } = Array.Empty<byte>();
         public byte[] ImagenQROrden { get; set; } = Array.Empty<byte>();
         public List<DetalleOrdenTrabajo> ListaDetalles { get; set; } = new List<DetalleOrdenTrabajo>();

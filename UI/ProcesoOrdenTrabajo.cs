@@ -488,13 +488,7 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
-                if (txaDescripcion.Text == "")
-                {
-                    MessageBox.Show("Debe agregar una descripción", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-
+                
                 if (dtpFinalizacion.Value < DateTime.Now)
                 {
                     MessageBox.Show("La fecha de finalización no puede ser menor a la fecha actual", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

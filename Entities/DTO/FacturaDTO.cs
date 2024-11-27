@@ -21,14 +21,30 @@ namespace ProyectoProgramadolll.Entities.DTO
         public Pagos Pagos { get; set; }
 
         //Detalles de la factura
-        public List<DetalleFacturas> ListaDetallesFactura { get; set; }
+        public List<FacturaDTO> ListaDetallesFactura { get; set; } = new List<FacturaDTO>();
         public int IdDetalleFactura { get; set; }
-        public int idOrdenTrabajo { get; set; }
+        public int IdOrdenTrabajo { get; set; }
 
         //Factura XML
         public int IdFacturaXML { get; set; }
         public XmlDocument XML { get; set; }
         public DateTime FechaEnvio { get; set; }
+
+        //Pagos
+        public string TipoTarjeta { get; set; }
+        public string NumeroTarjeta { get; set; }
+        public DateTime FechaPago { get; set; }
+        public decimal MontoPago { get; set; }
+
+        //Extras
+        public string NombreCliente { get; set; }
+        public string NombreVendedor { get; set; }
+        public string NumeroSerie { get; set; }
+        public string NombreProducto { get; set; }
+        public int  IdProductoServicio { get; set; }
+        public int IdDetalleOrdenTrabajo { get; set; }
+        public string DescripcionDetalle { get; set; }
+
 
 
     }

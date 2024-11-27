@@ -153,6 +153,7 @@
     <Compile Include="Entities\TipoIdentificacion.cs" />
     <Compile Include="Entities\Vendedor.cs" />
     <Compile Include="Enumeraciones\EstadoMantenimiento.cs" />
+    <Compile Include="Enumeraciones\TipoPago.cs" />
     <Compile Include="Extensions\ExceptionsExtention.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

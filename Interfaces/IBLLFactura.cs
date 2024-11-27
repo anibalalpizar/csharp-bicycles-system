@@ -9,11 +9,8 @@ namespace ProyectoProgramadolll.Interfaces
 {
     public interface IBLLFactura
     {
-        FacturaDTO GuardarFactura(FacturaDTO factura);
-        FacturaDTO ObtenerFacturaPorId(string idFactura);
-
-        Task<bool> EliminarFactura(int idFactura);
-
+        FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD);
+        FacturaDTO ObtenerFacturaPorId(int idFactura);
         List<FacturaDTO> ObtenerFacturas();
     }
 }

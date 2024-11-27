@@ -56,7 +56,7 @@ namespace ProyectoProgramadolll.UI
         {
             if (vendedor.IdRol == 1 || vendedor.IdRol == 2)
             {
-                ProcesoFacturacion ProcesoFacturacion = new ProcesoFacturacion();
+                ProcesoFacturacion ProcesoFacturacion = new ProcesoFacturacion(vendedor);
                 ProcesoFacturacion.ShowDialog();
             }
             else
