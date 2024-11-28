@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Windows.Controls.Primitives;
 
 namespace ProyectoProgramadolll.DAL
 {
@@ -52,7 +53,7 @@ namespace ProyectoProgramadolll.DAL
                 cmd.Parameters.AddWithValue("@montoPago", factura.MontoPago);
                 cmd.Parameters.AddWithValue("@detalles", detallesJson);
 
-                using(IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
                 {
                     filas = (int)db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
                 }
@@ -65,7 +66,7 @@ namespace ProyectoProgramadolll.DAL
             }
             catch (Exception ex)
             {
-               Log.LogException(ex);
+                Log.LogException(ex);
                 throw ex;
             }
         }
@@ -80,7 +81,7 @@ namespace ProyectoProgramadolll.DAL
                 cmd.CommandText = "sp_ObtenerFacturaPorId";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-              
+
                 cmd.Parameters.AddWithValue("@idFactura", idFactura);
 
                 using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
@@ -109,10 +110,10 @@ namespace ProyectoProgramadolll.DAL
                             ListaDetallesFactura = new List<FacturaDTO>()
                         };
 
-                       
+
                         foreach (DataRow detalleFila in ds.Tables[0].Rows)
                         {
-           
+
                             if (Convert.ToInt32(detalleFila["idFactura"]) == idFactura)
                             {
                                 FacturaDTO detalle = new FacturaDTO
@@ -142,11 +143,44 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
-
-
-        public List<FacturaDTO> ObtenerFacturas()
+        public async Task<List<Factura>> ObtenerFacturas()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Factura> listaFacturas = null;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "sp_ObtenerFacturas";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    DataTable dt = await db.ExecuteReaderAsync(cmd, "T");
+                    if (dt.Rows.Count > 0)
+                    {
+                        listaFacturas = new List<Factura>();
+                        foreach (DataRow fila in dt.Rows)
+                        {
+                            Factura oFactura = new Factura
+                            {
+                                IdFactura = Convert.ToInt32(fila["idFactura"]),
+                                IdCliente = Convert.ToInt32(fila["idCliente"]),
+                                IdPago = Convert.ToInt32(fila["idPago"]),
+                                FechaFactura = Convert.ToDateTime(fila["fechaFactura"]),
+                                MontoColones = Convert.ToDecimal(fila["montoColones"]),
+                                Venta = Convert.ToDecimal(fila["venta"]),
+                                IdVendedor = Convert.ToInt32(fila["idVendedor"])
+                            };
+                            listaFacturas.Add(oFactura);
+                        }
+                    }
+                }
+                return listaFacturas;
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw ex;
+            }
         }
     }
 }

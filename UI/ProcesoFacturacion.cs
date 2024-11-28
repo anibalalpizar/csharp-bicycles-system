@@ -1,12 +1,14 @@
 ﻿using ProyectoProgramadolll.BLL;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
+using ProyectoProgramadolll.Gestores;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +35,20 @@ namespace ProyectoProgramadolll.UI
             try
             {
                 this.CargarComboClientes();
+                this.CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private async void CargarDatos()
+        {
+            try
+            {
+                IBLLFactura bLLFactura = new BLLFactura();
+                this.dgvDatos.DataSource = await bLLFactura.ObtenerFacturas();
             }
             catch (Exception ex)
             {
@@ -58,7 +74,7 @@ namespace ProyectoProgramadolll.UI
                     montosIndividualesD.Clear();
 
                     break;
-          
+
                 case EstadoMantenimiento.Ninguno:
                     this.lstDetallesFactura.Items.Clear();
                     this.txtPrecioColones.Text = "0.00";
@@ -70,8 +86,8 @@ namespace ProyectoProgramadolll.UI
                     montosIndividualesD.Clear();
 
                     break;
-            
-                   
+
+
             }
         }
 
@@ -102,14 +118,28 @@ namespace ProyectoProgramadolll.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void Procesar(FacturaDTO factura)
+        {
             try
             {
+                string xml = "";
+
+                IGestor oGestor = new Gestor();
+
+                xml = oGestor.ObtenerXML(factura);
+
+                File.WriteAllText(@"c:\temp\factura.xml", xml);
+                File.Copy(@"../../xslt/Factura.xslt", @"c:\temp\Factura.xslt", true);
+       
+                wbNavegador.Url = new Uri(@"c:\temp\factura.xml");
 
             }
-            catch (Exception err)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Error " + err.Message, "Atención");
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -212,20 +242,20 @@ namespace ProyectoProgramadolll.UI
                     OrdenTrabajoDTO orden = ordenes.FirstOrDefault();
                     if (orden != null)
                     {
-                        
+
                         if (orden.IsCobrada)
                         {
                             MessageBox.Show("Esta orden ya ha sido cobrada y no se puede seleccionar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                           
+
                             DesactivarItemOrden(ordenSeleccionada);
                             return;
                         }
 
-                   
+
                         orden.IsCobrada = true;
 
-                       
+
                         totalColonesAcumulado += orden.TotalColones;
                         decimal dolares = await Utils.ObtenerTipoCambioAsync();
 
@@ -238,7 +268,7 @@ namespace ProyectoProgramadolll.UI
                         decimal precioDolares = orden.TotalColones / dolares;
                         totalDolaresAcumulado += precioDolares;
 
-                      
+
                         this.txtPrecioColones.Text = totalColonesAcumulado.ToString("0.00");
                         txtPrecioDolares.Text = totalDolaresAcumulado.ToString("0.00");
 
@@ -264,16 +294,16 @@ namespace ProyectoProgramadolll.UI
                 MessageBox.Show("Esta orden ya ha sido cobrada y no se puede seleccionar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         private void DesactivarItemOrden(string ordenId)
         {
             for (int i = 0; i < lstDetallesFactura.Items.Count; i++)
             {
                 if (lstDetallesFactura.Items[i].ToString().Contains(ordenId))
                 {
-                  
+
                     lstDetallesFactura.Items[i] = $"[Cobrada] {lstDetallesFactura.Items[i].ToString()}";
-                    break; 
+                    break;
                 }
             }
         }
@@ -321,7 +351,7 @@ namespace ProyectoProgramadolll.UI
                 {
                     FacturaDTO detalle = new FacturaDTO();
                     detalle.IdOrdenTrabajo = Convert.ToInt32(item.ToString().Replace("Orden de Trabajo #", "").Replace("[Cobrada] ", ""));
-                   
+
                     detalles.Add(detalle);
                 }
 
@@ -336,6 +366,35 @@ namespace ProyectoProgramadolll.UI
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.dgvDatos.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Por favor, seleccione una factura", "Atención");
+                    return;
+                }
+
+                int idFactura = Convert.ToInt32(this.dgvDatos.SelectedRows[0].Cells["IdFactura"].Value);
+
+                IBLLFactura bLLFactura = new BLLFactura();
+
+                Procesar(bLLFactura.ObtenerFacturaPorId(idFactura));
+
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show("Error " + err.Message, "Atención");
+            }
+        }
+
+        private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

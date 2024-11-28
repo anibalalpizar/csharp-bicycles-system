@@ -12,15 +12,11 @@ namespace ProyectoProgramadolll.BLL
 {
     public class BLLFactura : IBLLFactura
     {
-     
+
         public FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD)
         {
             IDALFactura facturaDAL = new DALFactura();
-
-             return facturaDAL.GuardarFactura(factura, montoIndividualC, montoIndividualD);
-        
-
-
+            return facturaDAL.GuardarFactura(factura, montoIndividualC, montoIndividualD);
         }
 
         public FacturaDTO ObtenerFacturaPorId(int idFactura)
@@ -29,9 +25,10 @@ namespace ProyectoProgramadolll.BLL
             return facturaDAL.ObtenerFacturaPorId(idFactura);
         }
 
-        public List<FacturaDTO> ObtenerFacturas()
+        public Task<List<Factura>> ObtenerFacturas()
         {
-            throw new NotImplementedException();
+            IDALFactura facturaDAL = new DALFactura();
+            return facturaDAL.ObtenerFacturas();
         }
     }
 }

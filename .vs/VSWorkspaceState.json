@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DAL",
+    "\\UI"
   ],
-  "SelectedNode": "\\ProyectoProgramadolll.sln",
+  "SelectedNode": "\\DAL\\DALFactura.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -161,6 +161,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gestores\Gestor.cs" />
     <Compile Include="Interfaces\IBLLBicicleta.cs" />
     <Compile Include="Interfaces\IBLLClientes.cs" />
     <Compile Include="Interfaces\IBLLFactura.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Interfaces\IDALTipoIdentificacion.cs" />
     <Compile Include="Interfaces\IDALVendedor.cs" />
     <Compile Include="Interfaces\IDataBase.cs" />
+    <Compile Include="Interfaces\IGestor.cs" />
     <Compile Include="Interfaces\IProvinciaService.cs" />
     <Compile Include="Persistencia\DataBase.cs" />
     <Compile Include="Persistencia\FactoryConexion.cs" />
@@ -355,6 +357,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="XSLT\Factura.xslt" />
     <None Include="Resources\pdfforge.png" />
     <Content Include="Resources\plus.png" />
     <Content Include="Resources\update.png" />

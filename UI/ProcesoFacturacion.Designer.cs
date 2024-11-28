@@ -39,22 +39,25 @@
             this.cmbTipoTarjeta = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCobrar = new System.Windows.Forms.Button();
+            this.btnEliminarTelefono = new System.Windows.Forms.Button();
             this.btnAnnadirOrden = new System.Windows.Forms.Button();
+            this.lstDetallesFactura = new System.Windows.Forms.ListBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbOrdenTrabajo = new System.Windows.Forms.ComboBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtPrecioDolares = new System.Windows.Forms.TextBox();
             this.txtPrecioColones = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cmbOrdenTrabajo = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnCrear = new System.Windows.Forms.Button();
-            this.lstDetallesFactura = new System.Windows.Forms.ListBox();
-            this.btnEliminarTelefono = new System.Windows.Forms.Button();
-            this.btnCobrar = new System.Windows.Forms.Button();
+            this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.wbNavegador = new System.Windows.Forms.WebBrowser();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbClientes
@@ -87,6 +90,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Enviar Factura Y XML";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
@@ -167,6 +171,30 @@
             this.panel1.Size = new System.Drawing.Size(572, 190);
             this.panel1.TabIndex = 24;
             // 
+            // btnCobrar
+            // 
+            this.btnCobrar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnCobrar.Location = new System.Drawing.Point(488, 113);
+            this.btnCobrar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCobrar.Name = "btnCobrar";
+            this.btnCobrar.Size = new System.Drawing.Size(56, 31);
+            this.btnCobrar.TabIndex = 102;
+            this.btnCobrar.Text = "Cobrar";
+            this.btnCobrar.UseVisualStyleBackColor = false;
+            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
+            // 
+            // btnEliminarTelefono
+            // 
+            this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnEliminarTelefono.Location = new System.Drawing.Point(488, 69);
+            this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminarTelefono.Name = "btnEliminarTelefono";
+            this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
+            this.btnEliminarTelefono.TabIndex = 101;
+            this.btnEliminarTelefono.Text = "Eliminar";
+            this.btnEliminarTelefono.UseVisualStyleBackColor = false;
+            this.btnEliminarTelefono.Click += new System.EventHandler(this.btnEliminarTelefono_Click);
+            // 
             // btnAnnadirOrden
             // 
             this.btnAnnadirOrden.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -178,6 +206,35 @@
             this.btnAnnadirOrden.Text = "Agregar Orden";
             this.btnAnnadirOrden.UseVisualStyleBackColor = false;
             this.btnAnnadirOrden.Click += new System.EventHandler(this.btnAnnadirOrden_Click);
+            // 
+            // lstDetallesFactura
+            // 
+            this.lstDetallesFactura.FormattingEnabled = true;
+            this.lstDetallesFactura.Location = new System.Drawing.Point(237, 18);
+            this.lstDetallesFactura.Name = "lstDetallesFactura";
+            this.lstDetallesFactura.Size = new System.Drawing.Size(220, 160);
+            this.lstDetallesFactura.TabIndex = 98;
+            this.lstDetallesFactura.SelectedIndexChanged += new System.EventHandler(this.lstDetallesFactura_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 78);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Orden de Trabajo:";
+            // 
+            // cmbOrdenTrabajo
+            // 
+            this.cmbOrdenTrabajo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOrdenTrabajo.FormattingEnabled = true;
+            this.cmbOrdenTrabajo.Location = new System.Drawing.Point(14, 102);
+            this.cmbOrdenTrabajo.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbOrdenTrabajo.Name = "cmbOrdenTrabajo";
+            this.cmbOrdenTrabajo.Size = new System.Drawing.Size(175, 21);
+            this.cmbOrdenTrabajo.TabIndex = 23;
             // 
             // groupBox4
             // 
@@ -234,26 +291,6 @@
             this.label8.Text = "Total en Colones:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 78);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 13);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Orden de Trabajo:";
-            // 
-            // cmbOrdenTrabajo
-            // 
-            this.cmbOrdenTrabajo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOrdenTrabajo.FormattingEnabled = true;
-            this.cmbOrdenTrabajo.Location = new System.Drawing.Point(14, 102);
-            this.cmbOrdenTrabajo.Margin = new System.Windows.Forms.Padding(2);
-            this.cmbOrdenTrabajo.Name = "cmbOrdenTrabajo";
-            this.cmbOrdenTrabajo.Size = new System.Drawing.Size(175, 21);
-            this.cmbOrdenTrabajo.TabIndex = 23;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -282,45 +319,31 @@
             this.btnCrear.UseVisualStyleBackColor = false;
             this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
-            // lstDetallesFactura
+            // dgvDatos
             // 
-            this.lstDetallesFactura.FormattingEnabled = true;
-            this.lstDetallesFactura.Location = new System.Drawing.Point(237, 18);
-            this.lstDetallesFactura.Name = "lstDetallesFactura";
-            this.lstDetallesFactura.Size = new System.Drawing.Size(220, 160);
-            this.lstDetallesFactura.TabIndex = 98;
-            this.lstDetallesFactura.SelectedIndexChanged += new System.EventHandler(this.lstDetallesFactura_SelectedIndexChanged);
+            this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Location = new System.Drawing.Point(2, 451);
+            this.dgvDatos.Name = "dgvDatos";
+            this.dgvDatos.Size = new System.Drawing.Size(321, 346);
+            this.dgvDatos.TabIndex = 99;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
-            // btnEliminarTelefono
+            // wbNavegador
             // 
-            this.btnEliminarTelefono.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminarTelefono.Location = new System.Drawing.Point(488, 69);
-            this.btnEliminarTelefono.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEliminarTelefono.Name = "btnEliminarTelefono";
-            this.btnEliminarTelefono.Size = new System.Drawing.Size(56, 31);
-            this.btnEliminarTelefono.TabIndex = 101;
-            this.btnEliminarTelefono.Text = "Eliminar";
-            this.btnEliminarTelefono.UseVisualStyleBackColor = false;
-            this.btnEliminarTelefono.Click += new System.EventHandler(this.btnEliminarTelefono_Click);
-            // 
-            // btnCobrar
-            // 
-            this.btnCobrar.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnCobrar.Location = new System.Drawing.Point(488, 113);
-            this.btnCobrar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCobrar.Name = "btnCobrar";
-            this.btnCobrar.Size = new System.Drawing.Size(56, 31);
-            this.btnCobrar.TabIndex = 102;
-            this.btnCobrar.Text = "Cobrar";
-            this.btnCobrar.UseVisualStyleBackColor = false;
-            this.btnCobrar.Click += new System.EventHandler(this.btnCobrar_Click);
+            this.wbNavegador.Location = new System.Drawing.Point(348, 451);
+            this.wbNavegador.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbNavegador.Name = "wbNavegador";
+            this.wbNavegador.Size = new System.Drawing.Size(647, 346);
+            this.wbNavegador.TabIndex = 100;
             // 
             // ProcesoFacturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(720, 587);
+            this.ClientSize = new System.Drawing.Size(1017, 849);
+            this.Controls.Add(this.wbNavegador);
+            this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnCrear);
@@ -341,6 +364,7 @@
             this.panel1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -370,5 +394,7 @@
         private System.Windows.Forms.ListBox lstDetallesFactura;
         private System.Windows.Forms.Button btnEliminarTelefono;
         private System.Windows.Forms.Button btnCobrar;
+        private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.WebBrowser wbNavegador;
     }
 }

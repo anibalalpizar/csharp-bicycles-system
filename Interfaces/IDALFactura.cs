@@ -13,7 +13,7 @@ namespace ProyectoProgramadolll.Interfaces
         FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD);
         FacturaDTO ObtenerFacturaPorId(int idFactura);
 
-        List<FacturaDTO> ObtenerFacturas();
-        
+        Task<List<Factura>> ObtenerFacturas();
+
     }
 }
