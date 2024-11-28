@@ -113,7 +113,6 @@
     <Compile Include="BLL\BLLClientes.cs" />
     <Compile Include="BLL\BLLFactura.cs" />
     <Compile Include="BLL\BLLOrdenTrabajo.cs" />
-    <Compile Include="BLL\BLLPadron.cs" />
     <Compile Include="BLL\BLLProductoServicio.cs" />
     <Compile Include="BLL\BLLRol.cs" />
     <Compile Include="BLL\BLLTienda.cs" />
@@ -152,7 +151,6 @@
     <Compile Include="Entities\Pagos.cs" />
     <Compile Include="Entities\ProductoServicio.cs" />
     <Compile Include="Entities\Provincia.cs" />
-    <Compile Include="Entities\QuickResponse.cs" />
     <Compile Include="Entities\Rol.cs" />
     <Compile Include="Entities\Telefono.cs" />
     <Compile Include="Entities\Tienda.cs" />
@@ -198,18 +196,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="UI\AgregarClientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\AgregarClientes.Designer.cs">
-      <DependentUpon>AgregarClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\AgregarProductoServicio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\AgregarProductoServicio.Designer.cs">
-      <DependentUpon>AgregarProductoServicio.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -283,12 +269,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\AgregarClientes.resx">
-      <DependentUpon>AgregarClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\AgregarProductoServicio.resx">
-      <DependentUpon>AgregarProductoServicio.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,40 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Proyecto Bicycle\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|D:\\Proyecto Bicycle\\ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:util\\utils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:ui\\procesofacturacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\entities\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:entities\\factura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\dal\\dalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:dal\\dalfactura.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\xslt\\factura.xslt||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:xslt\\factura.xslt||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\gestores\\gestor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:gestores\\gestor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|d:\\proyecto bicycle\\entities\\dto\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{96E57697-D41A-4D16-BB3D-46CECE55EA01}|ProyectoProgramadolll.csproj|solutionrelative:entities\\dto\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -42,35 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 239,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProcesoFacturacion.cs [Design]",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs",
-              "RelativeDocumentMoniker": "UI\\ProcesoFacturacion.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs [Design]",
-              "RelativeToolTip": "UI\\ProcesoFacturacion.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-27T00:31:04.727Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Utils.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\Util\\Utils.cs",
-              "RelativeDocumentMoniker": "Util\\Utils.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\Util\\Utils.cs",
-              "RelativeToolTip": "Util\\Utils.cs",
-              "ViewState": "AgIAAKMBAAAAAAAAAAAawK8BAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:02:14.408Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
@@ -126,84 +66,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Factura.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\Entities\\Factura.cs",
-              "RelativeDocumentMoniker": "Entities\\Factura.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\Entities\\Factura.cs",
-              "RelativeToolTip": "Entities\\Factura.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T05:22:43.719Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Factura.xslt",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\XSLT\\Factura.xslt",
-              "RelativeDocumentMoniker": "XSLT\\Factura.xslt",
-              "ToolTip": "D:\\Proyecto Bicycle\\XSLT\\Factura.xslt",
-              "RelativeToolTip": "XSLT\\Factura.xslt",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAFAAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003586|",
-              "WhenOpened": "2024-11-28T05:11:09.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Gestor.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\Gestores\\Gestor.cs",
-              "RelativeDocumentMoniker": "Gestores\\Gestor.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\Gestores\\Gestor.cs",
-              "RelativeToolTip": "Gestores\\Gestor.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAgwFUAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T04:24:48.952Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ProcesoFacturacion.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs",
-              "RelativeDocumentMoniker": "UI\\ProcesoFacturacion.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\UI\\ProcesoFacturacion.cs",
-              "RelativeToolTip": "UI\\ProcesoFacturacion.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAA8wA8AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:44:14.275Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FacturaDTO.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\Entities\\DTO\\FacturaDTO.cs",
-              "RelativeDocumentMoniker": "Entities\\DTO\\FacturaDTO.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\Entities\\DTO\\FacturaDTO.cs",
-              "RelativeToolTip": "Entities\\DTO\\FacturaDTO.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAIA7wDEAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T03:33:06.372Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DALFactura.cs",
-              "DocumentMoniker": "D:\\Proyecto Bicycle\\DAL\\DALFactura.cs",
-              "RelativeDocumentMoniker": "DAL\\DALFactura.cs",
-              "ToolTip": "D:\\Proyecto Bicycle\\DAL\\DALFactura.cs",
-              "RelativeToolTip": "DAL\\DALFactura.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-28T02:48:37.707Z",
-              "EditorCaption": ""
             }
           ]
         },

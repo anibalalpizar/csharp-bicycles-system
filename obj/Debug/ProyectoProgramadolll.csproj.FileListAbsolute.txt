@@ -341,8 +341,6 @@ D:\Proyecto Bicycle\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.d
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.csproj.AssemblyReference.cache
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.Form1.resources
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.Properties.Resources.resources
-D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.UI.AgregarClientes.resources
-D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.UI.AgregarProductoServicio.resources
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.UI.frmLogin.resources
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.UI.MantenimientoBicicleta.resources
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.UI.MantenimientoClientes.resources

@@ -300,9 +300,7 @@ namespace ProyectoProgramadolll.UI
         ErrorProvider erp = new ErrorProvider();
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            BLLPadron bLLPadron = new BLLPadron();
-            IBLLPadron _BLLPadron = (IBLLPadron)bLLPadron;
-
+           
             try
             {
                 erp.Clear();
