@@ -1,16 +1,10 @@
 ﻿using ProyectoProgramadolll.BLL;
-using ProyectoProgramadolll.DAL;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.UI

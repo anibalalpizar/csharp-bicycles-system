@@ -357,3 +357,7 @@ D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.csproj.CoreCompileInputs.cac
 D:\Proyecto Bicycle\obj\Debug\Proyecto.422C1932.Up2Date
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.exe
 D:\Proyecto Bicycle\obj\Debug\ProyectoProgramadolll.pdb
+D:\Proyecto Bicycle\bin\Debug\zxing.dll
+D:\Proyecto Bicycle\bin\Debug\zxing.presentation.dll
+D:\Proyecto Bicycle\bin\Debug\zxing.xml
+D:\Proyecto Bicycle\bin\Debug\zxing.presentation.xml

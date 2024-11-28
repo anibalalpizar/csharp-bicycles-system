@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace ProyectoProgramadolll.Entities.DTO
@@ -44,6 +41,13 @@ namespace ProyectoProgramadolll.Entities.DTO
         public int  IdProductoServicio { get; set; }
         public int IdDetalleOrdenTrabajo { get; set; }
         public string DescripcionDetalle { get; set; }
+        public decimal MontoDetalle { get; set; }
+        public decimal VentaDetalle { get; set; }
+        public decimal PrecioProducto { get; set; }
+        public decimal PrecioDolarProducto { get; set; }
+
+        public string CorreoCliente { get; set; }
+
 
 
 

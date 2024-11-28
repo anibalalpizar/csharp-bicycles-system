@@ -1,17 +1,5 @@
-﻿using ProyectoProgramadolll.Entities;
-using ProyectoProgramadolll.Entities.DTO;
-using ProyectoProgramadolll.Interfaces;
+﻿using ProyectoProgramadolll.Entities.DTO;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.UI
@@ -139,6 +127,11 @@ namespace ProyectoProgramadolll.UI
 
                 
             }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

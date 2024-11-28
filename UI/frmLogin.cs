@@ -1,8 +1,6 @@
 ﻿using ProyectoProgramadolll.BLL;
-using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
-using ProyectoProgramadolll.Properties;
 using System;
 using System.Windows.Forms;
 

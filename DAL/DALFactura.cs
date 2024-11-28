@@ -71,6 +71,36 @@ namespace ProyectoProgramadolll.DAL
             }
         }
 
+        public FacturaDTO GuardarXml(string xml, int idFactura)
+        {
+            try
+            {
+                FacturaDTO oFactura = null;
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = "sp_GuardarXml";
+                cmd.CommandType = CommandType.StoredProcedure;
+                int filas = 0;
+
+                cmd.Parameters.AddWithValue("@documentoXML", xml);
+                cmd.Parameters.AddWithValue("@idFactura", idFactura);
+                cmd.Parameters.AddWithValue("@fechaEnvio", DateTime.Now);
+
+                using (IDataBase db = FactoryDatabase.CreateDataBase(FactoryConexion.CreateConnection()))
+                {
+                    filas = (int)db.ExecuteNonQuery(cmd, IsolationLevel.ReadCommitted);
+                }
+
+
+                return oFactura;
+
+            }
+            catch (Exception ex)
+            {
+                Log.LogException(ex);
+                throw ex;
+            }
+        }
+
         public FacturaDTO ObtenerFacturaPorId(int idFactura)
         {
             try
@@ -107,6 +137,7 @@ namespace ProyectoProgramadolll.DAL
                             NumeroTarjeta = fila["numeroTarjeta"].ToString(),
                             FechaPago = Convert.ToDateTime(fila["fechaPago"]),
                             MontoPago = Convert.ToDecimal(fila["montoPago"]),
+                            CorreoCliente = fila["correoCliente"].ToString(),
                             ListaDetallesFactura = new List<FacturaDTO>()
                         };
 
@@ -126,7 +157,12 @@ namespace ProyectoProgramadolll.DAL
                                     NumeroSerie = detalleFila["numeroSerie"].ToString(),
                                     IdProductoServicio = Convert.ToInt32(detalleFila["idProductoServicio"]),
                                     DescripcionDetalle = detalleFila["descripcionDetalle"].ToString(),
-                                    NombreProducto = detalleFila["nombreProducto"].ToString()
+                                    NombreProducto = detalleFila["nombreProducto"].ToString(),
+                                    MontoDetalle = decimal.Parse(detalleFila["montoDetalle"].ToString()),
+                                    VentaDetalle = decimal.Parse(detalleFila["ventaDetalle"].ToString()),
+                                    PrecioProducto = decimal.Parse(detalleFila["precioProducto"].ToString()),
+                                    PrecioDolarProducto = decimal.Parse(detalleFila["precioDolarProducto"].ToString())
+                                   
                                 };
                                 oFactura.ListaDetallesFactura.Add(detalle);
                             }

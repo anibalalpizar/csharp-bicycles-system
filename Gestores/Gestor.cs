@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
@@ -34,14 +30,6 @@ namespace ProyectoProgramadolll.Gestores
                 fechaFactura.InnerText = factura.FechaFactura.ToString("yyyy-MM-dd HH:mm:ss");
                 raiz.AppendChild(fechaFactura);
 
-                XmlElement fechaEnvio = documento.CreateElement("FechaEnvio");
-                fechaEnvio.InnerText = factura.FechaEnvio.ToString("yyyy-MM-dd HH:mm:ss");
-                raiz.AppendChild(fechaEnvio);
-
-                XmlElement fechaPago = documento.CreateElement("FechaPago");
-                fechaPago.InnerText = factura.FechaPago.ToString("yyyy-MM-dd HH:mm:ss");
-                raiz.AppendChild(fechaPago);
-
                 XmlElement cliente = documento.CreateElement("Cliente");
                 cliente.InnerText = factura.NombreCliente;
                 raiz.AppendChild(cliente);
@@ -58,6 +46,14 @@ namespace ProyectoProgramadolll.Gestores
                 idVendedor.InnerText = factura.IdVendedor.ToString();
                 raiz.AppendChild(idVendedor);
 
+                XmlElement pagos = documento.CreateElement("Pagos");
+                pagos.InnerText = factura.IdPago.ToString(); ;
+                raiz.AppendChild(pagos);
+
+                XmlElement fechaPago = documento.CreateElement("FechaPago");
+                fechaPago.InnerText = factura.FechaPago.ToString("yyyy-MM-dd HH:mm:ss");
+                raiz.AppendChild(fechaPago);
+
                 XmlElement numeroTarjeta = documento.CreateElement("NumeroTarjeta");
                 numeroTarjeta.InnerText = factura.NumeroTarjeta;
                 raiz.AppendChild(numeroTarjeta);
@@ -66,30 +62,40 @@ namespace ProyectoProgramadolll.Gestores
                 tipoTarjeta.InnerText = factura.TipoTarjeta;
                 raiz.AppendChild(tipoTarjeta);
 
+                XmlElement montoColones = documento.CreateElement("MontoColones");
+                montoColones.InnerText = factura.MontoColones.ToString("F2");
+                raiz.AppendChild(montoColones);
+
+                XmlElement venta = documento.CreateElement("Venta");
+                venta.InnerText = factura.Venta.ToString("F2");
+                raiz.AppendChild(venta);
+
                 XmlElement detallesFactura = documento.CreateElement("DetallesFactura");
                 foreach (var detalle in factura.ListaDetallesFactura)
                 {
                     XmlElement detalleFactura = documento.CreateElement("DetalleFactura");
 
+                    XmlElement ordenId = documento.CreateElement("IdOrdenTrabajo");
+                    ordenId.InnerText = detalle.IdOrdenTrabajo.ToString();
+                    detalleFactura.AppendChild(ordenId);
+
+                    XmlElement bicicleta = documento.CreateElement("NumeroSerie");
+                    bicicleta.InnerText = detalle.NumeroSerie.ToString();
+                    detalleFactura.AppendChild(bicicleta);
+
                     XmlElement descripcionDetalle = documento.CreateElement("DescripcionDetalle");
                     descripcionDetalle.InnerText = detalle.DescripcionDetalle;
                     detalleFactura.AppendChild(descripcionDetalle);
 
-                    XmlElement montoColones = documento.CreateElement("MontoColones");
-                    montoColones.InnerText = detalle.MontoColones.ToString("F2");
-                    detalleFactura.AppendChild(montoColones);
+               
+                    XmlElement precioColones = documento.CreateElement("PrecioProducto");
+                    precioColones.InnerText = detalle.PrecioProducto.ToString("F2");
+                    detalleFactura.AppendChild(precioColones);
 
-                    XmlElement fechaDetalleFactura = documento.CreateElement("FechaFactura");
-                    fechaDetalleFactura.InnerText = detalle.FechaFactura.ToString("yyyy-MM-dd HH:mm:ss");
-                    detalleFactura.AppendChild(fechaDetalleFactura);
 
-                    XmlElement fechaEnvioDetalle = documento.CreateElement("FechaEnvio");
-                    fechaEnvioDetalle.InnerText = detalle.FechaEnvio.ToString("yyyy-MM-dd HH:mm:ss");
-                    detalleFactura.AppendChild(fechaEnvioDetalle);
-
-                    XmlElement fechaPagoDetalle = documento.CreateElement("FechaPago");
-                    fechaPagoDetalle.InnerText = detalle.FechaPago.ToString("yyyy-MM-dd HH:mm:ss");
-                    detalleFactura.AppendChild(fechaPagoDetalle);
+                    XmlElement precioDolares = documento.CreateElement("PrecioDolarProducto");
+                    precioDolares.InnerText = detalle.PrecioDolarProducto.ToString("F2");
+                    detalleFactura.AppendChild(precioDolares);
 
                     detallesFactura.AppendChild(detalleFactura);
                 }

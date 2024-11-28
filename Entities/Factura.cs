@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace ProyectoProgramadolll.Entities
 {
@@ -15,6 +12,6 @@ namespace ProyectoProgramadolll.Entities
         public decimal MontoColones { get; set; }
         public decimal Venta { get; set; }
         public int IdVendedor { get; set; }
-        public Pagos Pagos { get; set; }
+        //public Pagos Pagos { get; set; }
     }
 }

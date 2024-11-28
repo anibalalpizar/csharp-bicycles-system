@@ -19,6 +19,12 @@ namespace ProyectoProgramadolll.BLL
             return facturaDAL.GuardarFactura(factura, montoIndividualC, montoIndividualD);
         }
 
+        public FacturaDTO GuardarXml(string xml, int idFactura)
+        {
+            IDALFactura facturaDAL = new DALFactura();
+            return facturaDAL.GuardarXml(xml, idFactura);
+        }
+
         public FacturaDTO ObtenerFacturaPorId(int idFactura)
         {
             IDALFactura facturaDAL = new DALFactura();

@@ -1,18 +1,11 @@
 ﻿using ProyectoProgramadolll.BLL;
-using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Gestores;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.UI
@@ -125,17 +118,23 @@ namespace ProyectoProgramadolll.UI
         {
             try
             {
-                string xml = "";
+                string tempXmlPath = Path.Combine(Path.GetTempPath(), "factura.xml");
 
                 IGestor oGestor = new Gestor();
+              
+                string xml = oGestor.ObtenerXML(factura);
 
-                xml = oGestor.ObtenerXML(factura);
+                
+                File.WriteAllText(tempXmlPath, xml);
 
-                File.WriteAllText(@"c:\temp\factura.xml", xml);
-                File.Copy(@"../../xslt/Factura.xslt", @"c:\temp\Factura.xslt", true);
-       
-                wbNavegador.Url = new Uri(@"c:\temp\factura.xml");
+                IBLLFactura bLLFactura = new BLLFactura();
+                bLLFactura.GuardarXml(xml, factura.IdFactura);
+                Utils.GenerarYProcesarFacturadenPdf(factura, tempXmlPath);
 
+              
+                File.Copy(@"../../xslt/Factura.xslt", Path.Combine(Path.GetTempPath(), "Factura.xslt"), true);
+
+                wbNavegador.Url = new Uri(tempXmlPath);
             }
             catch (Exception ex)
             {
@@ -335,6 +334,13 @@ namespace ProyectoProgramadolll.UI
                     return;
                 }
 
+                
+                if (txtNumeroTarjeta.Text.Length != 16)
+                {
+                    MessageBox.Show("El número de tarjeta debe tener 16 dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 FacturaDTO factura = new FacturaDTO();
                 factura.IdCliente = ((ClienteDTO)this.cmbClientes.SelectedItem).IdCliente;
                 factura.FechaFactura = DateTime.Now;
@@ -360,7 +366,10 @@ namespace ProyectoProgramadolll.UI
                 IBLLFactura bLLFactura = new BLLFactura();
                 bLLFactura.GuardarFactura(factura, montosIndividualesC, montosIndividualesD);
                 MessageBox.Show("Factura creada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.CargarDatos();
                 this.cambiarEstado(EstadoMantenimiento.Nuevo);
+
+                
             }
             catch (Exception ex)
             {
@@ -381,8 +390,9 @@ namespace ProyectoProgramadolll.UI
                 int idFactura = Convert.ToInt32(this.dgvDatos.SelectedRows[0].Cells["IdFactura"].Value);
 
                 IBLLFactura bLLFactura = new BLLFactura();
-
-                Procesar(bLLFactura.ObtenerFacturaPorId(idFactura));
+                FacturaDTO factura = bLLFactura.ObtenerFacturaPorId(idFactura);
+                Procesar(factura);
+               
 
             }
             catch (Exception err)

@@ -1,9 +1,6 @@
 ﻿using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProyectoProgramadolll.Interfaces
@@ -13,5 +10,7 @@ namespace ProyectoProgramadolll.Interfaces
         FacturaDTO GuardarFactura(FacturaDTO factura, List<decimal> montoIndividualC, List<decimal> montoIndividualD);
         FacturaDTO ObtenerFacturaPorId(int idFactura);
         Task<List<Factura>> ObtenerFacturas();
+
+        FacturaDTO GuardarXml(string xml, int idFactura);
     }
 }

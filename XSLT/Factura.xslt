@@ -33,12 +33,7 @@
 							<xsl:value-of select="Factura/FechaFactura"/>
 						</td>
 					</tr>
-					<tr>
-						<td>FechaEnvio</td>
-						<td>
-							<xsl:value-of select="Factura/FechaEnvio"/>
-						</td>
-					</tr>
+					
 					<tr>
 						<td>FechaPago</td>
 						<td>
@@ -74,28 +69,28 @@
 				<h2>Detalles de la Factura</h2>
 				<table>
 					<tr>
+						<th>Orden de Trabajo</th>
+						<th>Bicicleta</th>
 						<th>Descripción</th>
 						<th>Monto (Colones)</th>
-						<th>Fecha Factura</th>
-						<th>Fecha Envío</th>
-						<th>Fecha Pago</th>
+						<th>Monto (Dolares)</th>
 					</tr>
 					<xsl:for-each select="Factura/DetallesFactura/DetalleFactura">
 						<tr>
 							<td>
+								<xsl:value-of select="IdOrdenTrabajo"/>
+							</td>
+							<td>
+								<xsl:value-of select="NumeroSerie"/>
+							</td>
+							<td>
 								<xsl:value-of select="DescripcionDetalle"/>
 							</td>
 							<td>
-								<xsl:value-of select="MontoColones"/>
+								<xsl:value-of select="PrecioProducto"/>
 							</td>
 							<td>
-								<xsl:value-of select="FechaFactura"/>
-							</td>
-							<td>
-								<xsl:value-of select="FechaEnvio"/>
-							</td>
-							<td>
-								<xsl:value-of select="FechaPago"/>
+								<xsl:value-of select="PrecioDolarProducto"/>
 							</td>
 						</tr>
 					</xsl:for-each>

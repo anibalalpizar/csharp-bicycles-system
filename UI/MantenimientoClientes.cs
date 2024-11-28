@@ -1,23 +1,14 @@
 ﻿using log4net;
-using Newtonsoft.Json;
 using ProyectoProgramadolll.BLL;
-using ProyectoProgramadolll.DTO;
 using ProyectoProgramadolll.Entities;
 using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
-using ProyectoProgramadolll.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UTN.Winform.Electronics.Extensions;
 
@@ -612,7 +603,7 @@ namespace ProyectoProgramadolll.UI
 
         private void lstTelefonos_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            //  this.cambiarEstado(EstadoMantenimiento.Editar);
+            
             if (this.lstTelefonos.SelectedItems.Count > 0)
             {
                 ListViewItem item = (ListViewItem)this.lstTelefonos.SelectedItems[0];

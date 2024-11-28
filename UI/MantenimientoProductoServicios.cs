@@ -4,12 +4,7 @@ using ProyectoProgramadolll.Entities.DTO;
 using ProyectoProgramadolll.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoProgramadolll.UI
@@ -193,7 +188,6 @@ namespace ProyectoProgramadolll.UI
             }
 
             decimal precioDolares = precioColones / tipoCambioventa;
-            //txtPrecioDolares.Text = $"${precioDolares:0.00}";
             txtPrecioDolares.Text = precioDolares.ToString("0.00");
         }
 
